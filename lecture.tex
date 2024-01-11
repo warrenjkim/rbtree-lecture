@@ -1,5 +1,6 @@
 \documentclass[aspectratio=169]{beamer}
 \usefonttheme{serif}
+\setbeamercolor{frametitle}{fg=black}
 
 \setbeamertemplate{navigation symbols}{}
 
@@ -30,7 +31,7 @@
     basicstyle=\ttfamily\footnotesize,
     morekeywords=[2]{typedef, struct},
     morekeywords=[3]{int, Color, Node},
-    morekeywords=[4]{RED, BLACK, data, color, left, right},
+    morekeywords=[4]{RED, BLACK, data, color, left, right, parent},
     keywordstyle=[2]\color{codered},
     keywordstyle=[3]\color{codeorange},
     keywordstyle=[4]\color{codegreen},
@@ -66,12 +67,12 @@
     esub/.style = {isosceles triangle, white, draw=blue, fill=blue, isosceles triangle apex angle=60, shape border uses incircle, anchor=north, shape border rotate=90, minimum height=1.5em, thin, scale=0.6}
 }
 
-\title{Balanced Trees (Red-Black Trees)}
+\newcommand{\textib}[1]{\textit{\textbf{{#1}}}}
+\title{\color{black}{Balanced Trees (\textib{\color{red}{Red}}\textib{-Black} Trees)}}
 \author{Warren Kim}
 \date{}
 
 
-\newcommand{\textib}[1]{\textit{\textbf{{#1}}}}
 \newcommand{\red}{\textib{\color{red}{red }}}
 
 \newcommand{\proposition}[1]{\begin{tcolorbox}[title={Proposition}]\small{\textit{{#1}}}\end{tcolorbox}}
@@ -80,15 +81,25 @@
 
 
 \begin{document}
-
 \maketitle
+
+\begin{frame}{Applications}
+    Red-Black Trees have a variety of applications. Some include:
+    \begin{enumerate}[label=\textit{(\roman*)}]
+        \item Database indexing (2-4 trees\footnote{2-4 (sometimes called 2-3-4) trees are a subset
+            of B$^+$-trees.} $\simeq$ \textib{\color{red}{red}}\textib{-black} trees)[e.g. VoltDB]
+        \item<2-> Linux CPU scheduler (Completely Fair Scheduler)
+        \item<3-> Linux Virtual Memory Areas (VMA)
+        \item<4-> STL Data Structures (e.g. C++'s \texttt{std::map}, Java's \texttt{HashMap})
+        \item<5-> Graph algorithm optimizations (for AI/ML)[e.g. K-mean clustering]
+    \end{enumerate}
+\end{frame}
 
 % ===== MOTIVATION =====
 \begin{frame}{Motivation}
     \begin{enumerate}[label=\textit{(\roman*)}]
         \item Raw binary search tree performance is highly dependant on input order
-        \item We want to ensure ${\cal{O}}(\log n)$ search, insertion, and deletion; i.e. predictable
-            performance
+        \item We want to ensure ${\cal{O}}(\log n)$ performance
     \end{enumerate}
 \end{frame}
 
@@ -115,9 +126,7 @@
             \newcommand{\nsd}{nd}
             \newcommand{\nse}{nd}
             \newcommand{\nsf}{nd}
-            \newcommand{\setns}[2]{
-                \ifthenelse{\insertslidenumber=#1}{\renewcommand{#2}{ndl}}{}
-            }
+            \newcommand{\setns}[2]{\ifthenelse{\insertslidenumber=#1}{\renewcommand{#2}{ndl}}{}}
             \newcommand{\setnum}[1]{\ifthenelse{\insertslidenumber<#1}{}{#1}}
             \setns{1}{\nsa}
             \setns{2}{\nsb}
@@ -223,122 +232,6 @@
     \end{minipage}
 \end{frame}
 
-% \begin{frame}[fragile]{Example: Input order \textit{(i)}}
-%     \textit{(i)} $\{1, 2, 3, 4, 5, 6, 7\}$ 
-%     \begin{center}
-%         \begin{tikzpicture}[-,>=stealth',level/.style={level distance = 0.8cm},
-%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},grow'=down,every node/.style={node}]
-%             \node 
-%             {1}
-%             child { 
-%                 node {2}
-%                 child { 
-%                     node {3} 
-%                     child { 
-%                         node {4} 
-%                         child { 
-%                             node {5} 
-%                             child { 
-%                                 node {6} 
-%                                 child { 
-%                                     node {7} 
-%                                     child { node [nnil] {} }
-%                                     child { node [nnil] {} }
-%                                 }
-%                                 child { node [nnil] {} }
-%                             }
-%                             child { node [nnil] {} }
-%                         }
-%                         child { node [nnil] {} }
-%                     }
-%                     child { node [nnil] {} }
-%                 }
-%                 child { node [nnil] {} }
-%             }
-%             child { 
-%                 node [nnil] {}
-%             }
-%             ;
-%         \end{tikzpicture}
-%     \end{center}
-% \end{frame}
-
-% \begin{frame}[fragile]{Example: Input order \textit{(ii)}}
-%     \textit{(ii)} $\{1, 7, 2, 6, 3, 5, 4\}$ 
-%     \begin{center}
-%         \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/(#1 / 1.5), level distance = 0.8cm},
-%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},grow'=down,every node/.style={node}]
-%             \node 
-%             {1}
-%             child { 
-%                 node {7} 
-%                 child { node [nnil] {} }
-%                 child { 
-%                     node {2} 
-%                     child { 
-%                         node {6} 
-%                         child { node [nnil] {} }
-%                         child { 
-%                             node {3} 
-%                             child { 
-%                                 node {5} 
-%                                 child { node [nnil] {} }
-%                                 child { 
-%                                     node {4} 
-%                                     child { node [nnil] {} }
-%                                     child { node [nnil] {} }
-%                                 }
-%                             }
-%                             child { node [nnil] {} }
-%                         }
-%                     }
-%                     child { node [nnil] {} }
-%                 }
-%             }
-%             child { node [nnil] {} }
-%             ;
-%         \end{tikzpicture}
-%     \end{center}
-% \end{frame}
-
-% \begin{frame}[fragile]{Example: Input order \textit{(ii)}}
-%     \textit{(ii)} $\{4, 2, 6, 1, 5, 3, 7\}$ 
-%     \begin{center}
-%         \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1.5cm},
-%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},grow'=down,every node/.style={node}]
-%             \node 
-%             {4}
-%             child { 
-%                 node {6} 
-%                 child { 
-%                     node {7} 
-%                     child { node [nnil] {} }
-%                     child { node [nnil] {} }
-%                 }
-%                 child { 
-%                     node {5} 
-%                     child { node [nnil] {} }
-%                     child { node [nnil] {} }
-%                 }
-%             }
-%             child { 
-%                 node {2} 
-%                 child { 
-%                     node {3} 
-%                     child { node [nnil] {} }
-%                     child { node [nnil] {} }
-%                 }
-%                 child { 
-%                     node {1} 
-%                     child { node [nnil] {} }
-%                     child { node [nnil] {} }
-%                 }
-%             }
-%             ;
-%         \end{tikzpicture}
-%     \end{center}
-% \end{frame}
-
 % ===== INTUITION =====
 \begin{frame}{Intuition}
     \textib{How do we balance binary trees?}
@@ -355,58 +248,10 @@
     }
 \end{frame}
 
-% ===== EXAMPLE =====
-% \begin{frame}[fragile]{Example: Rotation around $2$}
-%     \centering
-%     \begin{minipage}{.4\textwidth}
-%         \centering
-%         \begin{tikzpicture}[-,>=stealth',level/.style={level distance = 0.8cm},
-%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},grow'=down,every node/.style={node}]
-%             \node 
-%             {1}
-%             child { 
-%                 node {2}
-%                 child { 
-%                     node {3} 
-%                     child { node [nnil] {} }
-%                     child { node [sub] {$\beta$} }
-%                 }
-%                 child { node [sub] {$\alpha$} }
-%             }
-%             child { 
-%                 node [nnil] {}
-%             }
-%             ;
-%         \end{tikzpicture}
-%     \end{minipage}
-%     \begin{minipage}{.1\textwidth}
-%         \centering
-%         \tikz \draw[-latex] (0,0) -- (1,0);
-%     \end{minipage}
-%     \begin{minipage}{.4\textwidth}
-%         \centering
-%         \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 3cm/#1, level distance = 1cm},
-%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},grow'=down,every node/.style={node}]
-%             \node 
-%             {2}
-%             child { 
-%                 node {3}
-%                 child { node [nnil] {} }
-%                 child { node [sub] {$\beta$} }
-%             }
-%             child { 
-%                 node {1} 
-%                 child { node [sub] {$\alpha$} }
-%                 child { node [nnil] {} }
-%             }
-%             ;
-%         \end{tikzpicture}
-%     \end{minipage}
-% \end{frame}
 
 % ===== DEFINITION =====
 \begin{frame}[fragile]{Definition and Properties}
-    \define{
+    \define {
         A \textib{\color{red}{red}}\textib{-black} tree is a type of \textib{self-balancing} binary 
         search tree that guarantees ${\cal{O}}(\log n)$ search, insertion, and deletion operations.
     }
@@ -438,7 +283,7 @@
 \end{frame}
 % ===== DEFINITION =====
 \begin{frame}[fragile]{Definition and Properties}
-    \define{
+    \define {
         A \textib{\color{red}{red}}\textib{-black} tree is a type of \textib{self-balancing} binary 
         search tree that guarantees ${\cal{O}}(\log n)$ search, insertion, and deletion operations.
     }
@@ -464,6 +309,7 @@ typedef struct Node {
     int data;
     Node *left;
     Node *right;
+    Node *parent;
 } Node;
         \end{lstlisting}    
     \end{minipage}
@@ -471,7 +317,7 @@ typedef struct Node {
 % ===== DEFINITION =====
 \begin{frame}[fragile]{Definition and Properties}
     \setbeamercovered{transparent=20}
-    \define{
+    \define {
         A \textib{\color{red}{red}}\textib{-black} tree is a type of \textib{self-balancing} binary 
         search tree that guarantees ${\cal{O}}(\log n)$ search, insertion, and deletion operations.
     }
@@ -513,7 +359,7 @@ typedef struct Node {
 % ===== DEFINITION =====
 \begin{frame}[fragile]{Definition and Properties}
     \setbeamercovered{transparent=20}
-    \define{
+    \define {
         A \textib{\color{red}{red}}\textib{-black} tree is a type of \textib{self-balancing} binary 
         search tree that guarantees ${\cal{O}}(\log n)$ search, insertion, and deletion operations.
     }
@@ -573,7 +419,7 @@ typedef struct Node {
 % ===== DEFINITION =====
 \begin{frame}[fragile]{Definition and Properties}
     \setbeamercovered{transparent=20}
-    \define{
+    \define {
         A \textib{\color{red}{red}}\textib{-black} tree is a type of \textib{self-balancing} binary 
         search tree that guarantees ${\cal{O}}(\log n)$ search, insertion, and deletion operations.
     }
@@ -606,12 +452,13 @@ typedef struct Node {
 \end{frame}
 % ===== DEFINITION =====
 \begin{frame}[fragile]{Depth Property}
-    \vspace{0.5cm}
-    \textit{(iv) Depth:} Every path from the root to \textit{any} leaf node passes through the same number 
-    of \textib{black} nodes
+    \parbox[c][1cm][t]{\linewidth}{
+        \textit{(iv) Depth:} Every path from the root to \textit{any} leaf node passes through the same number 
+        of \textib{black} nodes
+    }
     \newline
     \begin{center}
-        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1.5cm},
+        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1.465cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
             \node [black_node] {7}
             child{ node [red_node] {3} 
@@ -637,11 +484,13 @@ typedef struct Node {
 \end{frame}
 % ===== DEFINITION =====
 \begin{frame}[fragile]{Depth Property}
-    \textit{(iv) Depth:} Every path from the root to \textit{any} leaf node passes through the same number 
-    of \textib{black} nodes
+    \parbox[c][1cm][t]{\linewidth}{
+        \textit{(iv) Depth:} Every path from the root to \textit{any} leaf node passes through the same number 
+        of \textib{black} nodes
+    }
     \newline
     \begin{center}
-        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1cm},
+        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1.1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
             \node [black_node] {10}
             child{ node [red_node] {5} 
@@ -676,8 +525,10 @@ typedef struct Node {
 \end{frame}
 % ===== DEFINITION =====
 \begin{frame}[fragile]{Depth Property}
-    \textit{(iv) Depth:} Every path from the root to \textit{any} leaf node passes through the same number 
-    of \textib{black} nodes
+    \parbox[c][1cm][t]{\linewidth}{
+        \textit{(iv) Depth:} Every path from the root to \textit{any} leaf node passes through the same number 
+        of \textib{black} nodes
+    }
     \newline
     \begin{center}
         \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 10cm/(#1 / 0.5), level distance = 1.1cm},
@@ -737,26 +588,75 @@ typedef struct Node {
     \end{enumerate}
 \end{frame}
 
+
 \begin{frame}{Insertion}
-    Suppose we have a node $z$ to insert into our red-black tree. Then,
+    Suppose we have a node $z$ to insert into our \textib{\color{red}{red}}\textib{-black} tree. Then,
     \begin{enumerate}[label=\textit{(\roman*)}]
-        \item Like a BST, insert $z$.
-        \item Color $z$ \red.
-        \item Fix double \red violations, if any.
-        \item Recursively (or iteratively) fix violations.
+        \item<2-> Like a BST, insert $z$.
+        \item<3-> Color $z$ \textib{\color{red}{red}}.
+        \item<4-> Fix double \red violations, if any.
+        \item<5-> Recursively fix violations upward.
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Double Red Violations}
-    Recall \textit{Property (iii): A \red node does not have a \red child}. 
-    \newline
-    There are two cases:
-    \begin{enumerate}[label=\textit{(\roman*)}]
-        \item \textib{Recolor:} If both the \textit{parent} and \textit{uncle} are 
-            \textib{\color{red}{red}}, perform a \textit{recolor}.
-        \item \textib{Restructure:} If the \textit{parent} is \red but the \textit{uncle} is 
-            \textib{black}, perform a \textit{tri-node restructure}.
-    \end{enumerate}
+
+\begin{frame}[fragile]{Double Red Violations}
+    Recall \textit{Property (iii): A \red node does not have a \red child}. All of the diagrams
+    shown below are examples of \textib{invalid} \textib{\color{red}{red}}\textib{-black}
+    trees.
+    \begin{center}
+        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2cm/#1, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.8]
+            \node 
+            [red_node, scale=0.8] {}
+            child { 
+                node [red_node, scale=0.8] {}
+                child { node [nil, scale=0.8] {}}
+                child { node [nil, scale=0.8] {}}
+            }
+            child { node [nil, scale=0.8] {}}
+            ; 
+        \end{tikzpicture}
+        \hfil
+        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2cm/#1, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.8]
+            \node 
+            [red_node, scale=0.8] {}
+            child { node [nil, scale=0.8] {}}
+            child { 
+                node [red_node, scale=0.8] {}
+                child { node [nil, scale=0.8] {}}
+                child { node [nil, scale=0.8] {}}
+            }
+            ; 
+        \end{tikzpicture}
+        \hfil
+        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2cm/#1, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.8]
+            \node 
+            [red_node, scale=0.8] {}
+            child { 
+                node [red_node, scale=0.8] {}
+                child { node [nil, scale=0.8] {}}
+                child { node [nil, scale=0.8] {}}
+            }
+            child { 
+                node [red_node, scale=0.8] {}
+                child { node [nil, scale=0.8] {}}
+                child { node [nil, scale=0.8] {}}
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+    \onslide<2-> {
+        There are two cases:
+        \begin{enumerate}[label=\textit{(\roman*)}]
+            \item<3-> \textib{Recolor:} If both the \textit{parent} and \textit{uncle} are 
+                \textib{\color{red}{red}}, perform a \textit{recolor}.
+            \item<0> \textib{Restructure:} If the \textit{parent} is red but the \textit{uncle} is 
+                \textib{black}, perform a textit{tri-node restructure}.
+        \end{enumerate}
+    }
 \end{frame}
 
 \begin{frame}[fragile]{Recolor}
@@ -769,35 +669,31 @@ typedef struct Node {
                     \tikzstyle{nd} = [red_node]
 
                     \newcommand{\ns}{nd}
-                    \newcommand{\setns}[1]{
-                        \ifthenelse{\insertslidenumber=1}{\renewcommand{\ns}{ndl}}{}
-                    }
-                    \newcommand{\setnum}[1]{
-                        \ifthenelse{\insertslidenumber=1}{}{#1}
-                    }
+                    \newcommand{\setns}[1]{\ifthenelse{\insertslidenumber=1}{\renewcommand{\ns}{ndl}}{}}
+                    \newcommand{\setnum}[1]{\ifthenelse{\insertslidenumber=1}{}{#1}}
                     \setns{1}
 
                     \node 
                     [black_node] {$u$}
-                    child{ 
+                    child { 
                         node [red_node] {$w$} 
-                        child { node [bsub] {} }
-                        child { node [bsub] {} }
+                        child { node [nil] {} }
+                        child { node [nil] {} }
                     }
-                    child{ 
+                    child { 
                         node [red_node] {$v$}
                         child { 
                             node [\ns] {\setnum{$z$}}
                             child [visible on=<2->] { node [nil] {}}
                             child [visible on=<2->] { node [nil] {}}
                         }
-                        child { node [bsub] {} }
+                        child { node [nil] {} }
                     }
                     ; 
                 \end{tikzpicture}
             \end{center}
         \end{minipage}
-        \onslide<3>{
+        \onslide<3> {
             \begin{minipage}{.1\textwidth}
                 \begin{center}
                     \tikz \draw[-latex] (0,0) -- (1,0);
@@ -809,19 +705,19 @@ typedef struct Node {
                         edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
                     \node 
                     [red_node] {$u$}
-                    child{ 
+                    child { 
                         node [black_node] {$w$} 
-                        child { node [bsub] {} }
-                        child { node [bsub] {} }
+                        child { node [nil] {} }
+                        child { node [nil] {} }
                     }
-                    child{ 
+                    child { 
                         node [black_node] {$v$}
-                        child{ 
+                        child { 
                             node [red_node] {$z$}
                             child{ node [nil] {}}
                             child{ node [nil] {}}
                         }
-                        child { node [bsub] {} }
+                        child { node [nil] {} }
                     }
                     ; 
                     \end{tikzpicture}
@@ -836,7 +732,64 @@ typedef struct Node {
         \item $u$ is $z$'s grandparent
         \item $w$ is $z$'s uncle
     \end{enumerate}
+\end{frame}
 
+\begin{frame}[fragile]{Double Red Violations}
+    Recall \textit{Property (iii): A \red node does not have a \red child}. All of the diagrams
+    shown below are examples of \textib{invalid} \textib{\color{red}{red}}\textib{-black}
+    trees.
+    \begin{center}
+        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2cm/#1, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.8]
+            \node 
+            [red_node, scale=0.8] {}
+            child { 
+                node [red_node, scale=0.8] {}
+                child { node [nil, scale=0.8] {}}
+                child { node [nil, scale=0.8] {}}
+            }
+            child { node [nil, scale=0.8] {}}
+            ; 
+        \end{tikzpicture}
+        \hfil
+        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2cm/#1, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.8]
+            \node 
+            [red_node, scale=0.8] {}
+            child { node [nil, scale=0.8] {}}
+            child { 
+                node [red_node, scale=0.8] {}
+                child { node [nil, scale=0.8] {}}
+                child { node [nil, scale=0.8] {}}
+            }
+            ; 
+        \end{tikzpicture}
+        \hfil
+        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2cm/#1, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.8]
+            \node 
+            [red_node, scale=0.8] {}
+            child { 
+                node [red_node, scale=0.8] {}
+                child { node [nil, scale=0.8] {}}
+                child { node [nil, scale=0.8] {}}
+            }
+            child { 
+                node [red_node, scale=0.8] {}
+                child { node [nil, scale=0.8] {}}
+                child { node [nil, scale=0.8] {}}
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+    \setbeamercovered{transparent=20}
+    There are two cases:
+    \begin{enumerate}[label=\textit{(\roman*)}]
+        \item<0> \textib{Recolor:} If both the \textit{parent} and \textit{uncle} are 
+            \textib{\color{red}{red}}, perform a \textit{recolor}.
+        \item \textib{Restructure:} If the \textit{parent} is \red but the \textit{uncle} is 
+            \textib{black}, perform a \textit{tri-node restructure}.
+    \end{enumerate}
 \end{frame}
 
 \begin{frame}{Tri-Node Restructure}
@@ -869,7 +822,7 @@ typedef struct Node {
 
                     \node 
                     [black_node] {$u$}
-                    child{ 
+                    child { 
                         node [red_node] {$v$}
                         child{ 
                             node [\ns] {\setnum{$z$}}
@@ -878,10 +831,10 @@ typedef struct Node {
                         }
                         child { node [bsub] {$T$} }
                     }
-                    child{ 
+                    child { 
                         node [black_node] {$w$} 
-                        child { node [esub] {} }
-                        child { node [esub] {} }
+                        child { node [esub] {\color{blue}{X}} }
+                        child { node [esub] {\color{blue}{X}} }
                     }
                     ; 
                 \end{tikzpicture}
@@ -909,8 +862,8 @@ typedef struct Node {
                             child { node [bsub] {$T$} }
                             child{ 
                                 node [black_node] {$w$}
-                                child { node [esub] {} }
-                                child { node [esub] {} }
+                                child { node [esub] {\color{blue}{X}} }
+                                child { node [esub] {\color{blue}{X}} }
                             }
                         }
                         ; 
@@ -939,8 +892,8 @@ typedef struct Node {
                     [black_node] {$u$}
                     child{ 
                         node [black_node] {$w$} 
-                        child { node [esub] {} }
-                        child { node [esub] {} }
+                        child { node [esub] {\color{blue}{X}} }
+                        child { node [esub] {\color{blue}{X}} }
                     }
                     child{ 
                         node [red_node] {$v$}
@@ -970,8 +923,8 @@ typedef struct Node {
                         node [red_node] {$u$}
                         child{ 
                             node [black_node] {$w$}
-                            child { node [esub] {} }
-                            child { node [esub] {} }
+                            child { node [esub] {\color{blue}{X}} }
+                            child { node [esub] {\color{blue}{X}} }
                         }
                         child { node [bsub] {$T$} }
                     }
@@ -1026,8 +979,8 @@ typedef struct Node {
                     }
                     child{ 
                         node [black_node] {$w$} 
-                        child { node [esub] {} }
-                        child { node [esub] {} }
+                        child { node [esub] {\color{blue}{X}} }
+                        child { node [esub] {\color{blue}{X}} }
                     }
                     ; 
                 \end{tikzpicture}
@@ -1055,8 +1008,8 @@ typedef struct Node {
                             child{ node [nil] {}}
                             child{ 
                                 node [black_node] {$w$}
-                                child { node [esub] {} }
-                                child { node [esub] {} }
+                                child { node [esub] {\color{blue}{X}} }
+                                child { node [esub] {\color{blue}{X}} }
                             }
                         }
                         ; 
@@ -1085,8 +1038,8 @@ typedef struct Node {
                     [black_node] {$u$}
                     child{ 
                         node [black_node] {$w$} 
-                        child { node [esub] {} }
-                        child { node [esub] {} }
+                        child { node [esub] {\color{blue}{X}} }
+                        child { node [esub] {\color{blue}{X}} }
                     }
                     child{ 
                         node [red_node] {$v$}
@@ -1116,8 +1069,8 @@ typedef struct Node {
                         node [red_node] {$u$} 
                         child{ 
                             node [black_node] {$w$}
-                            child { node [esub] {} }
-                            child { node [esub] {} }
+                            child { node [esub] {\color{blue}{X}} }
+                            child { node [esub] {\color{blue}{X}} }
                         }
                         child{ node [nil] {}}
                     }
@@ -2522,17 +2475,6 @@ typedef struct Node {
     \end{center}
 \end{frame}
 
-\begin{frame}{Applications}
-    Red-Black Trees have a variety of applications. Some include:
-    \begin{enumerate}[label=\textit{(\roman*)}]
-        \item Database indexing 
-        \item<2-> Linux CPU scheduler
-        \item<3-> Linux page tables
-        \item<4-> C++'s \texttt{std::map}
-        \item<5-> Graph algorithms (Dijkstra, MST)
-    \end{enumerate}
-\end{frame}
-
 \begin{frame}{End}
     \begin{center}
         Thank you!
@@ -2541,6 +2483,7 @@ typedef struct Node {
 
 
 \begin{frame}{Appendix}
+    Below are slides that didn't make the cut :(
 \end{frame}
 
 
@@ -2558,80 +2501,237 @@ typedef struct Node {
     \begin{enumerate}[label=\textbf{(\alph*)}]
         \item<2-> $n$ passes through no \textib{black} nodes on the right side by assumption. If $c$ were 
             \textib{black}, then $n$ would pass through $1$ \textib{black} node, a contradiction 
-            since this violates \textit{(iv)}.
-        \item<3-> By \textbf{(a)}, $n$'s child is \red and by \textit{(iii)}, $n$ is \textib{black}.
+            since this violates the \textit{depth property}.
+        \item<3-> By \textbf{(a)}, $n$'s child is \red and by the \textit{internal property}, $n$ is \textib{black}.
         \item <4-> Since $n$ passes through no \textib{black} nodes on the right side by assumption,
-            $n$ cannot pass through any \textib{black} nodes on the left side by \textit{(iv)}. Then,
-            since $c$ is \red by \textbf{(a)}, $c$ has only nil nodes, which are \textib{black} by
-            \textit{(ii)}.
-        \end{enumerate}
-    \onslide<4->{\qed}
-
-
-    % \textbf{(a)} Suppose we have a valid red-black tree. Consider a node $n$ with exactly one child. 
-    % Without loss of generality, choose $n$'s left node to be the child and call it $c$. 
-    % Then, $n$ passes through no \textib{black} nodes on the right side. If $c$ were \textib{black}, then $n$ would 
-    % pass through $1$ \textib{black} node, a contradiction since this violates \textit{(iv)}.
-    % \newline
-    % \onslide<2->{
-    %     \textbf{(b)} By \textbf{(a)}, $n$'s child is \red and by \textit{(iii)}, $n$ is \textib{black}.
-    % }
-    % \newline
-    % \onslide<3->{
-    %     \textbf{(c)} By \textit{(iii)}, $c$ must have \textib{black} children. But since $n$ passes
-    %     through no \textib{black} nodes on the right side, by \textit{(iv)}, $n$ cannot pass through
-    %     any \textib{black} nodes on the left side. Since $c$ is \red by \textbf{(a)}, $c$ must have
-    %     no children.
-    %     \qed
-    % }
+            $n$ cannot pass through any \textib{black} nodes on the left side by the \textit{the depth
+            property}. Then, since $c$ is \red by \textbf{(a)}, $c$ has only nil nodes, which are 
+            \textib{black} by the \textit{external property}.
+    \end{enumerate}
+    \onslide<4->{\color{black}{\qed}}
 \end{frame}
 
-\begin{frame}{Height of a Red-Black Tree}
-    \thm{
-    A red-black tree with $n$ nodes has a height $h$ that is ${\cal{O}} (\log n)$.
-    }
-    \textit{Proof.}
-    Suppose we have an arbitrary red-black tree with $n$ nodes.
-    \newline
-    \onslide<2->{$|$Shortest path (root $\to$ leaf)$|$ $b$ contains exclusively \textib{black} nodes $\implies b \leq h$.}
-    \newline
-    \onslide<3->{$|$Longest path (root $\to$ leaf)$|$ alternates between \red and \textib{black} nodes $\implies h \leq 2b$.}
-    \newline
-    \onslide<4->{Then $b \leq h \leq 2b$. $(*)$}
-    \newline
-    \onslide<5->{There are $2^b - 1 \leq n$ nodes in the tree $\implies b \leq \log(n + 1)$.}
-    \newline
-    \onslide<6->{Then, from $(*)$ we get
-        \newline
-        \[
-            b \leq \log(n + 1) \leq h \leq 2b \leq 2\log(n + 1)
-            \iff \log(n + 1) \leq h \leq 2\log(n + 1)
-        \]
-    }
-    \newline
-    \onslide<7->{
-        $\implies h$ is ${\cal{O}} (\log n)$.
-        \qed
-    }
-\end{frame}
+% \begin{frame}{Height of a Red-Black Tree}
+%     \thm{
+%     A red-black tree with $n$ nodes has a height $h$ that is ${\cal{O}} (\log n)$.
+%     }
+%     \textit{Proof.}
+%     \newline
+%     \onslide<2-> {
+%         $\exists$ a valid red-black tree such that the path from root $\to$ leaf contains
+%         exclusively \textib{black} nodes. This tree has a height $b$. $(1)$
+%     }
+%     \newline
+%     \onslide<3-> {
+%         Similarly, $\exists$ a valid red-black tree such that the path from root $\to$ leaf alternates
+%         between \red and \textib{black} nodes. This tree has a height $2b$. $(2)$
+%     }
+%     \newline
+%     \onslide<4-> {
+%         Consider an arbitrary valid red-black tree of height $h$.
+%     }
+%     \newline
+%     \onslide<5->{Then $b \leq h \leq 2b$ from $(1), (2)$. $(*)$}
+%     \newline
+%     \onslide<6->{There are $2^b - 1 \leq n$ nodes in the tree $\implies b \leq \log(n + 1)$.}
+%     \newline
+%     \onslide<7->{Then, from $(*)$ we get
+%         \newline
+%         \[
+%             b \leq \log(n + 1) \leq h \leq 2b \leq 2\log(n + 1)
+%             \iff \log(n + 1) \leq h \leq 2\log(n + 1)
+%         \]
+%     }
+%     \newline
+%     \onslide<7->{
+%         $\implies h$ is ${\cal{O}} (\log n)$.
+%         \qed
+%     }
+% \end{frame}
 
-\begin{frame}{Height of a Red-Black Tree (Written Proof)}
-    \thm{
-        A red-black tree with $n$ nodes has a height $h$ that is ${\cal{O}}(\log n)$.
-    }
-    \textit{Proof.}
-    Suppose we have an arbitrary red-black tree with $n$ nodes. Then, the length of the shortest 
-    path $b$ from root to leaf contains exclusively \textib{black} nodes (by 
-    \textit{(iv)}), so the height $h$ must be at least $b$. Conversely, the length of the longest 
-    path from root to leaf contains an alternating sequence of \red and \textib{black} nodes 
-    (by \textit{(iii)}), with length at most $2b$. Note that there are at least $2^b - 1$ nodes in the 
-    tree. Solving for $b$, we get $b \leq \log(n + 1)$. Since $b \leq h$, we have that the height 
-    of the red-black tree must be at least $\log(n + 1)$. Then, we get 
-    \[b \leq \log(n + 1) \leq h \leq 2b \leq 2\log(n + 1)\]
-    or
-    \[\log(n + 1) \leq h \leq 2\log(n + 1)\]
-    thus the height of a red-black tree with $n$ nodes is ${\cal{O}} (\log n)$.
-    \qed
-\end{frame}
+% \begin{frame}{Height of a Red-Black Tree (Written Proof)}
+%     \thm{
+%         A red-black tree with $n$ nodes has a height $h$ that is ${\cal{O}}(\log n)$.
+%     }
+%     \textit{Proof.}
+%     Suppose we have an arbitrary red-black tree with $n$ nodes. Then, the length of the shortest 
+%     path $b$ from root to leaf contains exclusively \textib{black} nodes (by 
+%     \textit{(iv)}), so the height $h$ must be at least $b$. Conversely, the length of the longest 
+%     path from root to leaf contains an alternating sequence of \red and \textib{black} nodes 
+%     (by \textit{(iii)}), with length at most $2b$. Note that there are at least $2^b - 1$ nodes in the 
+%     tree. Solving for $b$, we get $b \leq \log(n + 1)$. Since $b \leq h$, we have that the height 
+%     of the red-black tree must be at least $\log(n + 1)$. Then, we get 
+%     \[b \leq \log(n + 1) \leq h \leq 2b \leq 2\log(n + 1)\]
+%     or
+%     \[\log(n + 1) \leq h \leq 2\log(n + 1)\]
+%     thus the height of a red-black tree with $n$ nodes is ${\cal{O}} (\log n)$.
+%     \qed
+% \end{frame}
 
 \end{document}
+
+
+% \begin{frame}[fragile]{Example: Input order \textit{(i)}}
+%     \textit{(i)} $\{1, 2, 3, 4, 5, 6, 7\}$ 
+%     \begin{center}
+%         \begin{tikzpicture}[-,>=stealth',level/.style={level distance = 0.8cm},
+%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},grow'=down,every node/.style={node}]
+%             \node 
+%             {1}
+%             child { 
+%                 node {2}
+%                 child { 
+%                     node {3} 
+%                     child { 
+%                         node {4} 
+%                         child { 
+%                             node {5} 
+%                             child { 
+%                                 node {6} 
+%                                 child { 
+%                                     node {7} 
+%                                     child { node [nnil] {} }
+%                                     child { node [nnil] {} }
+%                                 }
+%                                 child { node [nnil] {} }
+%                             }
+%                             child { node [nnil] {} }
+%                         }
+%                         child { node [nnil] {} }
+%                     }
+%                     child { node [nnil] {} }
+%                 }
+%                 child { node [nnil] {} }
+%             }
+%             child { 
+%                 node [nnil] {}
+%             }
+%             ;
+%         \end{tikzpicture}
+%     \end{center}
+% \end{frame}
+
+% \begin{frame}[fragile]{Example: Input order \textit{(ii)}}
+%     \textit{(ii)} $\{1, 7, 2, 6, 3, 5, 4\}$ 
+%     \begin{center}
+%         \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/(#1 / 1.5), level distance = 0.8cm},
+%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},grow'=down,every node/.style={node}]
+%             \node 
+%             {1}
+%             child { 
+%                 node {7} 
+%                 child { node [nnil] {} }
+%                 child { 
+%                     node {2} 
+%                     child { 
+%                         node {6} 
+%                         child { node [nnil] {} }
+%                         child { 
+%                             node {3} 
+%                             child { 
+%                                 node {5} 
+%                                 child { node [nnil] {} }
+%                                 child { 
+%                                     node {4} 
+%                                     child { node [nnil] {} }
+%                                     child { node [nnil] {} }
+%                                 }
+%                             }
+%                             child { node [nnil] {} }
+%                         }
+%                     }
+%                     child { node [nnil] {} }
+%                 }
+%             }
+%             child { node [nnil] {} }
+%             ;
+%         \end{tikzpicture}
+%     \end{center}
+% \end{frame}
+
+% \begin{frame}[fragile]{Example: Input order \textit{(ii)}}
+%     \textit{(ii)} $\{4, 2, 6, 1, 5, 3, 7\}$ 
+%     \begin{center}
+%         \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 5cm/#1, level distance = 1.5cm},
+%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},grow'=down,every node/.style={node}]
+%             \node 
+%             {4}
+%             child { 
+%                 node {6} 
+%                 child { 
+%                     node {7} 
+%                     child { node [nnil] {} }
+%                     child { node [nnil] {} }
+%                 }
+%                 child { 
+%                     node {5} 
+%                     child { node [nnil] {} }
+%                     child { node [nnil] {} }
+%                 }
+%             }
+%             child { 
+%                 node {2} 
+%                 child { 
+%                     node {3} 
+%                     child { node [nnil] {} }
+%                     child { node [nnil] {} }
+%                 }
+%                 child { 
+%                     node {1} 
+%                     child { node [nnil] {} }
+%                     child { node [nnil] {} }
+%                 }
+%             }
+%             ;
+%         \end{tikzpicture}
+%     \end{center}
+% \end{frame}
+
+% ===== EXAMPLE =====
+% \begin{frame}[fragile]{Example: Rotation around $2$}
+%     \centering
+%     \begin{minipage}{.4\textwidth}
+%         \centering
+%         \begin{tikzpicture}[-,>=stealth',level/.style={level distance = 0.8cm},
+%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},grow'=down,every node/.style={node}]
+%             \node 
+%             {1}
+%             child { 
+%                 node {2}
+%                 child { 
+%                     node {3} 
+%                     child { node [nnil] {} }
+%                     child { node [sub] {$\beta$} }
+%                 }
+%                 child { node [sub] {$\alpha$} }
+%             }
+%             child { 
+%                 node [nnil] {}
+%             }
+%             ;
+%         \end{tikzpicture}
+%     \end{minipage}
+%     \begin{minipage}{.1\textwidth}
+%         \centering
+%         \tikz \draw[-latex] (0,0) -- (1,0);
+%     \end{minipage}
+%     \begin{minipage}{.4\textwidth}
+%         \centering
+%         \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 3cm/#1, level distance = 1cm},
+%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},grow'=down,every node/.style={node}]
+%             \node 
+%             {2}
+%             child { 
+%                 node {3}
+%                 child { node [nnil] {} }
+%                 child { node [sub] {$\beta$} }
+%             }
+%             child { 
+%                 node {1} 
+%                 child { node [sub] {$\alpha$} }
+%                 child { node [nnil] {} }
+%             }
+%             ;
+%         \end{tikzpicture}
+%     \end{minipage}
+% \end{frame}
