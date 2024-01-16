@@ -68,7 +68,7 @@
 }
 
 \newcommand{\textib}[1]{\textit{\textbf{{#1}}}}
-\title{\color{black}{Balanced Trees (\textib{\color{red}{Red}}\textib{-Black} Trees)}}
+\title{\textcolor{black}{Balanced Trees (\textib{\textcolor{red}{Red}}\textib{-Black} Trees)}}
 \author{Warren Kim}
 \date{}
 
@@ -77,6 +77,7 @@
 
 \newcommand{\proposition}[1]{\begin{tcolorbox}[title={Proposition}]\small{\textit{{#1}}}\end{tcolorbox}}
 \newcommand{\thm}[1]{\begin{tcolorbox}[title={Theorem}]\small{\textit{{#1}}}\end{tcolorbox}}
+\newcommand{\lma}[1]{\begin{tcolorbox}[title={Lemma}]\small{\textit{{#1}}}\end{tcolorbox}}
 \newcommand{\define}[1]{\begin{tcolorbox}[title={Definition}]\small{\textit{{#1}}}\end{tcolorbox}}
 
 
@@ -304,13 +305,13 @@
         \begin{lstlisting}
 typedef enum Color { RED, BLACK };
 
-typedef struct Node {
+struct Node {
     Color color;
     int data;
     Node *left;
     Node *right;
     Node *parent;
-} Node;
+};
         \end{lstlisting}    
     \end{minipage}
 \end{frame}
@@ -1094,601 +1095,6 @@ typedef struct Node {
     \end{enumerate}
 \end{frame}
 
-% \begin{frame}{Deletion}
-%     Suppose we have a node $z$ to delete from our red-black tree.
-%     \newline
-%     \begin{enumerate}[label=\textit{(\roman*)}]
-%         \item If $z$ is a \red leaf node, simply remove $z$.
-%         \item If $z$ only has a left child $s$, swap \textit{values} and remove $s$.
-%         \item If $z$ has a right child, swap its \textit{value} with its in-order successor $s$ and 
-%             remove $s$. 
-%     \end{enumerate}
-%     \hfil
-%     \newline
-%     If there is a double \textib{black} in \textit{(ii)} or \textit{(iii)}, perform a 
-%     \textit{fixup} at $y$'s original position.
-% \end{frame}
-
-% \begin{frame}{Deletion Fixup}
-%     There are three cases:
-%     \begin{enumerate}[label=\textit{(\roman*)}]
-%         \item $y$ has a \red child. Then, we perform a \textib{restructure}.
-%         \item $y$'s sibling $w$ is \textib{black}. Then, we perform a \textib{recolor}.
-%         \item $y$'s sibling $w$ is \red. Then, we perform an \textib{adjustment} followed by 
-%             either case \textit{(ii)} or \textit{(iii)}.
-%     \end{enumerate}
-% \end{frame}
-
-% \begin{frame}[fragile]{Restructure}
-%     \begin{center}
-%         \begin{minipage}{.4\textwidth}
-%             \begin{center}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                     \node 
-%                     [black_node] {$x$}
-%                     child { 
-%                         node [black_node] {$z$} 
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     child { 
-%                         node [black_node] {$y$} 
-%                         child { node [nil] {} }
-%                         child { 
-%                             node [red_node] {$c$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%             \end{center}
-%         \end{minipage}
-%         \onslide<2>{
-%             \begin{minipage}{.1\textwidth}
-%                 \begin{center}
-%                     \tikz \draw[-latex] (0,0) -- (1,0);
-%                 \end{center}
-%             \end{minipage}
-%             \begin{minipage}{.4\textwidth}
-%                 \begin{center}
-%                     \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                         edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                         \node 
-%                         [black_node] {$y$}
-%                         child { 
-%                             node [black_node] {$x$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         child { 
-%                             node [black_node] {$c$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         ; 
-%                     \end{tikzpicture}
-%                 \end{center}
-%             \end{minipage}
-%         }
-%     \end{center}
-%     where
-%     \begin{enumerate}[label=,leftmargin=*]
-%         \item $z$ is the node to delete
-%         \item $y$ is $z$'s sibling 
-%         \item $x$ is $y$'s parent
-%         \item $c$ is $y$'s child
-%     \end{enumerate}
-% \end{frame}
-
-% \begin{frame}[fragile]{Restructure}
-%     \begin{center}
-%         \begin{minipage}{.4\textwidth}
-%             \begin{center}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                     \node 
-%                     [black_node] {$x$}
-%                     child { 
-%                         node [black_node] {$z$} 
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     child { 
-%                         node [black_node] {$y$} 
-%                         child { 
-%                             node [red_node] {$c$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         child { node [nil] {} }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%             \end{center}
-%         \end{minipage}
-%         \onslide<2>{
-%             \begin{minipage}{.1\textwidth}
-%                 \begin{center}
-%                     \tikz \draw[-latex] (0,0) -- (1,0);
-%                 \end{center}
-%             \end{minipage}
-%             \begin{minipage}{.4\textwidth}
-%                 \begin{center}
-%                     \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                         edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                         \node 
-%                         [black_node] {$c$}
-%                         child { 
-%                             node [black_node] {$x$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         child { 
-%                             node [black_node] {$y$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         ; 
-%                     \end{tikzpicture}
-%                 \end{center}
-%             \end{minipage}
-%         }
-%     \end{center}
-%     where
-%     \begin{enumerate}[label=,leftmargin=*]
-%         \item $z$ is the node to delete
-%         \item $y$ is $z$'s sibling 
-%         \item $x$ is $y$'s parent
-%         \item $c$ is $y$'s child
-%     \end{enumerate}
-% \end{frame}
-
-
-
-% \begin{frame}[fragile]{Recolor}
-%     \begin{center}
-%         \begin{minipage}{.4\textwidth}
-%             \begin{center}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                     \node 
-%                     [red_node] {$x$}
-%                     child { 
-%                         node [black_node] {$y$} 
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     child { 
-%                         node [black_node] {$z$} 
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%             \end{center}
-%         \end{minipage}
-%         \onslide<2>{
-%             \begin{minipage}{.1\textwidth}
-%                 \begin{center}
-%                     \tikz \draw[-latex] (0,0) -- (1,0);
-%                 \end{center}
-%             \end{minipage}
-%             \begin{minipage}{.4\textwidth}
-%                 \begin{center}
-%                     \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                         edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                         \node 
-%                         [black_node] {$x$}
-%                         child { 
-%                             node [red_node] {$y$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         child { node [nil] {} }
-%                         ; 
-%                     \end{tikzpicture}
-%                 \end{center}
-%             \end{minipage}
-%         }
-%     \end{center}
-%     where
-%     \begin{enumerate}[label=,leftmargin=*]
-%         \item $z$ is the node to delete
-%         \item $y$ is $z$'s sibling 
-%         \item $x$ is $y$'s parent
-%         \item $c$ is $y$'s child
-%     \end{enumerate}
-% \end{frame}
-
-% \begin{frame}[fragile]{Adjustment}
-%     \begin{center}
-%         \begin{minipage}{.4\textwidth}
-%             \begin{center}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                     \node 
-%                     [black_node] {$x$}
-%                     child { 
-%                         node [red_node] {$y$} 
-%                         child { 
-%                             node [black_node] {$c$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         child { node [bsub] {$T$} }
-%                     }
-%                     child { 
-%                         node [black_node] {$z$} 
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%             \end{center}
-%         \end{minipage}
-%         \onslide<2>{
-%             \begin{minipage}{.1\textwidth}
-%                 \begin{center}
-%                     \tikz \draw[-latex] (0,0) -- (1,0);
-%                 \end{center}
-%             \end{minipage}
-%             \begin{minipage}{.4\textwidth}
-%                 \begin{center}
-%                     \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                         edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                         \node 
-%                         [black_node] {$y$}
-%                         child { 
-%                             node [black_node] {$c$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         child { 
-%                             node [black_node] {$x$} 
-%                             child { node [rsub] {$T$} }
-%                             child { node [nil] {} }
-%                         }
-%                         ; 
-%                     \end{tikzpicture}
-%                 \end{center}
-%             \end{minipage}
-%         }
-%     \end{center}
-%     where
-%     \begin{enumerate}[label=,leftmargin=*]
-%         \item $z$ is the node to delete
-%         \item $y$ is $z$'s sibling 
-%         \item $x$ is $y$'s parent
-%         \item $c$ is $y$'s child
-%     \end{enumerate}
-% \end{frame}
-
-% \begin{frame}[fragile]{Case: $y$ is a Leaf Node or has Two \textib{Black} Children}
-%     \begin{center}
-%         \begin{minipage}{.4\textwidth}
-%             \begin{center}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                     \node 
-%                     [black_node] {$x$}
-%                     child{ 
-%                         node [black_node] {$y$} 
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     child{ 
-%                         node [black_node] {$w$}
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%             \end{center}
-%         \end{minipage}
-%         \onslide<2>{
-%             \begin{minipage}{.1\textwidth}
-%                 \begin{center}
-%                     \tikz \draw[-latex] (0,0) -- (1,0);
-%                 \end{center}
-%             \end{minipage}
-%             \begin{minipage}{.4\textwidth}
-%                 \begin{center}
-%                     \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                         edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                         \node 
-%                         [black_node] {$x$}
-%                         child { node [nil] {} }
-%                         child{ 
-%                             node [red_node] {$w$}
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         ; 
-%                     \end{tikzpicture}
-%                 \end{center}
-%             \end{minipage}
-%         }
-%     \end{center}
-%     where
-%     \begin{enumerate}[label=,leftmargin=*]
-%         \item $y$ is the node to delete
-%         \item $w$ is $y$'s sibling
-%         \item $x$ is $y$'s parent
-%     \end{enumerate}
-% \end{frame}
-
-% \begin{frame}[fragile]{Case: $y$ has a \textib{\color{red}{Red}} Child}
-%     \begin{center}
-%         \begin{minipage}{.4\textwidth}
-%             \begin{center}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.7]
-%                     \node 
-%                     [blue_node, scale=0.7] {$x$}
-%                     child{ 
-%                         node [black_node, scale=0.7] {$y$} 
-%                         child { 
-%                             node [red_node, scale=0.7] {$z$} 
-%                             child { node [nil, scale=0.7] {} }
-%                             child { node [nil, scale=0.7] {} }
-%                         }
-%                         child { node [nil, scale=0.7] {} }
-%                     }
-%                     child{ 
-%                         node [black_node, scale=0.7] {$w$}
-%                         child { node [nil, scale=0.7] {} }
-%                         child { node [nil, scale=0.7] {} }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.7]
-%                     \node 
-%                     [blue_node, scale=0.7] {$x$}
-%                     child{ 
-%                         node [black_node, scale=0.7] {$y$} 
-%                         child { node [nil, scale=0.7] {} }
-%                         child { 
-%                             node [red_node, scale=0.7] {$z$} 
-%                             child { node [nil, scale=0.7] {} }
-%                             child { node [nil, scale=0.7] {} }
-%                         }
-%                     }
-%                     child{ 
-%                         node [black_node, scale=0.7] {$w$}
-%                         child { node [nil, scale=0.7] {} }
-%                         child { node [nil, scale=0.7] {} }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%             \end{center}
-%         \end{minipage}
-%         \onslide<2>{
-%         \begin{minipage}{.1\textwidth}
-%             \begin{center}
-%                 \tikz \draw[-latex] (0,0) -- (1,0);
-%             \end{center}
-%         \end{minipage}
-%         \begin{minipage}{.4\textwidth}
-%             \begin{center}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                     \node 
-%                     [red_node] {$x$}
-%                     child{ 
-%                         node [black_node] {$z$} 
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     child{ 
-%                         node [black_node] {$w$}
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%             \end{center}
-%         \end{minipage}
-%     }
-%     \end{center}
-%     where
-%     \begin{enumerate}[label=,leftmargin=*]
-%         \item $y$ is the node to delete
-%         \item $w$ is $y$'s sibling
-%         \item $x$ is $y$'s parent
-%         \item $z$ is $y$'s child
-%     \end{enumerate}
-% \end{frame}
-
-% \begin{frame}[fragile]{Case: $w$ has a \textib{\color{red}{Red}} Child}
-%     \begin{center}
-%         \begin{minipage}{.4\textwidth}
-%             \begin{center}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                     \node 
-%                     [blue_node] {$x$}
-%                     child{ 
-%                         node [black_node] {$y$} 
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     child{ 
-%                         node [black_node] {$w$}
-%                         child { node [nil] {} }
-%                         child { 
-%                             node [red_node] {$z$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%             \end{center}
-%         \end{minipage}
-%         \onslide<2>{
-%             \begin{minipage}{.1\textwidth}
-%                 \begin{center}
-%                     \tikz \draw[-latex] (0,0) -- (1,0);
-%                 \end{center}
-%             \end{minipage}
-%             \begin{minipage}{.4\textwidth}
-%                 \begin{center}
-%                     \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                         edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                         \node 
-%                         [black_node] {$w$}
-%                         child{ 
-%                             node [black_node] {$x$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         child{ 
-%                             node [black_node] {$z$}
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         ; 
-%                     \end{tikzpicture}
-%                 \end{center}
-%             \end{minipage}
-%         }
-%     \end{center}
-%     where
-%     \begin{enumerate}[label=,leftmargin=*]
-%         \item $y$ is the node to delete
-%         \item $z$ is $y$'s child
-%         \item $w$ is $y$'s sibling
-%         \item $x$ is $y$'s parent
-%     \end{enumerate}
-% \end{frame}
-
-% \begin{frame}[fragile]{Case: $w$ has a \textib{\color{red}{Red}} Child}
-%     \begin{center}
-%         \begin{minipage}{.4\textwidth}
-%             \begin{center}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                     \node 
-%                     [blue_node] {$x$}
-%                     child{ 
-%                         node [black_node] {$y$} 
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     child{ 
-%                         node [black_node] {$w$}
-%                         child { 
-%                             node [red_node] {$z$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         child { node [nil] {} }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%             \end{center}
-%         \end{minipage}
-%         \begin{minipage}{.1\textwidth}
-%             \begin{center}
-%                 \tikz \draw[-latex] (0,0) -- (1,0);
-%             \end{center}
-%         \end{minipage}
-%         \begin{minipage}{.4\textwidth}
-%             \begin{center}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                     \node 
-%                     [black_node] {$z$}
-%                     child{ 
-%                         node [black_node] {$x$} 
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     child{ 
-%                         node [black_node] {$w$}
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%             \end{center}
-%         \end{minipage}
-%     \end{center}
-%     where
-%     \begin{enumerate}[label=,leftmargin=*]
-%         \item $y$ is the node to delete
-%         \item $z$ is $y$'s child
-%         \item $w$ is $y$'s sibling
-%         \item $x$ is $y$'s parent
-%     \end{enumerate}
-% \end{frame}
-
-
-% \begin{frame}[fragile]{Case: $w$ is \textib{\color{red}{Red}}}
-%     \begin{center}
-%         \begin{minipage}{.4\textwidth}
-%             \begin{center}
-%                 \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                     \node 
-%                     [black_node] {$x$}
-%                     child{ 
-%                         node [black_node] {$y$} 
-%                         child { node [nil] {} }
-%                         child { node [nil] {} }
-%                     }
-%                     child{ 
-%                         node [red_node] {$w$}
-%                         child { node [bsub] {$T$} }
-%                         child { 
-%                             node [black_node] {$z$} 
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                     }
-%                     ; 
-%                 \end{tikzpicture}
-%             \end{center}
-%         \end{minipage}
-%         \onslide<2>{
-%             \begin{minipage}{.1\textwidth}
-%                 \begin{center}
-%                     \tikz \draw[-latex] (0,0) -- (1,0);
-%                 \end{center}
-%             \end{minipage}
-%             \begin{minipage}{.4\textwidth}
-%                 \begin{center}
-%                     \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
-%                         edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%                         \node 
-%                         [black_node] {$w$}
-%                         child{ 
-%                             node [black_node] {$x$} 
-%                             child { node [nil] {} }
-%                             child { node [rsub] {$T$} }
-%                         }
-%                         child{ 
-%                             node [black_node] {$z$}
-%                             child { node [nil] {} }
-%                             child { node [nil] {} }
-%                         }
-%                         ; 
-%                     \end{tikzpicture}
-%                 \end{center}
-%             \end{minipage}
-%         }
-%     \end{center}
-%     where
-%     \begin{enumerate}[label=,leftmargin=*]
-%         \item $y$ is the node to delete
-%         \item $z$ is $y$'s child
-%         \item $w$ is $y$'s sibling
-%         \item $x$ is $y$'s parent
-%         \item $T$ is $w$'s subtree \end{enumerate}
-% \end{frame}
 
 \begin{frame}{Time and Space Complexities}
     \textib{Insertion}: ${\cal{O}} (\log n)$
@@ -1700,44 +1106,6 @@ typedef struct Node {
     \textib{Search}: ${\cal{O}} (\log n)$
 \end{frame}
 
- % \begin{frame}[fragile]{Red-Black Tree Example}
-%     \begin{center}
-%         \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 6cm/#1, level distance = 1.5cm},
-%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
-%             \node [black_node] {25}
-%                 child{ node [red_node] {21} 
-%                     child{ node [black_node] {18} 
-%                         child{ node [red_node] {2} 
-%                             child{ node [nil] {} }
-%                             child{ node [nil] {} }
-%                         }
-%                         child{ node [nil] {} }
-%                     }
-%                     child{ node [black_node] {24}
-%                         child{ node [red_node] {22}
-%                             child{ node [nil] {} }
-%                             child{ node [nil] {} }
-%                         }
-%                         child{ node [nil] {} }
-%                     }                            
-%                 }
-%                 child{ node [red_node] {50}
-%                     child{ node [black_node] {35} 
-%                         child{ node [red_node] {33}
-%                             child{ node [nil] {} }
-%                             child{ node [nil] {} }
-%                         }
-%                         child{ node [nil] {} }
-%                     }
-%                     child{ node [black_node] {52}
-%                         child{ node [nil] {} }
-%                         child{ node [nil] {} }
-%                     }
-%                 }
-%                 ; 
-%         \end{tikzpicture}
-%     \end{center}
-% \end{frame}
 
 \begin{frame}[fragile]{Red-Black Tree: Example}
     \begin{center}
@@ -2499,74 +1867,665 @@ typedef struct Node {
     Suppose we have a valid red-black tree. Consider a node $n$ with exactly one child. 
     Without loss of generality, choose $n$'s left node to be the child and call it $c$.
     \begin{enumerate}[label=\textbf{(\alph*)}]
-        \item<2-> $n$ passes through no \textib{black} nodes on the right side by assumption. If $c$ were 
+        \item $n$ passes through no \textib{black} nodes on the right side by assumption. If $c$ were 
             \textib{black}, then $n$ would pass through $1$ \textib{black} node, a contradiction 
             since this violates the \textit{depth property}.
-        \item<3-> By \textbf{(a)}, $n$'s child is \red and by the \textit{internal property}, $n$ is \textib{black}.
-        \item <4-> Since $n$ passes through no \textib{black} nodes on the right side by assumption,
+        \item By \textbf{(a)}, $n$'s child is \red and by the \textit{internal property}, $n$ is \textib{black}.
+        \item Since $n$ passes through no \textib{black} nodes on the right side by assumption,
             $n$ cannot pass through any \textib{black} nodes on the left side by the \textit{the depth
             property}. Then, since $c$ is \red by \textbf{(a)}, $c$ has only nil nodes, which are 
-            \textib{black} by the \textit{external property}.
+            \textib{black} by the \textit{external property}. \hfill $\square$
     \end{enumerate}
-    \onslide<4->{\color{black}{\qed}}
 \end{frame}
 
-% \begin{frame}{Height of a Red-Black Tree}
-%     \thm{
-%     A red-black tree with $n$ nodes has a height $h$ that is ${\cal{O}} (\log n)$.
-%     }
-%     \textit{Proof.}
-%     \newline
-%     \onslide<2-> {
-%         $\exists$ a valid red-black tree such that the path from root $\to$ leaf contains
-%         exclusively \textib{black} nodes. This tree has a height $b$. $(1)$
-%     }
-%     \newline
-%     \onslide<3-> {
-%         Similarly, $\exists$ a valid red-black tree such that the path from root $\to$ leaf alternates
-%         between \red and \textib{black} nodes. This tree has a height $2b$. $(2)$
-%     }
-%     \newline
-%     \onslide<4-> {
-%         Consider an arbitrary valid red-black tree of height $h$.
-%     }
-%     \newline
-%     \onslide<5->{Then $b \leq h \leq 2b$ from $(1), (2)$. $(*)$}
-%     \newline
-%     \onslide<6->{There are $2^b - 1 \leq n$ nodes in the tree $\implies b \leq \log(n + 1)$.}
-%     \newline
-%     \onslide<7->{Then, from $(*)$ we get
-%         \newline
-%         \[
-%             b \leq \log(n + 1) \leq h \leq 2b \leq 2\log(n + 1)
-%             \iff \log(n + 1) \leq h \leq 2\log(n + 1)
-%         \]
-%     }
-%     \newline
-%     \onslide<7->{
-%         $\implies h$ is ${\cal{O}} (\log n)$.
-%         \qed
-%     }
-% \end{frame}
+\begin{frame}{Height of a Red-Black Tree}
+    \thm{
+        A red-black tree with $n$ nodes has a height $h$ that is ${\cal{O}} (\log n)$.
+    }
+    \textit{Proof.}
+    Suppose we have an arbitrary (valid) red-black tree. Let $b$ be the number of \textib{black} nodes
+    on the shortest path from root to any leaf. In the worst case, the shortest path alternates 
+    between \red and \textib{black} nodes and thus has a height of $2b$. Then, $h$ is bounded above 
+    by $2b$; that is, $h \leq 2b$. There are $2^b - 1 \leq n$ nodes in this tree. Solving for $b$, 
+    we get $b \leq \log(n + 1)$. Substituting $b$, we get $b \leq \log(n + 1) \leq h \leq 2b \leq 
+    2\log(n + 1)$ so $h$ is bounded below by $\log(n + 1)$ and above by $2\log(n + 1)$; that is, 
+    $\log(n + 1) \leq h \leq 2\log(n + 1)$. So, $h$ is ${\cal{O}} (\log n)$. \hfill $\square$ 
+\end{frame}
 
-% \begin{frame}{Height of a Red-Black Tree (Written Proof)}
-%     \thm{
-%         A red-black tree with $n$ nodes has a height $h$ that is ${\cal{O}}(\log n)$.
-%     }
-%     \textit{Proof.}
-%     Suppose we have an arbitrary red-black tree with $n$ nodes. Then, the length of the shortest 
-%     path $b$ from root to leaf contains exclusively \textib{black} nodes (by 
-%     \textit{(iv)}), so the height $h$ must be at least $b$. Conversely, the length of the longest 
-%     path from root to leaf contains an alternating sequence of \red and \textib{black} nodes 
-%     (by \textit{(iii)}), with length at most $2b$. Note that there are at least $2^b - 1$ nodes in the 
-%     tree. Solving for $b$, we get $b \leq \log(n + 1)$. Since $b \leq h$, we have that the height 
-%     of the red-black tree must be at least $\log(n + 1)$. Then, we get 
-%     \[b \leq \log(n + 1) \leq h \leq 2b \leq 2\log(n + 1)\]
-%     or
-%     \[\log(n + 1) \leq h \leq 2\log(n + 1)\]
-%     thus the height of a red-black tree with $n$ nodes is ${\cal{O}} (\log n)$.
-%     \qed
-% \end{frame}
+\begin{frame}{Deletion}
+    Suppose we have a node $z$ to delete from our red-black tree.
+    \newline
+    \begin{enumerate}[label=\textit{(\roman*)}]
+        \item If $z$ is a \red leaf node, simply remove $z$.
+        \item If $z$ only has a left child $s$, swap \textit{values} and remove $s$.
+        \item If $z$ has a right child, swap its \textit{value} with its in-order successor $s$ and 
+            remove $s$. 
+    \end{enumerate}
+    \hfil
+    \newline
+    If there is a double \textib{black} in \textit{(ii)} or \textit{(iii)}, perform a 
+    \textit{fixup} at $y$'s original position.
+\end{frame}
+
+\begin{frame}{Deletion Fixup}
+    There are three cases:
+    \begin{enumerate}[label=\textit{(\roman*)}]
+        \item $y$ has a \red child. Then, we perform a \textib{restructure}.
+        \item $y$'s sibling $w$ is \textib{black}. Then, we perform a \textib{recolor}.
+        \item $y$'s sibling $w$ is \red. Then, we perform an \textib{adjustment} followed by 
+            either case \textit{(ii)} or \textit{(iii)}.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Restructure}
+    \begin{center}
+        \begin{minipage}{.4\textwidth}
+            \begin{center}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                    \node 
+                    [black_node] {$x$}
+                    child { 
+                        node [black_node] {$z$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    child { 
+                        node [black_node] {$y$} 
+                        child { node [nil] {} }
+                        child { 
+                            node [red_node] {$c$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                    }
+                    ; 
+                \end{tikzpicture}
+            \end{center}
+        \end{minipage}
+        \onslide<2>{
+            \begin{minipage}{.1\textwidth}
+                \begin{center}
+                    \tikz \draw[-latex] (0,0) -- (1,0);
+                \end{center}
+            \end{minipage}
+            \begin{minipage}{.4\textwidth}
+                \begin{center}
+                    \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                        edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                        \node 
+                        [black_node] {$y$}
+                        child { 
+                            node [black_node] {$x$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        child { 
+                            node [black_node] {$c$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        ; 
+                    \end{tikzpicture}
+                \end{center}
+            \end{minipage}
+        }
+    \end{center}
+    where
+    \begin{enumerate}[label=,leftmargin=*]
+        \item $z$ is the node to delete
+        \item $y$ is $z$'s sibling 
+        \item $x$ is $y$'s parent
+        \item $c$ is $y$'s child
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Restructure}
+    \begin{center}
+        \begin{minipage}{.4\textwidth}
+            \begin{center}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                    \node 
+                    [black_node] {$x$}
+                    child { 
+                        node [black_node] {$z$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    child { 
+                        node [black_node] {$y$} 
+                        child { 
+                            node [red_node] {$c$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        child { node [nil] {} }
+                    }
+                    ; 
+                \end{tikzpicture}
+            \end{center}
+        \end{minipage}
+        \onslide<2>{
+            \begin{minipage}{.1\textwidth}
+                \begin{center}
+                    \tikz \draw[-latex] (0,0) -- (1,0);
+                \end{center}
+            \end{minipage}
+            \begin{minipage}{.4\textwidth}
+                \begin{center}
+                    \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                        edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                        \node 
+                        [black_node] {$c$}
+                        child { 
+                            node [black_node] {$x$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        child { 
+                            node [black_node] {$y$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        ; 
+                    \end{tikzpicture}
+                \end{center}
+            \end{minipage}
+        }
+    \end{center}
+    where
+    \begin{enumerate}[label=,leftmargin=*]
+        \item $z$ is the node to delete
+        \item $y$ is $z$'s sibling 
+        \item $x$ is $y$'s parent
+        \item $c$ is $y$'s child
+    \end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}[fragile]{Recolor}
+    \begin{center}
+        \begin{minipage}{.4\textwidth}
+            \begin{center}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                    \node 
+                    [red_node] {$x$}
+                    child { 
+                        node [black_node] {$y$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    child { 
+                        node [black_node] {$z$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    ; 
+                \end{tikzpicture}
+            \end{center}
+        \end{minipage}
+        \onslide<2>{
+            \begin{minipage}{.1\textwidth}
+                \begin{center}
+                    \tikz \draw[-latex] (0,0) -- (1,0);
+                \end{center}
+            \end{minipage}
+            \begin{minipage}{.4\textwidth}
+                \begin{center}
+                    \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                        edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                        \node 
+                        [black_node] {$x$}
+                        child { 
+                            node [red_node] {$y$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        child { node [nil] {} }
+                        ; 
+                    \end{tikzpicture}
+                \end{center}
+            \end{minipage}
+        }
+    \end{center}
+    where
+    \begin{enumerate}[label=,leftmargin=*]
+        \item $z$ is the node to delete
+        \item $y$ is $z$'s sibling 
+        \item $x$ is $y$'s parent
+        \item $c$ is $y$'s child
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Adjustment}
+    \begin{center}
+        \begin{minipage}{.4\textwidth}
+            \begin{center}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                    \node 
+                    [black_node] {$x$}
+                    child { 
+                        node [red_node] {$y$} 
+                        child { 
+                            node [black_node] {$c$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        child { node [bsub] {$T$} }
+                    }
+                    child { 
+                        node [black_node] {$z$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    ; 
+                \end{tikzpicture}
+            \end{center}
+        \end{minipage}
+        \onslide<2>{
+            \begin{minipage}{.1\textwidth}
+                \begin{center}
+                    \tikz \draw[-latex] (0,0) -- (1,0);
+                \end{center}
+            \end{minipage}
+            \begin{minipage}{.4\textwidth}
+                \begin{center}
+                    \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                        edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                        \node 
+                        [black_node] {$y$}
+                        child { 
+                            node [black_node] {$c$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        child { 
+                            node [black_node] {$x$} 
+                            child { node [rsub] {$T$} }
+                            child { node [nil] {} }
+                        }
+                        ; 
+                    \end{tikzpicture}
+                \end{center}
+            \end{minipage}
+        }
+    \end{center}
+    where
+    \begin{enumerate}[label=,leftmargin=*]
+        \item $z$ is the node to delete
+        \item $y$ is $z$'s sibling 
+        \item $x$ is $y$'s parent
+        \item $c$ is $y$'s child
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Case: $y$ is a Leaf Node or has Two \textib{Black} Children}
+    \begin{center}
+        \begin{minipage}{.4\textwidth}
+            \begin{center}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                    \node 
+                    [black_node] {$x$}
+                    child{ 
+                        node [black_node] {$y$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    child{ 
+                        node [black_node] {$w$}
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    ; 
+                \end{tikzpicture}
+            \end{center}
+        \end{minipage}
+        \onslide<2>{
+            \begin{minipage}{.1\textwidth}
+                \begin{center}
+                    \tikz \draw[-latex] (0,0) -- (1,0);
+                \end{center}
+            \end{minipage}
+            \begin{minipage}{.4\textwidth}
+                \begin{center}
+                    \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                        edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                        \node 
+                        [black_node] {$x$}
+                        child { node [nil] {} }
+                        child{ 
+                            node [red_node] {$w$}
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        ; 
+                    \end{tikzpicture}
+                \end{center}
+            \end{minipage}
+        }
+    \end{center}
+    where
+    \begin{enumerate}[label=,leftmargin=*]
+        \item $y$ is the node to delete
+        \item $w$ is $y$'s sibling
+        \item $x$ is $y$'s parent
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Case: $y$ has a \textib{\color{red}{Red}} Child}
+    \begin{center}
+        \begin{minipage}{.4\textwidth}
+            \begin{center}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.7]
+                    \node 
+                    [blue_node, scale=0.7] {$x$}
+                    child{ 
+                        node [black_node, scale=0.7] {$y$} 
+                        child { 
+                            node [red_node, scale=0.7] {$z$} 
+                            child { node [nil, scale=0.7] {} }
+                            child { node [nil, scale=0.7] {} }
+                        }
+                        child { node [nil, scale=0.7] {} }
+                    }
+                    child{ 
+                        node [black_node, scale=0.7] {$w$}
+                        child { node [nil, scale=0.7] {} }
+                        child { node [nil, scale=0.7] {} }
+                    }
+                    ; 
+                \end{tikzpicture}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.7]
+                    \node 
+                    [blue_node, scale=0.7] {$x$}
+                    child{ 
+                        node [black_node, scale=0.7] {$y$} 
+                        child { node [nil, scale=0.7] {} }
+                        child { 
+                            node [red_node, scale=0.7] {$z$} 
+                            child { node [nil, scale=0.7] {} }
+                            child { node [nil, scale=0.7] {} }
+                        }
+                    }
+                    child{ 
+                        node [black_node, scale=0.7] {$w$}
+                        child { node [nil, scale=0.7] {} }
+                        child { node [nil, scale=0.7] {} }
+                    }
+                    ; 
+                \end{tikzpicture}
+            \end{center}
+        \end{minipage}
+        \onslide<2>{
+        \begin{minipage}{.1\textwidth}
+            \begin{center}
+                \tikz \draw[-latex] (0,0) -- (1,0);
+            \end{center}
+        \end{minipage}
+        \begin{minipage}{.4\textwidth}
+            \begin{center}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                    \node 
+                    [red_node] {$x$}
+                    child{ 
+                        node [black_node] {$z$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    child{ 
+                        node [black_node] {$w$}
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    ; 
+                \end{tikzpicture}
+            \end{center}
+        \end{minipage}
+    }
+    \end{center}
+    where
+    \begin{enumerate}[label=,leftmargin=*]
+        \item $y$ is the node to delete
+        \item $w$ is $y$'s sibling
+        \item $x$ is $y$'s parent
+        \item $z$ is $y$'s child
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Case: $w$ has a \textib{\color{red}{Red}} Child}
+    \begin{center}
+        \begin{minipage}{.4\textwidth}
+            \begin{center}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                    \node 
+                    [blue_node] {$x$}
+                    child{ 
+                        node [black_node] {$y$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    child{ 
+                        node [black_node] {$w$}
+                        child { node [nil] {} }
+                        child { 
+                            node [red_node] {$z$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                    }
+                    ; 
+                \end{tikzpicture}
+            \end{center}
+        \end{minipage}
+        \onslide<2>{
+            \begin{minipage}{.1\textwidth}
+                \begin{center}
+                    \tikz \draw[-latex] (0,0) -- (1,0);
+                \end{center}
+            \end{minipage}
+            \begin{minipage}{.4\textwidth}
+                \begin{center}
+                    \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                        edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                        \node 
+                        [black_node] {$w$}
+                        child{ 
+                            node [black_node] {$x$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        child{ 
+                            node [black_node] {$z$}
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        ; 
+                    \end{tikzpicture}
+                \end{center}
+            \end{minipage}
+        }
+    \end{center}
+    where
+    \begin{enumerate}[label=,leftmargin=*]
+        \item $y$ is the node to delete
+        \item $z$ is $y$'s child
+        \item $w$ is $y$'s sibling
+        \item $x$ is $y$'s parent
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Case: $w$ has a \textib{\color{red}{Red}} Child}
+    \begin{center}
+        \begin{minipage}{.4\textwidth}
+            \begin{center}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                    \node 
+                    [blue_node] {$x$}
+                    child{ 
+                        node [black_node] {$y$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    child{ 
+                        node [black_node] {$w$}
+                        child { 
+                            node [red_node] {$z$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        child { node [nil] {} }
+                    }
+                    ; 
+                \end{tikzpicture}
+            \end{center}
+        \end{minipage}
+        \begin{minipage}{.1\textwidth}
+            \begin{center}
+                \tikz \draw[-latex] (0,0) -- (1,0);
+            \end{center}
+        \end{minipage}
+        \begin{minipage}{.4\textwidth}
+            \begin{center}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                    \node 
+                    [black_node] {$z$}
+                    child{ 
+                        node [black_node] {$x$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    child{ 
+                        node [black_node] {$w$}
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    ; 
+                \end{tikzpicture}
+            \end{center}
+        \end{minipage}
+    \end{center}
+    where
+    \begin{enumerate}[label=,leftmargin=*]
+        \item $y$ is the node to delete
+        \item $z$ is $y$'s child
+        \item $w$ is $y$'s sibling
+        \item $x$ is $y$'s parent
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}[fragile]{Case: $w$ is \textib{\color{red}{Red}}}
+    \begin{center}
+        \begin{minipage}{.4\textwidth}
+            \begin{center}
+                \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                    \node 
+                    [black_node] {$x$}
+                    child{ 
+                        node [black_node] {$y$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    child{ 
+                        node [red_node] {$w$}
+                        child { node [bsub] {$T$} }
+                        child { 
+                            node [black_node] {$z$} 
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                    }
+                    ; 
+                \end{tikzpicture}
+            \end{center}
+        \end{minipage}
+        \onslide<2>{
+            \begin{minipage}{.1\textwidth}
+                \begin{center}
+                    \tikz \draw[-latex] (0,0) -- (1,0);
+                \end{center}
+            \end{minipage}
+            \begin{minipage}{.4\textwidth}
+                \begin{center}
+                    \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2.8cm/#1, level distance = 1cm},
+                        edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+                        \node 
+                        [black_node] {$w$}
+                        child{ 
+                            node [black_node] {$x$} 
+                            child { node [nil] {} }
+                            child { node [rsub] {$T$} }
+                        }
+                        child{ 
+                            node [black_node] {$z$}
+                            child { node [nil] {} }
+                            child { node [nil] {} }
+                        }
+                        ; 
+                    \end{tikzpicture}
+                \end{center}
+            \end{minipage}
+        }
+    \end{center}
+    where
+    \begin{enumerate}[label=,leftmargin=*]
+        \item $y$ is the node to delete
+        \item $z$ is $y$'s child
+        \item $w$ is $y$'s sibling
+        \item $x$ is $y$'s parent
+        \item $T$ is $w$'s subtree \end{enumerate}
+\end{frame}
+
+ \begin{frame}[fragile]{Red-Black Tree Example}
+    \begin{center}
+        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 6cm/#1, level distance = 1.5cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+            \node [black_node] {25}
+                child{ node [red_node] {21} 
+                    child{ node [black_node] {18} 
+                        child{ node [red_node] {2} 
+                            child{ node [nil] {} }
+                            child{ node [nil] {} }
+                        }
+                        child{ node [nil] {} }
+                    }
+                    child{ node [black_node] {24}
+                        child{ node [red_node] {22}
+                            child{ node [nil] {} }
+                            child{ node [nil] {} }
+                        }
+                        child{ node [nil] {} }
+                    }                            
+                }
+                child{ node [red_node] {50}
+                    child{ node [black_node] {35} 
+                        child{ node [red_node] {33}
+                            child{ node [nil] {} }
+                            child{ node [nil] {} }
+                        }
+                        child{ node [nil] {} }
+                    }
+                    child{ node [black_node] {52}
+                        child{ node [nil] {} }
+                        child{ node [nil] {} }
+                    }
+                }
+                ; 
+        \end{tikzpicture}
+    \end{center}
+\end{frame}
 
 \end{document}
 
