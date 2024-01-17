@@ -315,6 +315,48 @@ struct Node {
         \end{lstlisting}    
     \end{minipage}
 \end{frame}
+% % ===== DEFINITION =====
+% \begin{frame}[fragile]{Definition and Properties}
+%     \setbeamercovered{transparent=20}
+%     \define {
+%         A \textib{\color{red}{red}}\textib{-black} tree is a type of \textib{self-balancing} binary 
+%         search tree that guarantees ${\cal{O}}(\log n)$ search, insertion, and deletion operations.
+%     }
+%     \begin{minipage}{.45\textwidth}
+%         \begin{enumerate}[label=\textit{(\roman*)}]
+%             \item<0> \textit{Color:} Every node is either \red or \textib{black}
+%             % \item \textit{External:} All nil nodes are \textib{black}
+%             \item[] \color{white}{\textit{Internal:} A red node does not have a red child}
+%                 \color{white}{
+%                 \item \textit{Depth:} Every path from the root to \textit{any} leaf node passes through
+%                     the same number of \textib{black} nodes
+%                 \item \textit{Root}: The root node is always \textib{black}
+%                 }
+%         \end{enumerate}
+%     \end{minipage}
+%     \hfill
+%     \begin{minipage}{.5\textwidth}
+%         \centering
+%         \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2cm/#1, level distance = 1cm},
+%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.8]
+%             \node 
+%             [black_node, scale=0.8] {}
+%             child{ node [nil, scale=0.8] {}}
+%             child{ node [nil, scale=0.8] {}}
+%             ; 
+%         \end{tikzpicture}
+%         \newline
+%         \newline
+%         \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2cm/#1, level distance = 1cm},
+%             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.8]
+%             \node 
+%             [red_node, scale=0.8] {}
+%             child{ node [nil, scale=0.8] {}}
+%             child{ node [nil, scale=0.8] {}}
+%             ; 
+%         \end{tikzpicture}
+%     \end{minipage}
+% \end{frame}
 % ===== DEFINITION =====
 \begin{frame}[fragile]{Definition and Properties}
     \setbeamercovered{transparent=20}
@@ -325,49 +367,7 @@ struct Node {
     \begin{minipage}{.45\textwidth}
         \begin{enumerate}[label=\textit{(\roman*)}]
             \item<0> \textit{Color:} Every node is either \red or \textib{black}
-            \item \textit{External:} All nil nodes are \textib{black}
-            \item[] \color{white}{\textit{Internal:} A red node does not have a red child}
-                \color{white}{
-                \item \textit{Depth:} Every path from the root to \textit{any} leaf node passes through
-                    the same number of \textib{black} nodes
-                \item \textit{Root}: The root node is always \textib{black}
-                }
-        \end{enumerate}
-    \end{minipage}
-    \hfill
-    \begin{minipage}{.5\textwidth}
-        \centering
-        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2cm/#1, level distance = 1cm},
-            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.8]
-            \node 
-            [black_node, scale=0.8] {}
-            child{ node [nil, scale=0.8] {}}
-            child{ node [nil, scale=0.8] {}}
-            ; 
-        \end{tikzpicture}
-        \newline
-        \newline
-        \begin{tikzpicture}[-,>=stealth',level/.style={sibling distance = 2cm/#1, level distance = 1cm},
-            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.8]
-            \node 
-            [red_node, scale=0.8] {}
-            child{ node [nil, scale=0.8] {}}
-            child{ node [nil, scale=0.8] {}}
-            ; 
-        \end{tikzpicture}
-    \end{minipage}
-\end{frame}
-% ===== DEFINITION =====
-\begin{frame}[fragile]{Definition and Properties}
-    \setbeamercovered{transparent=20}
-    \define {
-        A \textib{\color{red}{red}}\textib{-black} tree is a type of \textib{self-balancing} binary 
-        search tree that guarantees ${\cal{O}}(\log n)$ search, insertion, and deletion operations.
-    }
-    \begin{minipage}{.45\textwidth}
-        \begin{enumerate}[label=\textit{(\roman*)}]
-            \item<0> \textit{Color:} Every node is either \red or \textib{black}
-            \item<0> \textit{External:} All nil nodes are \textib{black}
+            % \item<0> \textit{External:} All nil nodes are \textib{black}
             \item \textit{Internal:} A \red node does not have a \red child
                 \color{white}{
                 \item \textit{Depth:} Every path from the root to \textit{any} leaf node passes through
@@ -427,7 +427,7 @@ struct Node {
     \begin{minipage}{.45\textwidth}
         \begin{enumerate}[label=\textit{(\roman*)}]
             \item<0> \textit{Color:} Every node is either \red or \textib{black}
-            \item<0> \textit{External:} All nil nodes are \textib{black}
+            % \item<0> \textit{External:} All nil nodes are \textib{black}
             \item<0> \textit{Internal:} A \red node does not have a \red child
             \item<0> \textit{Depth:} Every path from the root to \textit{any} leaf node passes through
                 the same number of \textib{black} nodes
