@@ -1,0 +1,1327 @@
+% ===== EXAMPLE ONE =====
+\newcommand{\exampleone} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 4cm, level distance = 1cm},
+            level 2/.style={sibling distance = 2cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [black_node] {}
+            child { 
+                node [black_node] {}
+                child { 
+                    node [red_node] {}
+                    child{ node [nil] {} }
+                    child{ node [nil] {} }
+                }
+                child { 
+                    node [red_node] {}
+                    child{ node [nil] {} }
+                    child{ node [nil] {} }
+                }
+            }
+            child { 
+                node [red_node] {} 
+                child { 
+                    node [black_node] {} 
+                    child{ node [nil] {} }
+                    child{ node [nil] {} }
+                }
+                child { 
+                    node [black_node] {}
+                    child{ node [nil] {} }
+                    child{ node [nil] {} }
+                }                            
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== ADD NODE =====
+\newcommand{\ns}{nd}
+\newcommand{\setns}[1]{\ifthenelse{\insertslidenumber=1}{\renewcommand{\ns}{ndl}}{}}
+\newcommand{\setnum}[1]{\ifthenelse{\insertslidenumber=1}{}{#1}}
+
+% ===== INTERNAL RULE =====
+\newcommand{\internalrule} {
+    \vspace{-1.5em}
+    \begin{flushleft}
+        \small{\textbf{Valid}}
+    \end{flushleft}
+    \vspace{-2em}
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.7]
+
+            \node 
+            [red_node, scale=0.7] {}
+            child { 
+                node [black_node, scale=0.7] {}
+                child{ node [nil, scale=0.7] {} }
+                child{ node [nil, scale=0.7] {} }
+            }
+            child { 
+                node [black_node, scale=0.7] {}
+                child{ node [nil, scale=0.7] {} }
+                child{ node [nil, scale=0.7] {} }
+            }
+            ; 
+        \end{tikzpicture}
+        \hspace{2em}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.7]
+
+            \node 
+            [red_node, scale=0.7] {}
+            child{ node [nil, scale=0.7] {} }
+            child{ node [nil, scale=0.7] {} }
+            ; 
+        \end{tikzpicture}
+        \vspace{-1em}
+
+    \end{center}
+    \hrulefill
+
+    \begin{flushleft}
+        \small{\textbf{\textcolor{red}{Invalid}}}
+    \end{flushleft}
+    \vspace{-2em}
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.6]
+
+            \node 
+            [red_node, scale=0.6] {}
+            child { 
+                node [black_node, scale=0.6] {}
+                child{ node [nil, scale=0.6] {}}
+                child{ node [nil, scale=0.6] {}}
+            }
+            child { 
+                node [red_node, scale=0.6] {}
+                child{ node [nil, scale=0.6] {}}
+                child{ node [nil, scale=0.6] {}}
+            }
+            ; 
+        \end{tikzpicture}
+        \hspace{2em}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.6]
+
+            \node 
+            [red_node, scale=0.6] {}
+            child { 
+                node [red_node, scale=0.6] {}
+                child{ node [nil, scale=0.6] {} }
+                child{ node [nil, scale=0.6] {} }
+            }
+            child { 
+                node [black_node, scale=0.6] {} 
+                child{ node [nil, scale=0.6] {} }
+                child{ node [nil, scale=0.6] {} }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== EXTERNAL RULE =====
+\newcommand{\externalrule} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [black_node] {}
+            child{ node [nil] {} }
+            child{ node [nil] {} }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [red_node] {}
+            child{ node [nil] {} }
+            child{ node [nil] {} }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== ROOT RULE =====
+\newcommand{\rootrule} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [black_node] {}
+            child { node [sub] {$\cdots$} }
+            child { node [sub] {$\cdots$} }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== DEPTH RULE =====
+\newcommand{\depthrule} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=1.2]
+
+            \node 
+            [black_node, scale=1.2] {}
+            child { 
+                node [black_node, scale=1.2] {}
+                child { 
+                    node [red_node, scale=1.2] {}
+                    child{ node [nil, scale=1.2] {} }
+                    child{ node [nil, scale=1.2] {} }
+                }
+                child { 
+                    node [red_node, scale=1.2] {}
+                    child{ node [nil, scale=1.2] {} }
+                    child{ node [nil, scale=1.2] {} }
+                }
+            }
+            child { 
+                node [red_node, scale=1.2] {} 
+                child { 
+                    node [black_node, scale=1.2] {} 
+                    child{ node [nil, scale=1.2] {} }
+                    child{ node [nil, scale=1.2] {} }
+                }
+                child { 
+                    node [black_node, scale=1.2] {}
+                    child{ node [nil, scale=1.2] {} }
+                    child{ node [nil, scale=1.2] {} }
+                }                            
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== DEPTH EXAMPLE ONE =====
+\newcommand{\depthone} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 4cm, level distance = 1cm},
+            level 2/.style={sibling distance = 2cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale = 1.2]
+
+            \node 
+            [black_node, scale = 1.2] {7}
+            child { 
+                node [red_node, scale = 1.2] {3} 
+                child { 
+                    node [black_node, scale = 1.2] {1} 
+                    child{ node [nil, scale = 1.2] {} }
+                    child{ node [nil, scale = 1.2] {} }
+                }
+                child { 
+                    node [black_node, scale = 1.2] {5}
+                    child{ node [nil, scale = 1.2] {} }
+                    child{ node [nil, scale = 1.2] {} }
+                }                            
+            }
+            child { 
+                node [black_node, scale = 1.2] {10}
+                child{ node [nil, scale = 1.2] {} }
+                child{ node [red_node, scale = 1.2] {15}
+                    child{ node [nil, scale = 1.2] {} }
+                    child{ node [nil, scale = 1.2] {} }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== DEPTH EXAMPLE TWO =====
+\newcommand{\depthtwo} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 4cm, level distance = 1cm},
+            level 2/.style={sibling distance = 2cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale = 1.2]
+
+            \node 
+            [black_node, scale = 1.2] {10}
+            child { 
+                node [red_node, scale = 1.2] {5} 
+                child { 
+                    node [black_node, scale = 1.2] {3} 
+                    child{ node [nil, scale = 1.2] {} }
+                    child{ node [nil, scale = 1.2] {} }
+                }
+                child{ node [nil, scale = 1.2] {} }
+            }
+            child { 
+                node [black_node, scale = 1.2] {15}
+                child { 
+                    node [red_node, scale = 1.2] {13} 
+                    child{ node [nil, scale = 1.2] {} }
+                    child{ node [nil, scale = 1.2] {} }
+                }
+                child { 
+                    node [black_node, scale = 1.2] {20}
+                    child{ node [nil, scale = 1.2] {} }
+                    child{ node [nil, scale = 1.2] {} }
+                }
+            }
+            ;
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== DEPTH EXAMPLE THREE =====
+\newcommand{\depththree} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 5cm, level distance = 1cm},
+            level 2/.style={sibling distance = 2.5cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1.25cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.75cm, level distance = 0.9cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=1.1]
+
+            \node 
+            [black_node, scale=1.1] {8}
+            child { 
+                node [black_node, scale=1.1] {4} 
+                child{ node [black_node, scale=1.1] {1} 
+                    child{ node [nil, scale=1.1] {} }
+                    child{ node [nil, scale=1.1] {} }
+                }
+                child{ node [black_node, scale=1.1] {7}
+                    child{ node [nil, scale=1.1] {} }
+                    child{ node [nil, scale=1.1] {} }
+                }                            
+            }
+            child { 
+                node [black_node, scale=1.1] {17}
+                child { 
+                    node [red_node, scale=1.1] {14} 
+                    child { 
+                        node [black_node, scale=1.1] {12}
+                        child{ node [nil, scale=1.1] {} }
+                        child{ node [nil, scale=1.1] {} }
+                    }                            
+                    child { 
+                        node [black_node, scale=1.1] {16}
+                        child{ node [nil, scale=1.1] {} }
+                        child{ node [nil, scale=1.1] {} }
+                    }                            
+                }
+                child { 
+                    node [red_node, scale=1.1] {21}
+                    child{ 
+                        node [black_node, scale=1.1] {19}
+                        child{ node [nil, scale=1.1] {} }
+                        child{ node [nil, scale=1.1] {} }
+                    }
+                    child { 
+                        node [black_node, scale=1.1] {30}
+                        child{ node [nil, scale=1.1] {} }
+                        child {
+                            node [red_node, scale=1.1] {50}
+                            child{ node [nil, scale=1.1] {} }
+                            child{ node [nil, scale=1.1] {} }
+                        }
+                    }                            
+                }
+            }
+            ;
+        \end{tikzpicture} 
+    \end{center}
+}
+
+\newcommand{\doublered} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [red_node] {}
+            child { 
+                node [red_node] {}
+                child { node [nil] {}}
+                child { node [nil] {}}
+            }
+            child { node [nil] {}}
+            ; 
+        \end{tikzpicture}
+        \hfil
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [red_node] {}
+            child { node [nil] {}}
+            child { 
+                node [red_node] {}
+                child { node [nil] {}}
+                child { node [nil] {}}
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== RECOLOR BEFORE =====
+\newcommand{\recolorbefore} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 3cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \tikzstyle{ndl} = [nil]
+            \tikzstyle{nd} = [red_node]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$10$}
+                child { 
+                    node [red_node] {$5$} 
+                    child { node [nil] {} }
+                    child { node [nil] {} }
+                }
+                child { 
+                    node [red_node] {$15$}
+                    child { node [nil] {} }
+                    child { 
+                        node [\ns] {\setnum{$20$}}
+                        child [visible on=<2->] { node [nil] {}}
+                        child [visible on=<2->] { node [nil] {}}
+                    }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== RECOLOR AFTER =====
+\newcommand{\recolorafter} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 3cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [red_node] {$10$}
+                child { 
+                    node [black_node] {$5$} 
+                    child { node [nil] {} }
+                    child { node [nil] {} }
+                }
+                child { 
+                    node [black_node] {$15$}
+                    child { node [nil] {} }
+                    child { 
+                        node [red_node] {$20$}
+                        child{ node [nil] {}}
+                        child{ node [nil] {}}
+                    }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== RECOLOR RECURSIVE BEFORE =====
+\newcommand{\recolorrecursivebefore} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 6cm, level distance = 1cm},
+            level 2/.style={sibling distance = 3cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
+            level 5/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \tikzstyle{ndl} = [nil]
+            \tikzstyle{nd} = [red_node]
+
+            \node 
+            [black_node] {$30$}
+            child {
+                node [red_node] {$20$}
+                child {
+                    node [black_node] {$10$}
+                    child { 
+                        node [red_node] {$5$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    child { 
+                        node [red_node] {$15$}
+                        child { 
+                            node [\ns] {\setnum{$12$}}
+                            child [visible on=<2->] { node [nil] {}}
+                            child [visible on=<2->] { node [nil] {}}
+                        }
+                        child { node [nil] {} }
+                    }
+                }
+                child { 
+                    node [black_node] {$25$} 
+                    child { node [nil] {} }
+                    child { node [nil] {} }
+                }
+            }
+            child { 
+                node [red_node] {$50$} 
+                child { 
+                    node [black_node] {$40$} 
+                    child { node [nil] {} }
+                    child { node [nil] {} }
+                }
+                child { 
+                    node [black_node] {$60$} 
+                    child { node [nil] {} }
+                    child { node [nil] {} }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== RECOLOR RECURSIVE AFTER =====
+\newcommand{\recolorrecursiveafter}[4] {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 6cm, level distance = 1cm},
+            level 2/.style={sibling distance = 3cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
+            level 5/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [#4] {$30$}
+            child {
+                node [#3] {$20$}
+                child {
+                    node [#1] {$10$}
+                    child { 
+                        node [#2] {$5$} 
+                        child { node [nil] {} }
+                        child { node [nil] {} }
+                    }
+                    child { 
+                        node [#2] {$15$}
+                        child { 
+                            node [red_node] {$12$}
+                            child{ node [nil] {}}
+                            child{ node [nil] {}}
+                        }
+                        child { node [nil] {} }
+                    }
+                }
+                child { 
+                    node [black_node] {$25$} 
+                    child { node [nil] {} }
+                    child { node [nil] {} }
+                }
+            }
+            child { 
+                node [#3] {$50$} 
+                child { 
+                    node [black_node] {$40$} 
+                    child { node [nil] {} }
+                    child { node [nil] {} }
+                }
+                child { 
+                    node [black_node] {$60$} 
+                    child { node [nil] {} }
+                    child { node [nil] {} }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== LEFT LEFT SIMPLE BEFORE =====
+\newcommand{\llsimplebefore} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 3cm, level distance = 1.2cm},
+            level 2/.style={sibling distance = 1.5cm, level distance = 1.2cm},
+            level 3/.style={sibling distance = 0.75cm, level distance = 1.2cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \tikzstyle{ndl} = [nil]
+            \tikzstyle{nd} = [red_node]
+
+
+            \node 
+            [black_node] {$3$}
+            child { 
+                node [red_node] {$2$}
+                child{ 
+                    node [\ns] {\setnum{$1$}}
+                    child [visible on=<2->] { node [nil] {}}
+                    child [visible on=<2->] { node [nil] {}}
+                }
+                child { node [nil] {} }
+            }
+            child { node [nil] {} }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== LEFT LEFT SIMPLE AFTER =====
+\newcommand{\llsimpleafter} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 3cm, level distance = 1.2cm},
+            level 2/.style={sibling distance = 1.5cm, level distance = 1.2cm},
+            level 3/.style={sibling distance = 0.75cm, level distance = 1.2cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [black_node] {$2$}
+            child{ 
+                node [red_node] {$1$}
+                child{ node [nil] {}}
+                child{ node [nil] {}}
+            }
+            child{ 
+                node [red_node] {$3$} 
+                child { node [nil] {} }
+                child { node [nil] {} }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== LEFT LEFT GENERAL BEFORE =====
+\newcommand{\llbefore} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 3cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$15$}
+                child { 
+                    node [red_node] {$10$}
+                    child{ 
+                        node [red_node] {$5$}
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                    child {
+                        node [black_node] {$12$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                }
+                child { 
+                    node [black_node] {$20$} 
+                    child { node [sub] {$\cdots$} }
+                    child { node [sub] {$\cdots$} }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== LEFT LEFT GENERAL AFTER =====
+\newcommand{\llafter} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 3cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$10$}
+                child{ 
+                    node [red_node] {$5$}
+                    child { node [sub] {$\cdots$} }
+                    child { node [sub] {$\cdots$} }
+                }
+                child{ 
+                    node [red_node] {$15$} 
+                    child { 
+                        node [black_node] {$12$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                    child{ 
+                        node [black_node] {$20$}
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== RIGHT RIGHT SIMPLE BEFORE =====
+\newcommand{\rrsimplebefore} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 3cm, level distance = 1.2cm},
+            level 2/.style={sibling distance = 1.5cm, level distance = 1.2cm},
+            level 3/.style={sibling distance = 0.75cm, level distance = 1.2cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \tikzstyle{ndl} = [nil]
+            \tikzstyle{nd} = [red_node]
+
+            \node 
+            [black_node] {$1$}
+            child { node [nil] {} }
+            child { 
+                node [red_node] {$2$}
+                child { node [nil] {} }
+                child{ 
+                    node [red_node] {$3$}
+                    child { node [nil] {} }
+                    child { node [nil] {} }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== RIGHT RIGHT SIMPLE AFTER =====
+\newcommand{\rrsimpleafter} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 3cm, level distance = 1.2cm},
+            level 2/.style={sibling distance = 1.5cm, level distance = 1.2cm},
+            level 3/.style={sibling distance = 0.75cm, level distance = 1.2cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [black_node] {$2$}
+            child{ 
+                node [red_node] {$1$}
+                child{ node [nil] {}}
+                child{ node [nil] {}}
+            }
+            child{ 
+                node [red_node] {$3$} 
+                child { node [nil] {} }
+                child { node [nil] {} }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== RIGHT RIGHT BEFORE =====
+\newcommand{\rrbefore} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 3cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$5$}
+                child { 
+                    node [black_node] {$3$} 
+                    child { node [sub] {$\cdots$} }
+                    child { node [sub] {$\cdots$} }
+                }
+                child { 
+                    node [red_node] {$10$}
+                    child {
+                        node [black_node] {$7$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                    child{ 
+                        node [red_node] {$15$}
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== RIGHT RIGHT AFTER =====
+\newcommand{\rrafter} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 3cm, level distance = 1cm},
+            level 3/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$10$}
+                child { 
+                    node [red_node] {$5$}
+                    child { 
+                        node [black_node] {$3$}
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                    child { 
+                        node [black_node] {$7$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                }
+                child { 
+                    node [red_node] {$15$} 
+                    child { node [sub] {$\cdots$} }
+                    child { node [sub] {$\cdots$} }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+
+% ===== LEFT RIGHT SIMPLE BEFORE =====
+\newcommand{\lrsimplebefore} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \tikzstyle{ndl} = [nil]
+            \tikzstyle{nd} = [red_node]
+
+            \node 
+            [black_node] {$3$}
+            child{ 
+                node [red_node] {$1$}
+                child { node [nil] {} }
+                child{ 
+                    node [\ns] {\setnum{$2$}}
+                    child [visible on=<2->] { node [nil] {}}
+                    child [visible on=<2->] { node [nil] {}}
+                }
+            }
+            child{ node [nil] {} }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+
+% ===== LEFT RIGHT SIMPLE INTERMEDIATE =====
+\newcommand{\lrsimpleintermediate} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [black_node] {$3$}
+            child { 
+                node [red_node] {$2$}
+                child { 
+                    node [red_node] {$1$} 
+                    child { node [nil] {} }
+                    child { node [nil] {} }
+                }
+                child { node [nil] {} }
+            }
+            child { node [nil] {} }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+
+% ===== LEFT RIGHT SIMPLE AFTER =====
+\newcommand{\lrsimpleafter} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [black_node] {$2$}
+            child{ 
+                node [red_node] {$1$}
+                child { node [nil] {} }
+                child{ node [nil] {}}
+            }
+            child{ 
+                node [red_node] {$3$} 
+                child{ node [nil] {} }
+                child{ node [nil] {} }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+
+% ===== LEFT RIGHT BEFORE =====
+\newcommand{\lrbefore} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 4cm, level distance = 1cm},
+            level 3/.style={sibling distance = 2.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 5/.style={sibling distance = 0.75cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$15$}
+                child { 
+                    node [red_node] {$5$}
+                    child { 
+                        node [black_node] {$3$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                    child { 
+                        node [red_node] {$10$}
+                        child { 
+                            node [black_node] {$7$} 
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        }
+                        child { 
+                            node [black_node] {$12$} 
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        }
+                    }
+                }
+                child { 
+                    node [black_node] {$20$} 
+                    child { node [sub] {$\cdots$} }
+                    child { node [sub] {$\cdots$} }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+
+% ===== LEFT RIGHT INTERMEDIATE =====
+\newcommand{\lrintermediate} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 4cm, level distance = 1cm},
+            level 3/.style={sibling distance = 2.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 5/.style={sibling distance = 0.75cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$15$}
+                child { 
+                    node [red_node] {$10$}
+                    child { 
+                        node [red_node] {$5$}
+                        child { 
+                            node [black_node] {$3$} 
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        } 
+                        child {
+                            node [black_node] {$7$} 
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        }
+                    }
+                    child { 
+                        node [black_node] {$12$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                }
+                child { 
+                    node [black_node] {$20$} 
+                    child { node [sub] {$\cdots$} }
+                    child { node [sub] {$\cdots$} }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== LEFT RIGHT AFTER =====
+\newcommand{\lrafter} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 4cm, level distance = 1cm},
+            level 3/.style={sibling distance = 2cm, level distance = 1cm},
+            level 4/.style={sibling distance = 1cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$10$}
+                child { 
+                    node [red_node] {$5$}
+                    child { 
+                        node [black_node] {$3$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                    child {
+                        node [black_node] {$7$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                }
+                child { 
+                    node [red_node] {$15$} 
+                    child { 
+                        node [black_node] {$12$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                    child { 
+                        node [black_node] {$20$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== RIGHT LEFT SIMPLE BEFORE =====
+\newcommand{\rlsimplebefore} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \tikzstyle{ndl} = [nil]
+            \tikzstyle{nd} = [red_node]
+
+            \node 
+            [black_node] {$1$}
+            child{ node [nil] {} }
+            child{ 
+                node [red_node] {$3$}
+                child{ 
+                    node [\ns] {\setnum{$2$}}
+                    child [visible on=<2->] { node [nil] {}}
+                    child [visible on=<2->] { node [nil] {}}
+                }
+                child { node [nil] {} }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+
+% ===== RIGHT LEFT SIMPLE INTERMEDIATE =====
+\newcommand{\rlsimpleintermediate} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [black_node] {$1$}
+            child { node [nil] {} }
+            child { 
+                node [red_node] {$2$}
+                child { node [nil] {} }
+                child { 
+                    node [red_node] {$3$} 
+                    child { node [nil] {} }
+                    child { node [nil] {} }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+
+% ===== RIGHT LEFT SIMPLE AFTER =====
+\newcommand{\rlsimpleafter} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 2cm, level distance = 1cm},
+            level 2/.style={sibling distance = 1cm, level distance = 1cm},
+            level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [black_node] {$2$}
+            child{ 
+                node [red_node] {$1$}
+                child { node [nil] {} }
+                child{ node [nil] {}}
+            }
+            child{ 
+                node [red_node] {$3$} 
+                child{ node [nil] {}}
+                child{ node [nil] {}}
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== RIGHT LEFT BEFORE =====
+\newcommand{\rlbefore} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 4cm, level distance = 1cm},
+            level 3/.style={sibling distance = 2.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 5/.style={sibling distance = 0.75cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$10$}
+                child { 
+                    node [black_node] {$5$} 
+                    child { node [sub] {$\cdots$} }
+                    child { node [sub] {$\cdots$} }
+                }
+                child { 
+                    node [red_node] {$20$}
+                    child { 
+                        node [red_node] {$15$}
+                        child { 
+                            node [black_node] {$12$} 
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        }
+                        child { 
+                            node [black_node] {$17$} 
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        }
+                    }
+                    child { 
+                        node [black_node] {$25$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== LEFT RIGHT INTERMEDIATE =====
+\newcommand{\rlintermediate} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 4cm, level distance = 1cm},
+            level 3/.style={sibling distance = 2.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 5/.style={sibling distance = 0.75cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$10$}
+                child { 
+                    node [black_node] {$5$} 
+                    child { node [sub] {$\cdots$} }
+                    child { node [sub] {$\cdots$} }
+                }
+                child { 
+                    node [red_node] {$15$}
+                    child { 
+                        node [black_node] {$12$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                    child { 
+                        node [red_node] {$20$}
+                        child { 
+                            node [black_node] {$17$} 
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        }
+                        child {
+                            node [black_node] {$25$} 
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        }
+                    }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
+
+% ===== RIGHT LEFT AFTER =====
+\newcommand{\rlafter} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 4cm, level distance = 1cm},
+            level 3/.style={sibling distance = 2cm, level distance = 1cm},
+            level 4/.style={sibling distance = 1cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
+
+            \node 
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$15$}
+                child { 
+                    node [red_node] {$10$}
+                    child { 
+                        node [black_node] {$5$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                    child {
+                        node [black_node] {$12$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                }
+                child { 
+                    node [red_node] {$20$} 
+                    child { 
+                        node [black_node] {$17$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                    child { 
+                        node [black_node] {$25$} 
+                        child { node [sub] {$\cdots$} }
+                        child { node [sub] {$\cdots$} }
+                    }
+                }
+            }
+            ; 
+        \end{tikzpicture}
+    \end{center}
+}
