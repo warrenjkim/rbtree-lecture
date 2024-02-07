@@ -150,9 +150,6 @@
                         \setn{1}{\nsa}
                         \setn{2}{\nsb}
                         \setn{3}{\nsc}
-                        \setn{4}{\nsd}
-                        \setn{5}{\nse}
-                        \setn{6}{\nsf}
 
                         \node [scale=0.8]
                         {1}
@@ -162,18 +159,18 @@
                                 node [\nsb] {\setnumm{3}{\nsb}} 
                                 child [visible on=<3->] { 
                                     node [\nsc] {\setnumm{4}{\nsc}} 
-                                    child [visible on=<4->] { 
-                                        node [\nsd] {\setnumm{5}{\nsd}} 
-                                        child [visible on=<5->] { 
-                                            node [\nse] {\setnumm{6}{\nse}} 
-                                            child [visible on=<6->] { 
-                                                node [\nsf] {\setnumm{7}{\nsf}} 
-                                                child [visible on=<7->] { node [nnil, scale=0.5] {} }
-                                                child [visible on=<7->] { node [nnil, scale=0.5] {} }
+                                    child [visible on = <4->] { 
+                                        node [scale=0.8] {5} 
+                                        child [visible on=<4->] { 
+                                            node [scale = 0.8] {4} 
+                                            child [visible on=<4->] { 
+                                                node [scale = 0.8] {7} 
+                                                child [visible on=<4->] { node [nnil, scale=0.5] {} }
+                                                child [visible on=<4->] { node [nnil, scale=0.5] {} }
                                             }
-                                            child [visible on=<6->] { node [nnil, scale=0.5] {} }
+                                            child [visible on=<4->] { node [nnil, scale=0.5] {} }
                                         }
-                                        child [visible on=<5->] { node [nnil, scale=0.5] {} }
+                                        child [visible on=<4->] { node [nnil, scale=0.5] {} }
                                     }
                                     child [visible on=<4->] { node [nnil, scale=0.5] {} }
                                 }
@@ -201,46 +198,40 @@
                         \newcommand{\nsa}{nd}
                         \newcommand{\nsb}{nd}
                         \newcommand{\nsc}{nd}
-                        \newcommand{\nsd}{nd}
-                        \newcommand{\nse}{nd}
-                        \newcommand{\nsf}{nd}
                         \newcommand{\setn}[2]{
-                            \pgfmathsetmacro{\result}{#1 + 7}
+                            \pgfmathsetmacro{\result}{#1 + 4}
                             \ifthenelse{\insertslidenumber<\result}{\renewcommand{#2}{ndl}}{}
                         }
                         \newcommand{\setnumm}[2]{\ifthenelse{\equal{#2}{ndl}}{}{#1}}
                         \setn{1}{\nsa}
                         \setn{2}{\nsb}
                         \setn{3}{\nsc}
-                        \setn{4}{\nsd}
-                        \setn{5}{\nse}
-                        \setn{6}{\nsf}
 
                         \node [scale=0.8]
                         {1}
                         child { 
                             node [\nsa] {\setnumm{7}{\nsa}} 
-                            child [visible on=<8->] { node [nnil, scale=0.5] {} }
-                            child [visible on=<8->] { 
+                            child [visible on=<5->] { node [nnil, scale=0.5] {} }
+                            child [visible on=<5->] { 
                                 node [\nsb] {\setnumm{2}{\nsb}} 
-                                child [visible on=<9->] { 
+                                child [visible on=<6->] { 
                                     node [\nsc] {\setnumm{6}{\nsc}} 
-                                    child [visible on=<10->] { node [nnil, scale=0.5] {} }
-                                    child [visible on=<10->] { 
-                                        node [\nsd] {\setnumm{3}{\nsd}} 
-                                        child [visible on=<11->] { 
-                                            node [\nse] {\setnumm{5}{\nse}} 
-                                            child [visible on=<12->] { node [nnil, scale=0.5] {} }
-                                            child [visible on=<12->] { 
-                                                node [\nsf] {\setnumm{4}{\nsf}} 
-                                                child [visible on=<13>] { node [nnil, scale=0.5] {} }
-                                                child [visible on=<13>] { node [nnil, scale=0.5] {} }
+                                    child [visible on=<7>] { node [nnil, scale=0.5] {} }
+                                    child [visible on=<7>] { 
+                                        node [scale = 0.8] {3} 
+                                        child [visible on=<7>] { 
+                                            node [scale = 0.8] {5} 
+                                            child [visible on=<7>] { node [nnil, scale=0.5] {} }
+                                            child [visible on=<7>] { 
+                                                node [scale = 0.8] {4} 
+                                                child [visible on=<7>] { node [nnil, scale=0.5] {} }
+                                                child [visible on=<7>] { node [nnil, scale=0.5] {} }
                                             }
                                         }
-                                        child [visible on=<11->] { node [nnil, scale=0.5] {} }
+                                        child [visible on=<7>] { node [nnil, scale=0.5] {} }
                                     }
                                 }
-                                child [visible on=<9->] { node [nnil, scale=0.5] {} }
+                                child [visible on=<6->] { node [nnil, scale=0.5] {} }
                             }
                         }
                         child { node [nnil, scale=0.5] {} }
@@ -310,16 +301,16 @@
 
     \begin{minipage}[t][0.6\textheight][c]{\linewidth}
         \setbeamercovered{invisible}
-        \only<1-2> {
+        \only<1> {
             \depthone
-            \onslide<2>{\textbf{Valid}}
+            \onslide<1>{\textbf{Valid}}
         }
-        \only<3-4> {\depthtwo}
-        \onslide<4> {\textbf{\textcolor{red}{Invalid}}}
+        \only<3> {\depthtwo}
+        \onslide<3> {\textbf{\textcolor{red}{Invalid}}}
         \vspace{1.1em}
 
-        \only<5-6> {\depththree}
-        \onslide<6> {
+        \only<5> {\depththree}
+        \onslide<5> {
             \vspace{-2em}
             \textbf{Valid}
         }
@@ -361,8 +352,10 @@
 
 % ===== DOUBLE RED VIOLATION =====
 \begin{frame}[fragile]{Double Red Violations}
-    Recall \textit{Property (ii): A \red \ node does not have a \red \ child}. All of the diagrams
-    shown below are examples of \textbf{invalid} \red\textib{-black} trees.
+    Recall \textit{Property (ii): A \red \ node does not have a \red \ child}. \vspace{1em}
+    
+    When we insert our node $z$ (\red \ by definition), its parent may be \red.
+    Below are examples of such cases.
     \doublered
 \end{frame}
 
@@ -373,7 +366,7 @@
         \begin{column}{.5\textwidth}
             \textbf{Terminology} \vspace{1em}
 
-            With respect to node $z$,
+            With respect to inserted node $z$,
             \begin{itemize}[label=$\to$]
                 \item \textit{Parent} ($p$): $z$'s direct parent
                 \item \textit{Uncle} ($u$): $p$'s sibling
@@ -413,7 +406,7 @@
                             child { node [nnil, scale = 0.8] {} }
                         }
                         child {
-                            node {$z$}
+                            node [red_node] {$z$}
                             child { node [nnil, scale = 0.8] {} }
                             child { node [nnil, scale = 0.8] {} }
                         }
@@ -659,72 +652,130 @@
     \begin{columns}
         \begin{column}{0.3\textwidth}
             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                \setns{1}
                 \rlsimplebefore
             \end{adjustbox}
         \end{column}
-        \onslide<3-> {
-            \begin{column}{0.05\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \begin{center}
-                        \tikz \draw[-latex] (0,0) -- (0.7,0);
-                    \end{center}
-                \end{adjustbox}
-            \end{column}
-            \begin{column}{0.3\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \rlsimpleintermediate
-                \end{adjustbox}
-            \end{column}
-        }
-        \onslide<4> {
-            \begin{column}{0.05\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \begin{center}
-                        \tikz \draw[-latex] (0,0) -- (0.7,0);
-                    \end{center}
-                \end{adjustbox}
-            \end{column}
-            \begin{column}{0.3\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \rlsimpleafter
-                \end{adjustbox}
-            \end{column}
-        }
+        \begin{column}{0.05\textwidth}
+            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+                \begin{center}
+                    \tikz \draw[-latex] (0,0) -- (0.7,0);
+                \end{center}
+            \end{adjustbox}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+                \rlsimpleintermediate
+            \end{adjustbox}
+        \end{column}
+        \begin{column}{0.05\textwidth}
+            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+                \begin{center}
+                    \tikz \draw[-latex] (0,0) -- (0.7,0);
+                \end{center}
+            \end{adjustbox}
+        \end{column}
+        \begin{column}{0.3\textwidth}
+            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+                \rlsimpleafter
+            \end{adjustbox}
+        \end{column}
     \end{columns}
 \end{frame}
 
 
 % ===== RIGHT LEFT =====
 \begin{frame}[fragile]{Case: Right-Left (General)}
-    \vspace{-2em}
-    \begin{minipage}[t][0.1\textheight][c]{\linewidth}
-        \only<1> {\textbf{Step 1}}
-        \only<2> {\textbf{Step 2}}
-        \only<3> {\textbf{Step 3}}
-    \end{minipage}
-    \begin{minipage}[t][0.6\textheight][c]{\linewidth}
-    \only<1> {\rlbefore}
-    \only<2> {\rlintermediate}
-    \only<3> {\rlafter}
-    \end{minipage}
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+                \rlbefore
+            \end{adjustbox}
+        \end{column}
+        \begin{column}{0.04\textwidth}
+            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+                \begin{center}
+                    \tikz \draw[-latex] (0,0) -- (0.5,0);
+                \end{center}
+            \end{adjustbox}
+        \end{column}
+        \begin{column}{0.46\textwidth}
+            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+                \rlafter
+            \end{adjustbox}
+        \end{column}
+    \end{columns}
     \vspace{1em}
 
     Here, \begin{tikzpicture} \node [sub] {$\cdots$}; \end{tikzpicture} represents a subtree and
     $\cdots$ represents the rest of the tree.
 \end{frame}
 
+
+% ===== TIME AND SPACE COMPLEXITIES =====
 \begin{frame}{Time and Space Complexities}
-    \textib{Insertion}: $\mathcal{O} (\log n)$
-    \hfil
-    \newline
-    \textib{Deletion}: $\mathcal{O} (\log n)$
-    \hfil
-    \newline
-    \textib{Search}: $\mathcal{O} (\log n)$
+    \begin{itemize}[label=$\to$]
+        \item \textib{Insertion}: $\mathcal{O} (\log n)$
+        \item \textib{Deletion}: $\mathcal{O} (\log n)$
+        \item \textib{Search}: $\mathcal{O} (\log n)$
+        \item \textib{Space}: $\mathcal{O} (n)$
+\end{itemize}
 \end{frame}
 
 
+% ===== END =====
+\begin{frame}{End}
+    \begin{center}
+        Thank you!
+    \end{center}
+\end{frame}
+
+
+% ===== APPENDIX =====
+\begin{frame}{Appendix}
+    Below are slides that didn't make the cut.
+\end{frame}
+
+
+% ===== COROLLARIES =====
+\begin{frame}{Corollaries}
+    \proposition{
+        If a node $z$ has exactly one child, $c$, then 
+        \textnormal{\textbf{(a)}} $c$ is \red,
+        \textnormal{\textbf{(b)}} $z$ is \textib{black}, and
+        \textnormal{\textbf{(c)}} $c$ has no children.
+    }
+    \textit{Proof.}
+    Suppose we have a valid \red\textib{-black} tree. Consider a node $z$ with exactly one child. 
+    Without loss of generality, choose $z$'s left node to be the child and call it $c$.
+    \begin{enumerate}[label=\textbf{(\alph*)}]
+        \item $z$ passes through no \textib{black} nodes on the right side by assumption. If $c$ were 
+            \textib{black}, then $z$ would pass through $1$ \textib{black} node, a contradiction 
+            since this violates the \textit{depth property}.
+        \item By \textbf{(a)}, $z$'s child is \red \ and by the \textit{internal property}, $z$ is \textib{black}.
+        \item Since $z$ passes through no \textib{black} nodes on the right side by assumption,
+            $z$ cannot pass through any \textib{black} nodes on the left side by the \textit{the depth
+            property}. Then, since $c$ is \red \ by \textbf{(a)}, $c$ has only nil nodes \hfill $\square$
+    \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{Height of a Red-Black Tree}
+    \thm{
+        A \red\textib{-black} tree with $n$ nodes has a height $h$ that is $\mathcal{O} (\log n)$.
+    }
+    \textit{Proof.}
+    Suppose we have a \red\textib{-black} tree with $n$ nodes and height $h$. Let $b$ be the number 
+    of \textib{black} nodes on the shortest path from root to any leaf. In the worst case, the 
+    longest path alternates between \red \ and \textib{black} nodes and thus has a height of $2b$. 
+    Then, $h$ is bounded above by $2b$; that is, $h \leq 2b$. There are $2^b - 1 \leq n$ nodes in 
+    this tree. Solving for $b$, we get $b \leq \log(n + 1)$. Substituting $b$, we get 
+    $b \leq \log(n + 1) \leq h \leq 2b \leq 2\log(n + 1)$ so $h$ is bounded below by $\log(n + 1)$ 
+    and above by $2\log(n + 1)$; that is, $\log(n + 1) \leq h \leq 2\log(n + 1)$. So, $h$ is 
+    $\mathcal{O} (\log n)$. \hfill $\square$ 
+\end{frame}
+
+
+% ===== EXAMPLE =====
 \begin{frame}[fragile]{Red-Black Tree: Example}
     \begin{center}
         \begin{minipage}{.4\textwidth}
@@ -1460,67 +1511,11 @@
             }
     \end{center}
 \end{frame}
-
-\begin{frame}{End}
-    \begin{center}
-        Thank you!
-    \end{center}
-\end{frame}
+\end{document}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-\begin{frame}{Appendix}
-    Below are slides that didn't make the cut.
-\end{frame}
-
-
-% % ===== COROLLARIES =====
-\begin{frame}{Corollaries}
-    \proposition{
-        If a node $z$ has exactly one child, $c$, then 
-        \textnormal{\textbf{(a)}} $c$ is \red,
-        \textnormal{\textbf{(b)}} $z$ is \textib{black}, and
-        \textnormal{\textbf{(c)}} $c$ has no children.
-    }
-    \textit{Proof.}
-    Suppose we have a valid \red\textib{-black} tree. Consider a node $z$ with exactly one child. 
-    Without loss of generality, choose $z$'s left node to be the child and call it $c$.
-    \begin{enumerate}[label=\textbf{(\alph*)}]
-        \item $z$ passes through no \textib{black} nodes on the right side by assumption. If $c$ were 
-            \textib{black}, then $z$ would pass through $1$ \textib{black} node, a contradiction 
-            since this violates the \textit{depth property}.
-        \item By \textbf{(a)}, $z$'s child is \red \ and by the \textit{internal property}, $z$ is \textib{black}.
-        \item Since $z$ passes through no \textib{black} nodes on the right side by assumption,
-            $z$ cannot pass through any \textib{black} nodes on the left side by the \textit{the depth
-            property}. Then, since $c$ is \red \ by \textbf{(a)}, $c$ has only nil nodes \hfill $\square$
-    \end{enumerate}
-\end{frame}
-
-\begin{frame}{Height of a Red-Black Tree}
-    \thm{
-        A \red\textib{-black} tree with $n$ nodes has a height $h$ that is $\mathcal{O} (\log n)$.
-    }
-    \textit{Proof.}
-    Suppose we have a \red\textib{-black} tree with $n$ nodes and height $h$. Let $b$ be the number 
-    of \textib{black} nodes on the shortest path from root to any leaf. In the worst case, the 
-    longest path alternates between \red \ and \textib{black} nodes and thus has a height of $2b$. 
-    Then, $h$ is bounded above by $2b$; that is, $h \leq 2b$. There are $2^b - 1 \leq n$ nodes in 
-    this tree. Solving for $b$, we get $b \leq \log(n + 1)$. Substituting $b$, we get 
-    $b \leq \log(n + 1) \leq h \leq 2b \leq 2\log(n + 1)$ so $h$ is bounded below by $\log(n + 1)$ 
-    and above by $2\log(n + 1)$; that is, $\log(n + 1) \leq h \leq 2\log(n + 1)$. So, $h$ is 
-    $\mathcal{O} (\log n)$. \hfill $\square$ 
-\end{frame}
 
 % \begin{frame}{Deletion}
 %     Suppose we have a node $z$ to delete from our red-black tree.
@@ -2156,10 +2151,6 @@
 %         \end{tikzpicture}
 %     \end{center}
 % \end{frame}
-
-\end{document}
-
-
 % \begin{frame}[fragile]{Example: Input order \textit{(i)}}
 %     \textit{(i)} $\{1, 2, 3, 4, 5, 6, 7\}$ 
 %     \begin{center}
