@@ -103,11 +103,11 @@
     \begin{itemize}[label=$\to$]
         % \item Database indexing (2-4 trees\footnote{2-4 (sometimes called 2-3-4) trees are a subset
         %     of B$^+$-trees.} $\simeq$ \red\textib{-black} trees)[e.g. VoltDB]
-        \item<2-> Linux CPU scheduler (Completely Fair Scheduler)
-        \item<3-> Linux Virtual Memory Areas (VMA)
-        \item<4-> STL Data Structures (e.g. C++'s \textmtt{std::map}, Java's \textmtt{HashMap})
-        \item<5-> Graph algorithm optimizations (for AI/ML)[e.g. K-mean clustering]
-        \item<6-> Priority Queues (e.g. Range Queries)
+        \item Linux CPU scheduler (Completely Fair Scheduler)
+        \item Linux Virtual Memory Areas (VMA)
+        \item STL Data Structures (e.g. C++'s \textmtt{std::map}, Java's \textmtt{HashMap})
+        \item Graph algorithm optimizations (for AI/ML)[e.g. K-mean clustering]
+        \item Priority Queues (e.g. Range Queries)
     \end{itemize}
 \end{frame}
 
@@ -116,8 +116,8 @@
 \begin{frame}{Motivation}
     \textib{Why do we want balanced binary trees?}
     \begin{itemize}[label=$\to$]
-        \item<2-> Raw binary search tree performance is highly dependant on input order.
-        \item<3-> We want to ensure $\mathcal{O}(\log n)$ performance.
+        \item Raw binary search tree performance is highly dependant on input order.
+        \item We want to ensure $\mathcal{O}(\log n)$ performance.
     \end{itemize}
 \end{frame}
 
@@ -248,11 +248,11 @@
 \begin{frame}{Intuition}
     \textib{How do we balance binary trees?} \vspace{1em}
 
-    \onslide<2->{\noindent We can \textit{dynamically} balance the tree!}
+    \noindent We can \textit{dynamically} balance the tree!
     \begin{itemize}[label=$\to$]
-        \item<3-> We can add metadata\footnote{Metadata: Additional member variables} to our 
+        \item We can add metadata\footnote{Metadata: Additional member variables} to our 
             \textmtt{Node} struct.
-        \item<4-> We can define a set of conditions that enforce balance.
+        \item We can define a set of conditions that enforce balance.
     \end{itemize}
 \end{frame}
 
@@ -272,7 +272,7 @@
                     \item<2> \textit{Internal:} A \red \ node does not have a \red \ child
                     \item<3> \textit{External:} All nil nodes are \textib{black}
                     \item<4> \textit{Root:} The root node is always \textib{black}
-                    \item<5> \textit{Depth:} Every path from the root to \textit{any} leaf node 
+                    \item<5> \textit{Depth:} Every path from the root to \textit{any} nil node 
                         passes through the same number of \textib{black} nodes
                 \end{enumerate}
             \end{adjustbox}
@@ -294,7 +294,7 @@
     \vspace{-3em}
 
     \begin{minipage}[t][0.2\textheight][c]{\linewidth}
-        \textit{(v) Depth:} Every path from the root to \textit{any} leaf node passes through the same number 
+        \textit{(v) Depth:} Every path from the root to \textit{any} nil node passes through the same number 
         of \textib{black} nodes
     \end{minipage}
     \vspace{-3em}
@@ -332,7 +332,7 @@
         \item \textit{Internal:} A \red \ node does not have a \red \ child
         \item \textit{External:} All nil nodes are \textib{black}
         \item \textit{Root}: The root node is always \textib{black}
-        \item \textit{Depth:} Every path from the root to \textit{any} leaf node passes through
+        \item \textit{Depth:} Every path from the root to \textit{any} nil node passes through
             the same number of \textib{black} nodes
     \end{enumerate}
 \end{frame}
@@ -399,7 +399,7 @@
                         }
                     }
                     child { 
-                        node {$p$}
+                        node [red_node]  {$p$}
                         child {
                             node {}
                             child { node [nnil, scale = 0.8] {} }
