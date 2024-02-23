@@ -79,20 +79,24 @@
 \newcommand{\proposition}[1]{\begin{tcolorbox}[title={Proposition}]\small{\textit{{#1}}}\end{tcolorbox}}
 \newcommand{\thm}[1]{\begin{tcolorbox}[title={Theorem}]\small{\textit{{#1}}}\end{tcolorbox}}
 \newcommand{\lma}[1]{\begin{tcolorbox}[title={Lemma}]\small{\textit{{#1}}}\end{tcolorbox}}
-\newcommand{\define}[1]{\begin{tcolorbox}[title={Definition}]\small{\textit{{#1}}}\end{tcolorbox}}
+\newenvironment{define}{\begin{tcolorbox}[title={Definition}]\begin{small}}{\end{small}\end{tcolorbox}}
 
 \input{examples.tex}
 
 
+\setlength{\parindent}{0pt}
 \begin{document}
 \maketitle
 
 % ===== DEFINITION =====
 \begin{frame}[fragile]{Quick Definition}
-    \define{
-        A \red\textib{-black} tree is a type of \textib{self-balancing} binary search tree that 
-        guarantees $\mathcal{O}(\log n)$ performance.
-    }
+    \begin{define}
+        \it
+        {
+            A \red\textib{-black} tree is a type of \textib{self-balancing} binary search tree that 
+            guarantees $\mathcal{O}(\log n)$ performance.
+        }
+    \end{define}
     \exampleone
 \end{frame}
 
@@ -259,11 +263,14 @@
 
 % ===== DEFINITION =====
 \begin{frame}[label=def,fragile]{Definition and Properties}
-    \define {
-        A \red\textib{-black} tree is a type of \textib{self-balancing} binary 
-        search tree that guarantees $\mathcal{O}(\log n)$ search, insertion, and deletion operations
-        with the following properties:
-    }
+    \begin{define}
+        \it
+        {
+            A \red\textib{-black} tree is a type of \textib{self-balancing} binary 
+            search tree that guarantees $\mathcal{O}(\log n)$ search, insertion, and deletion operations
+            with the following properties:
+        }
+    \end{define}
     \begin{columns}
         \begin{column}{.5\textwidth}
             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
@@ -322,11 +329,14 @@
 
 % ===== DEFINITION =====
 \begin{frame}[fragile]{Definition and Properties}
-    \define{
-        A \textib{\color{red}{red}}\textib{-black} tree is a type of \textib{self-balancing} binary 
-        search tree that guarantees $\mathcal{O}(\log n)$ search, insertion, and deletion operations
-        with the following properties:
-    }
+    \begin{define}
+        \it 
+        {
+            A \textib{\color{red}{red}}\textib{-black} tree is a type of \textib{self-balancing} binary 
+            search tree that guarantees $\mathcal{O}(\log n)$ search, insertion, and deletion operations
+            with the following properties:
+        }
+    \end{define}
     \begin{enumerate}[label=\textit{(\roman*)}]
         \item \textit{Color:} Every node is either \red \ or \textib{black}
         \item \textit{Internal:} A \red \ node does not have a \red \ child
