@@ -33,4 +33,4 @@ name of the executable in the `Makefile`. Now run the program:
 
 ## Documentation (Doxygen)
 To view the auto-generated documentation, the HTML version can be found [here](https://github.com/warrenjkim/rbtree-lecture/tree/master/code/html/index.html), 
-and the corresponding $\LaTeX$ PDF [here](https://github.com/warrenjkim/rbtree-lecture/tree/mastercode/latex/refman.pdf).
+and the corresponding $\LaTeX$ PDF [here](https://github.com/warrenjkim/rbtree-lecture/tree/master/code/latex/refman.pdf).
