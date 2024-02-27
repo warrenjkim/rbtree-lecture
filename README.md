@@ -32,5 +32,5 @@ name of the executable in the `Makefile`. Now run the program:
 **Note:** Only insertion is implemented, since deletion was outside the scope of the lecture.
 
 ## Documentation (Doxygen)
-To view the auto-generated documentation, the HTML version can be found [here](code/html/index.html), 
-and the corresponding $\LaTeX$ PDF [here](code/latex/refman.pdf).
+To view the auto-generated documentation, the HTML version can be found [here](https://github.com/warrenjkim/rbtree-lecture/code/html/index.html), 
+and the corresponding $\LaTeX$ PDF [here](https://github.com/warrenjkim/rbtree-lecture/code/latex/refman.pdf).
