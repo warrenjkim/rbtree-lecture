@@ -1,0 +1,43 @@
+\doxysection{Tree Struct Reference}
+\hypertarget{structTree}{}\label{structTree}\index{Tree@{Tree}}
+
+
+Structure representing a Red-\/\+Black \doxylink{structTree}{Tree}.  
+
+
+
+
+{\ttfamily \#include $<$rbt.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structTree_adea11d0e123823b769f7c3ee9a5a1088}{root}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structTree_acaff08be5a222d427f771bee46bff5e2}{size}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure representing a Red-\/\+Black \doxylink{structTree}{Tree}. 
+
+This structure is used to maintain a Red-\/\+Black \doxylink{structTree}{Tree}. It encapsulates the root of the tree and the total number of nodes within the tree, providing a high-\/level interface for operations on the tree such as insertion, and search. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structTree_adea11d0e123823b769f7c3ee9a5a1088}\label{structTree_adea11d0e123823b769f7c3ee9a5a1088} 
+\index{Tree@{Tree}!root@{root}}
+\index{root@{root}!Tree@{Tree}}
+\doxysubsubsection{\texorpdfstring{root}{root}}
+{\footnotesize\ttfamily Tree\+::root}
+
+Pointer to the root node of the Red-\/\+Black \doxylink{structTree}{Tree}. It points to NULL when the tree is empty. \Hypertarget{structTree_acaff08be5a222d427f771bee46bff5e2}\label{structTree_acaff08be5a222d427f771bee46bff5e2} 
+\index{Tree@{Tree}!size@{size}}
+\index{size@{size}!Tree@{Tree}}
+\doxysubsubsection{\texorpdfstring{size}{size}}
+{\footnotesize\ttfamily Tree\+::size}
+
+The total number of nodes in the tree. This count helps in operations that may require knowledge of the tree\textquotesingle{}s size, such as balancing, validation, and traversal optimizations. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{rbt_8h}{rbt.\+h}}\end{DoxyCompactItemize}

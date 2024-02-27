@@ -1,0 +1,138 @@
+\doxysection{Tree Formatter}
+\hypertarget{group__formatter}{}\label{group__formatter}\index{Tree Formatter@{Tree Formatter}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \mbox{\hyperlink{group__formatter_ga655215da9fa00559591a876892753096}{height}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}root)
+\begin{DoxyCompactList}\small\item\em Calculates the height of the tree. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__formatter_gac3fcbd812a2034147a9ca346abbe1451}{col}} (int h)
+\begin{DoxyCompactList}\small\item\em Calculates the column position for a given height. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group__formatter_gaf7f4866009c1c04ea8a9dc5156b0618d}{print\+\_\+tree}} (int \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}mat\+\_\+tree, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}mat\+\_\+color, \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}root, int c, int r, int h)
+\begin{DoxyCompactList}\small\item\em Utility function to print the tree structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__formatter_gae048f4d2baeb7f14a90d9fc2011a00f4}{rbt\+\_\+print\+\_\+tree}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}root)
+\begin{DoxyCompactList}\small\item\em Prints the entire Red-\/\+Black \doxylink{structTree}{Tree}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__formatter_ga39e2794a4190f97ca7f7a4ffa3ba151d}{rbt\+\_\+inorder}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}root)
+\begin{DoxyCompactList}\small\item\em Performs an inorder traversal of the Red-\/\+Black \doxylink{structTree}{Tree}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This section covers all the helper functions for formatting so we can pretty-\/print the tree. Key operations include\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{group__formatter_ga655215da9fa00559591a876892753096}{height()}}\+: Returns the height of the tree.
+\item {\ttfamily \doxylink{group__formatter_gac3fcbd812a2034147a9ca346abbe1451}{col()}}\+: Returns the column position for a given height. 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__formatter_gac3fcbd812a2034147a9ca346abbe1451}\label{group__formatter_gac3fcbd812a2034147a9ca346abbe1451} 
+\index{Tree Formatter@{Tree Formatter}!col@{col}}
+\index{col@{col}!Tree Formatter@{Tree Formatter}}
+\doxysubsubsection{\texorpdfstring{col()}{col()}}
+{\footnotesize\ttfamily int col (\begin{DoxyParamCaption}\item[{int}]{h }\end{DoxyParamCaption})}
+
+
+
+Calculates the column position for a given height. 
+
+This function determines the column position based on the height of the tree, which is used for pretty printing purposes.
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & The height of the tree. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The calculated column position. 
+\end{DoxyReturn}
+\Hypertarget{group__formatter_ga655215da9fa00559591a876892753096}\label{group__formatter_ga655215da9fa00559591a876892753096} 
+\index{Tree Formatter@{Tree Formatter}!height@{height}}
+\index{height@{height}!Tree Formatter@{Tree Formatter}}
+\doxysubsubsection{\texorpdfstring{height()}{height()}}
+{\footnotesize\ttfamily static int height (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Calculates the height of the tree. 
+
+This function computes the height of the tree recursively.
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & A pointer to the root node of the tree. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The height of the tree. 
+\end{DoxyReturn}
+\Hypertarget{group__formatter_gaf7f4866009c1c04ea8a9dc5156b0618d}\label{group__formatter_gaf7f4866009c1c04ea8a9dc5156b0618d} 
+\index{Tree Formatter@{Tree Formatter}!print\_tree@{print\_tree}}
+\index{print\_tree@{print\_tree}!Tree Formatter@{Tree Formatter}}
+\doxysubsubsection{\texorpdfstring{print\_tree()}{print\_tree()}}
+{\footnotesize\ttfamily static void print\+\_\+tree (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{mat\+\_\+tree,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{mat\+\_\+color,  }\item[{\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}}]{root,  }\item[{int}]{c,  }\item[{int}]{r,  }\item[{int}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Utility function to print the tree structure. 
+
+\hypertarget{group__formatter_printing_section}{}\doxysubsection{\texorpdfstring{Printing Section}{Printing Section}}\label{group__formatter_printing_section}
+This section is dedicated to the functions required for printing the tree. These functions are specifically designed for pretty printing and do not directly relate to the tree\textquotesingle{}s logical operations. Key operations include\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily print\+\_\+treee()}\+: Utility function to pretty print the tree.
+\item {\ttfamily \doxylink{group__formatter_gae048f4d2baeb7f14a90d9fc2011a00f4}{rbt\+\_\+print\+\_\+tree()}}\+: Pretty prints the tree.
+\item {\ttfamily \doxylink{group__formatter_ga39e2794a4190f97ca7f7a4ffa3ba151d}{rbt\+\_\+inorder()}}\+: Traverses the tree in order. 
+\end{DoxyItemize}
+
+This function prints the tree structure. It uses matrix representation for the tree where each node\textquotesingle{}s position is calculated based on its height and position in the tree.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat\+\_\+tree} & The matrix representation of the tree\textquotesingle{}s structure. \\
+\hline
+{\em mat\+\_\+color} & The matrix representing the color of each node in the tree. \\
+\hline
+{\em root} & A pointer to the root node of the tree. \\
+\hline
+{\em c} & The column position for the root. \\
+\hline
+{\em r} & The row position for the root. \\
+\hline
+{\em h} & The height of the tree. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__formatter_ga39e2794a4190f97ca7f7a4ffa3ba151d}\label{group__formatter_ga39e2794a4190f97ca7f7a4ffa3ba151d} 
+\index{Tree Formatter@{Tree Formatter}!rbt\_inorder@{rbt\_inorder}}
+\index{rbt\_inorder@{rbt\_inorder}!Tree Formatter@{Tree Formatter}}
+\doxysubsubsection{\texorpdfstring{rbt\_inorder()}{rbt\_inorder()}}
+{\footnotesize\ttfamily void rbt\+\_\+inorder (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}}]{root }\end{DoxyParamCaption})}
+
+
+
+Performs an inorder traversal of the Red-\/\+Black \doxylink{structTree}{Tree}. 
+
+Prints the elements of the tree in an in-\/order fashion. This function can be used for debugging purposes to visualize the tree structure and contents.
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & A pointer to the root node of the Red-\/\+Black \doxylink{structTree}{Tree}. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{group__formatter_gae048f4d2baeb7f14a90d9fc2011a00f4}\label{group__formatter_gae048f4d2baeb7f14a90d9fc2011a00f4} 
+\index{Tree Formatter@{Tree Formatter}!rbt\_print\_tree@{rbt\_print\_tree}}
+\index{rbt\_print\_tree@{rbt\_print\_tree}!Tree Formatter@{Tree Formatter}}
+\doxysubsubsection{\texorpdfstring{rbt\_print\_tree()}{rbt\_print\_tree()}}
+{\footnotesize\ttfamily void rbt\+\_\+print\+\_\+tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}}]{root }\end{DoxyParamCaption})}
+
+
+
+Prints the entire Red-\/\+Black \doxylink{structTree}{Tree}. 
+
+Prints the tree in a structured manner to visualize its layout, including the color of each node. This is useful for debugging and verifying the structure of the tree.
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & A pointer to the root node of the Red-\/\+Black \doxylink{structTree}{Tree}. \\
+\hline
+\end{DoxyParams}

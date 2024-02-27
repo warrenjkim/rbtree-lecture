@@ -1,0 +1,79 @@
+\indexentry{Binary Search Tree@{Binary Search Tree}|hyperpage}{7}
+\indexentry{Binary Search Tree@{Binary Search Tree}!bst\_insert@{bst\_insert}|hyperpage}{7}
+\indexentry{bst\_insert@{bst\_insert}!Binary Search Tree@{Binary Search Tree}|hyperpage}{7}
+\indexentry{Binary Search Tree@{Binary Search Tree}!bst\_search@{bst\_search}|hyperpage}{8}
+\indexentry{bst\_search@{bst\_search}!Binary Search Tree@{Binary Search Tree}|hyperpage}{8}
+\indexentry{Binary Search Tree@{Binary Search Tree}!node\_destroy@{node\_destroy}|hyperpage}{8}
+\indexentry{node\_destroy@{node\_destroy}!Binary Search Tree@{Binary Search Tree}|hyperpage}{8}
+\indexentry{Binary Search Tree@{Binary Search Tree}!node\_init@{node\_init}|hyperpage}{9}
+\indexentry{node\_init@{node\_init}!Binary Search Tree@{Binary Search Tree}|hyperpage}{9}
+\indexentry{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}|hyperpage}{9}
+\indexentry{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!fixup@{fixup}|hyperpage}{10}
+\indexentry{fixup@{fixup}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}|hyperpage}{10}
+\indexentry{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!grandparent@{grandparent}|hyperpage}{10}
+\indexentry{grandparent@{grandparent}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}|hyperpage}{10}
+\indexentry{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!left\_rotate@{left\_rotate}|hyperpage}{11}
+\indexentry{left\_rotate@{left\_rotate}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}|hyperpage}{11}
+\indexentry{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!recolor@{recolor}|hyperpage}{12}
+\indexentry{recolor@{recolor}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}|hyperpage}{12}
+\indexentry{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!restructure@{restructure}|hyperpage}{12}
+\indexentry{restructure@{restructure}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}|hyperpage}{12}
+\indexentry{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!right\_rotate@{right\_rotate}|hyperpage}{13}
+\indexentry{right\_rotate@{right\_rotate}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}|hyperpage}{13}
+\indexentry{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!uncle@{uncle}|hyperpage}{14}
+\indexentry{uncle@{uncle}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}|hyperpage}{14}
+\indexentry{Tree Formatter@{Tree Formatter}|hyperpage}{14}
+\indexentry{Tree Formatter@{Tree Formatter}!col@{col}|hyperpage}{15}
+\indexentry{col@{col}!Tree Formatter@{Tree Formatter}|hyperpage}{15}
+\indexentry{Tree Formatter@{Tree Formatter}!height@{height}|hyperpage}{15}
+\indexentry{height@{height}!Tree Formatter@{Tree Formatter}|hyperpage}{15}
+\indexentry{Tree Formatter@{Tree Formatter}!print\_tree@{print\_tree}|hyperpage}{15}
+\indexentry{print\_tree@{print\_tree}!Tree Formatter@{Tree Formatter}|hyperpage}{15}
+\indexentry{Tree Formatter@{Tree Formatter}!rbt\_inorder@{rbt\_inorder}|hyperpage}{16}
+\indexentry{rbt\_inorder@{rbt\_inorder}!Tree Formatter@{Tree Formatter}|hyperpage}{16}
+\indexentry{Tree Formatter@{Tree Formatter}!rbt\_print\_tree@{rbt\_print\_tree}|hyperpage}{16}
+\indexentry{rbt\_print\_tree@{rbt\_print\_tree}!Tree Formatter@{Tree Formatter}|hyperpage}{16}
+\indexentry{Red-\/Black Tree@{Red-\/Black Tree}|hyperpage}{17}
+\indexentry{Red-\/Black Tree@{Red-\/Black Tree}!rbt\_destroy@{rbt\_destroy}|hyperpage}{17}
+\indexentry{rbt\_destroy@{rbt\_destroy}!Red-\/Black Tree@{Red-\/Black Tree}|hyperpage}{17}
+\indexentry{Red-\/Black Tree@{Red-\/Black Tree}!rbt\_insert@{rbt\_insert}|hyperpage}{18}
+\indexentry{rbt\_insert@{rbt\_insert}!Red-\/Black Tree@{Red-\/Black Tree}|hyperpage}{18}
+\indexentry{Red-\/Black Tree@{Red-\/Black Tree}!rbt\_search@{rbt\_search}|hyperpage}{18}
+\indexentry{rbt\_search@{rbt\_search}!Red-\/Black Tree@{Red-\/Black Tree}|hyperpage}{18}
+\indexentry{Node@{Node}|hyperpage}{19}
+\indexentry{Node@{Node}!color@{color}|hyperpage}{19}
+\indexentry{color@{color}!Node@{Node}|hyperpage}{19}
+\indexentry{Node@{Node}!data@{data}|hyperpage}{19}
+\indexentry{data@{data}!Node@{Node}|hyperpage}{19}
+\indexentry{Node@{Node}!left@{left}|hyperpage}{19}
+\indexentry{left@{left}!Node@{Node}|hyperpage}{19}
+\indexentry{Node@{Node}!parent@{parent}|hyperpage}{20}
+\indexentry{parent@{parent}!Node@{Node}|hyperpage}{20}
+\indexentry{Node@{Node}!right@{right}|hyperpage}{20}
+\indexentry{right@{right}!Node@{Node}|hyperpage}{20}
+\indexentry{Tree@{Tree}|hyperpage}{20}
+\indexentry{Tree@{Tree}!root@{root}|hyperpage}{20}
+\indexentry{root@{root}!Tree@{Tree}|hyperpage}{20}
+\indexentry{Tree@{Tree}!size@{size}|hyperpage}{20}
+\indexentry{size@{size}!Tree@{Tree}|hyperpage}{20}
+\indexentry{main.c@{main.c}|hyperpage}{21}
+\indexentry{main.c@{main.c}!main@{main}|hyperpage}{21}
+\indexentry{main@{main}!main.c@{main.c}|hyperpage}{21}
+\indexentry{main.c@{main.c}!valid\_int@{valid\_int}|hyperpage}{21}
+\indexentry{valid\_int@{valid\_int}!main.c@{main.c}|hyperpage}{21}
+\indexentry{rbt.c@{rbt.c}|hyperpage}{21}
+\indexentry{rbt.c@{rbt.c}!rbt\_init@{rbt\_init}|hyperpage}{24}
+\indexentry{rbt\_init@{rbt\_init}!rbt.c@{rbt.c}|hyperpage}{24}
+\indexentry{rbt.h@{rbt.h}|hyperpage}{24}
+\indexentry{rbt.h@{rbt.h}!Node@{Node}|hyperpage}{26}
+\indexentry{Node@{Node}!rbt.h@{rbt.h}|hyperpage}{26}
+\indexentry{rbt.h@{rbt.h}!Tree@{Tree}|hyperpage}{26}
+\indexentry{Tree@{Tree}!rbt.h@{rbt.h}|hyperpage}{26}
+\indexentry{rbt.h@{rbt.h}!Color@{Color}|hyperpage}{26}
+\indexentry{Color@{Color}!rbt.h@{rbt.h}|hyperpage}{26}
+\indexentry{RED@{RED}!rbt.h@{rbt.h}|hyperpage}{26}
+\indexentry{rbt.h@{rbt.h}!RED@{RED}|hyperpage}{26}
+\indexentry{BLACK@{BLACK}!rbt.h@{rbt.h}|hyperpage}{26}
+\indexentry{rbt.h@{rbt.h}!BLACK@{BLACK}|hyperpage}{26}
+\indexentry{rbt.h@{rbt.h}!rbt\_init@{rbt\_init}|hyperpage}{26}
+\indexentry{rbt\_init@{rbt\_init}!rbt.h@{rbt.h}|hyperpage}{26}

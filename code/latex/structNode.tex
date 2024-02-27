@@ -1,0 +1,67 @@
+\doxysection{Node Struct Reference}
+\hypertarget{structNode}{}\label{structNode}\index{Node@{Node}}
+
+
+\doxylink{structNode}{Node} structure for a Red-\/\+Black \doxylink{structTree}{Tree}.  
+
+
+
+
+{\ttfamily \#include $<$rbt.\+h$>$}
+
+\doxysubsubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{rbt_8h_afd13f130db5d95eea8d2c91e4a624a74}{Color}} \mbox{\hyperlink{structNode_afbad3357412ffde10c573394df3e0185}{color}}
+\item 
+struct \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structNode_a05ef70dd2b0b89db38cda977021ee696}{left}}
+\item 
+struct \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structNode_a45c7b7ddeefcffe349a1f13ec586107c}{right}}
+\item 
+struct \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structNode_a2149dcf83c930a3c0b388f51dbb42410}{parent}}
+\item 
+int \mbox{\hyperlink{structNode_a1b3980c541798444323ba85de542713e}{data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{structNode}{Node} structure for a Red-\/\+Black \doxylink{structTree}{Tree}. 
+
+Each node in the Red-\/\+Black \doxylink{structTree}{Tree} contains the data it stores, pointers to its left and right children, a pointer to its parent, and its color. 
+
+\doxysubsection{Field Documentation}
+\Hypertarget{structNode_afbad3357412ffde10c573394df3e0185}\label{structNode_afbad3357412ffde10c573394df3e0185} 
+\index{Node@{Node}!color@{color}}
+\index{color@{color}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{color}{color}}
+{\footnotesize\ttfamily Node\+::color}
+
+The color of the node is either red or black. \Hypertarget{structNode_a1b3980c541798444323ba85de542713e}\label{structNode_a1b3980c541798444323ba85de542713e} 
+\index{Node@{Node}!data@{data}}
+\index{data@{data}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily Node\+::data}
+
+The data stored in the node. For simplicity, this implementation considers an integer. \Hypertarget{structNode_a05ef70dd2b0b89db38cda977021ee696}\label{structNode_a05ef70dd2b0b89db38cda977021ee696} 
+\index{Node@{Node}!left@{left}}
+\index{left@{left}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{left}{left}}
+{\footnotesize\ttfamily Node\+::left}
+
+Pointer to the left child of the node. If the node does not have a left child, this pointer is NULL. \Hypertarget{structNode_a2149dcf83c930a3c0b388f51dbb42410}\label{structNode_a2149dcf83c930a3c0b388f51dbb42410} 
+\index{Node@{Node}!parent@{parent}}
+\index{parent@{parent}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily Node\+::parent}
+
+Pointer to the parent of the node. For the root node, this pointer is NULL. \Hypertarget{structNode_a45c7b7ddeefcffe349a1f13ec586107c}\label{structNode_a45c7b7ddeefcffe349a1f13ec586107c} 
+\index{Node@{Node}!right@{right}}
+\index{right@{right}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{right}{right}}
+{\footnotesize\ttfamily Node\+::right}
+
+Pointer to the right child of the node. If the node does not have a right child, this pointer is NULL. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{rbt_8h}{rbt.\+h}}\end{DoxyCompactItemize}

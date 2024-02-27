@@ -1,0 +1,92 @@
+\doxysection{Red-\/\+Black Tree}
+\hypertarget{group__rbt}{}\label{group__rbt}\index{Red-\/Black Tree@{Red-\/Black Tree}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{group__rbt_gaab85c237c4d3ea9b8a37852198aea9a3}{rbt\+\_\+destroy}} (\mbox{\hyperlink{structTree}{Tree}} \texorpdfstring{$\ast$}{*}tree)
+\begin{DoxyCompactList}\small\item\em Destroys a Red-\/\+Black tree and frees its memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt_ga3522719bd085c0acb581c3b74d937948}{rbt\+\_\+insert}} (\mbox{\hyperlink{structTree}{Tree}} \texorpdfstring{$\ast$}{*}tree, const int data)
+\begin{DoxyCompactList}\small\item\em Inserts a value into the Red-\/\+Black tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt_ga7deb56f8c8b3992932874b0dde494cf9}{rbt\+\_\+search}} (\mbox{\hyperlink{structTree}{Tree}} \texorpdfstring{$\ast$}{*}tree, const int data)
+\begin{DoxyCompactList}\small\item\em Searches for a node with a given value in a Red-\/\+Black \doxylink{structTree}{Tree}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This section documents the public facing API for the red-\/black tree. It includes functions for creating the tree, inserting nodes, searching for values, and other utilities that facilitate interaction with the red-\/black tree data structure. Key operations include\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{rbt_8c_a595068633f2766e30f5561f076bca240}{rbt\+\_\+init()}}\+: Initializes a new tree with a NULL root and size of 0.
+\item {\ttfamily \doxylink{group__rbt_gaab85c237c4d3ea9b8a37852198aea9a3}{rbt\+\_\+destroy()}}\+: Frees the memory allocated for the entire tree.
+\item {\ttfamily \doxylink{group__rbt_ga3522719bd085c0acb581c3b74d937948}{rbt\+\_\+insert()}}\+: Inserts a new node into the Red-\/\+Black tree, fixing up recursively to maintain the balance properties.
+\item {\ttfamily \doxylink{group__rbt_ga7deb56f8c8b3992932874b0dde494cf9}{rbt\+\_\+search()}}\+: Recursively searches for a node by its value, adhering to BST search semantics. 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__rbt_gaab85c237c4d3ea9b8a37852198aea9a3}\label{group__rbt_gaab85c237c4d3ea9b8a37852198aea9a3} 
+\index{Red-\/Black Tree@{Red-\/Black Tree}!rbt\_destroy@{rbt\_destroy}}
+\index{rbt\_destroy@{rbt\_destroy}!Red-\/Black Tree@{Red-\/Black Tree}}
+\doxysubsubsection{\texorpdfstring{rbt\_destroy()}{rbt\_destroy()}}
+{\footnotesize\ttfamily void rbt\+\_\+destroy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTree}{Tree}} \texorpdfstring{$\ast$}{*}}]{tree }\end{DoxyParamCaption})}
+
+
+
+Destroys a Red-\/\+Black tree and frees its memory. 
+
+This function recursively frees the memory allocated for the nodes of a Red-\/\+Black tree. It ensures that all associated memory is released to prevent memory leaks.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tree} & A pointer to the Red-\/\+Black tree to be destroyed.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This function recursively destroys the entire tree. To destroy a single node, use {\ttfamily \doxylink{group__bst_ga63f8fb66ac7aeec89d8a7af2240e140f}{node\+\_\+destroy()}} instead. 
+\end{DoxyNote}
+\Hypertarget{group__rbt_ga3522719bd085c0acb581c3b74d937948}\label{group__rbt_ga3522719bd085c0acb581c3b74d937948} 
+\index{Red-\/Black Tree@{Red-\/Black Tree}!rbt\_insert@{rbt\_insert}}
+\index{rbt\_insert@{rbt\_insert}!Red-\/Black Tree@{Red-\/Black Tree}}
+\doxysubsubsection{\texorpdfstring{rbt\_insert()}{rbt\_insert()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} rbt\+\_\+insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTree}{Tree}} \texorpdfstring{$\ast$}{*}}]{tree,  }\item[{const int}]{data }\end{DoxyParamCaption})}
+
+
+
+Inserts a value into the Red-\/\+Black tree. 
+
+function first inserts the new node using standard BST rules, empirically setting equality to the left subtree. After insertion, we perform a (potentially) recursive fixup starting at the newly inserted node.
+
+\begin{DoxyNote}{Note}
+The root node may change as a result of these adjustments. This is because we may rotate around the root of the tree. It is important to use this new root for future operations on the tree.
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em tree} & A pointer to the the tree. \\
+\hline
+{\em data} & The integer value to be inserted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the root of the tree. 
+\end{DoxyReturn}
+\Hypertarget{group__rbt_ga7deb56f8c8b3992932874b0dde494cf9}\label{group__rbt_ga7deb56f8c8b3992932874b0dde494cf9} 
+\index{Red-\/Black Tree@{Red-\/Black Tree}!rbt\_search@{rbt\_search}}
+\index{rbt\_search@{rbt\_search}!Red-\/Black Tree@{Red-\/Black Tree}}
+\doxysubsubsection{\texorpdfstring{rbt\_search()}{rbt\_search()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} rbt\+\_\+search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structTree}{Tree}} \texorpdfstring{$\ast$}{*}}]{tree,  }\item[{const int}]{data }\end{DoxyParamCaption})}
+
+
+
+Searches for a node with a given value in a Red-\/\+Black \doxylink{structTree}{Tree}. 
+
+This function acts as a wrapper for the {\ttfamily \doxylink{group__bst_gadd435e52242b8db9f422e4dba4a4e823}{bst\+\_\+search()}} function, initiating a search for a node containing the specified {\ttfamily data} within a Red-\/\+Black \doxylink{structTree}{Tree}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tree} & A pointer to the Red-\/\+Black \doxylink{structTree}{Tree} we want to search. \\
+\hline
+{\em data} & The value to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the node containing {\ttfamily data} if found, NULL otherwise. 
+\end{DoxyReturn}

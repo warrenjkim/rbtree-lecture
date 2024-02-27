@@ -1,0 +1,157 @@
+\begin{theindex}
+
+  \item {Binary Search Tree}, \hyperpage{7}
+    \subitem {bst\_insert}, \hyperpage{7}
+    \subitem {bst\_search}, \hyperpage{8}
+    \subitem {node\_destroy}, \hyperpage{8}
+    \subitem {node\_init}, \hyperpage{9}
+  \item {BLACK}
+    \subitem {rbt.h}, \hyperpage{26}
+  \item {bst\_insert}
+    \subitem {Binary Search Tree}, \hyperpage{7}
+  \item {bst\_search}
+    \subitem {Binary Search Tree}, \hyperpage{8}
+
+  \indexspace
+
+  \item {col}
+    \subitem {Tree Formatter}, \hyperpage{15}
+  \item {Color}
+    \subitem {rbt.h}, \hyperpage{26}
+  \item {color}
+    \subitem {Node}, \hyperpage{19}
+
+  \indexspace
+
+  \item {data}
+    \subitem {Node}, \hyperpage{19}
+
+  \indexspace
+
+  \item {fixup}
+    \subitem {Red-\/Black Tree Helper Functions}, \hyperpage{10}
+
+  \indexspace
+
+  \item {grandparent}
+    \subitem {Red-\/Black Tree Helper Functions}, \hyperpage{10}
+
+  \indexspace
+
+  \item {height}
+    \subitem {Tree Formatter}, \hyperpage{15}
+
+  \indexspace
+
+  \item {left}
+    \subitem {Node}, \hyperpage{19}
+  \item {left\_rotate}
+    \subitem {Red-\/Black Tree Helper Functions}, \hyperpage{11}
+
+  \indexspace
+
+  \item {main}
+    \subitem {main.c}, \hyperpage{21}
+  \item {main.c}, \hyperpage{21}
+    \subitem {main}, \hyperpage{21}
+    \subitem {valid\_int}, \hyperpage{21}
+
+  \indexspace
+
+  \item {Node}, \hyperpage{19}
+    \subitem {color}, \hyperpage{19}
+    \subitem {data}, \hyperpage{19}
+    \subitem {left}, \hyperpage{19}
+    \subitem {parent}, \hyperpage{20}
+    \subitem {rbt.h}, \hyperpage{26}
+    \subitem {right}, \hyperpage{20}
+  \item {node\_destroy}
+    \subitem {Binary Search Tree}, \hyperpage{8}
+  \item {node\_init}
+    \subitem {Binary Search Tree}, \hyperpage{9}
+
+  \indexspace
+
+  \item {parent}
+    \subitem {Node}, \hyperpage{20}
+  \item {print\_tree}
+    \subitem {Tree Formatter}, \hyperpage{15}
+
+  \indexspace
+
+  \item {rbt.c}, \hyperpage{21}
+    \subitem {rbt\_init}, \hyperpage{24}
+  \item {rbt.h}, \hyperpage{24}
+    \subitem {BLACK}, \hyperpage{26}
+    \subitem {Color}, \hyperpage{26}
+    \subitem {Node}, \hyperpage{26}
+    \subitem {rbt\_init}, \hyperpage{26}
+    \subitem {RED}, \hyperpage{26}
+    \subitem {Tree}, \hyperpage{26}
+  \item {rbt\_destroy}
+    \subitem {Red-\/Black Tree}, \hyperpage{17}
+  \item {rbt\_init}
+    \subitem {rbt.c}, \hyperpage{24}
+    \subitem {rbt.h}, \hyperpage{26}
+  \item {rbt\_inorder}
+    \subitem {Tree Formatter}, \hyperpage{16}
+  \item {rbt\_insert}
+    \subitem {Red-\/Black Tree}, \hyperpage{18}
+  \item {rbt\_print\_tree}
+    \subitem {Tree Formatter}, \hyperpage{16}
+  \item {rbt\_search}
+    \subitem {Red-\/Black Tree}, \hyperpage{18}
+  \item {recolor}
+    \subitem {Red-\/Black Tree Helper Functions}, \hyperpage{12}
+  \item {RED}
+    \subitem {rbt.h}, \hyperpage{26}
+  \item {Red-\/Black Tree}, \hyperpage{17}
+    \subitem {rbt\_destroy}, \hyperpage{17}
+    \subitem {rbt\_insert}, \hyperpage{18}
+    \subitem {rbt\_search}, \hyperpage{18}
+  \item {Red-\/Black Tree Helper Functions}, \hyperpage{9}
+    \subitem {fixup}, \hyperpage{10}
+    \subitem {grandparent}, \hyperpage{10}
+    \subitem {left\_rotate}, \hyperpage{11}
+    \subitem {recolor}, \hyperpage{12}
+    \subitem {restructure}, \hyperpage{12}
+    \subitem {right\_rotate}, \hyperpage{13}
+    \subitem {uncle}, \hyperpage{14}
+  \item {restructure}
+    \subitem {Red-\/Black Tree Helper Functions}, \hyperpage{12}
+  \item {right}
+    \subitem {Node}, \hyperpage{20}
+  \item {right\_rotate}
+    \subitem {Red-\/Black Tree Helper Functions}, \hyperpage{13}
+  \item {root}
+    \subitem {Tree}, \hyperpage{20}
+
+  \indexspace
+
+  \item {size}
+    \subitem {Tree}, \hyperpage{20}
+
+  \indexspace
+
+  \item {Tree}, \hyperpage{20}
+    \subitem {rbt.h}, \hyperpage{26}
+    \subitem {root}, \hyperpage{20}
+    \subitem {size}, \hyperpage{20}
+  \item {Tree Formatter}, \hyperpage{14}
+    \subitem {col}, \hyperpage{15}
+    \subitem {height}, \hyperpage{15}
+    \subitem {print\_tree}, \hyperpage{15}
+    \subitem {rbt\_inorder}, \hyperpage{16}
+    \subitem {rbt\_print\_tree}, \hyperpage{16}
+
+  \indexspace
+
+  \item {uncle}
+    \subitem {Red-\/Black Tree Helper Functions}, \hyperpage{14}
+
+  \indexspace
+
+  \item {valid\_int}
+    \subitem {main.c}, \hyperpage{21}
+
+\end{theindex}

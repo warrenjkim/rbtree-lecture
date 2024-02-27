@@ -1,0 +1,251 @@
+\doxysection{Red-\/\+Black Tree Helper Functions}
+\hypertarget{group__rbt__helpers}{}\label{group__rbt__helpers}\index{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_ga4204e86d4f09d468b86d4e333518b705}{grandparent}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}z)
+\begin{DoxyCompactList}\small\item\em Returns the grandparent of a given node in a Red-\/\+Black tree. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_ga85f131d8278ba1dd1eff1622ca178574}{uncle}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}z)
+\begin{DoxyCompactList}\small\item\em Returns the uncle of a given node in a Red-\/\+Black tree. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_ga64ec1d340ee4a76920fbd6fd1d206640}{recolor}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}z)
+\begin{DoxyCompactList}\small\item\em Recolors the parent, uncle, and grandparent of a given node in a Red-\/\+Black tree. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_ga2a290397821f7fa4f417fd0589c80aef}{left\+\_\+rotate}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}x)
+\begin{DoxyCompactList}\small\item\em Performs a left rotation on the given node within a Red-\/\+Black tree. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_gae3ee2dff315876e241cc8a93dddb951f}{right\+\_\+rotate}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}x)
+\begin{DoxyCompactList}\small\item\em Performs a right rotation on the given node within a Red-\/\+Black tree. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_ga6351b99f0cf1652647cd859c379b459a}{restructure}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}z)
+\begin{DoxyCompactList}\small\item\em Restructures the tree to maintain Red-\/\+Black properties after insertion. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_gac91e06a76fd1582e2dea6bfcf4576267}{fixup}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}z)
+\begin{DoxyCompactList}\small\item\em Fixes up the Red-\/\+Black tree after insertion to maintain its properties. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This section describes the helper functions used for maintaining the Red-\/\+Black tree properties. These functions are essential for internal operations such as rotations, insertions, deletions, and color adjustments which ensure the tree remains balanced and conforms to red-\/black tree rules. Key operations include\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily \doxylink{group__rbt__helpers_ga4204e86d4f09d468b86d4e333518b705}{grandparent()}}\+: Returns the grandparent of a given node.
+\item {\ttfamily \doxylink{group__rbt__helpers_ga85f131d8278ba1dd1eff1622ca178574}{uncle()}}\+: Returns the uncle of a given node.
+\item {\ttfamily \doxylink{group__rbt__helpers_ga64ec1d340ee4a76920fbd6fd1d206640}{recolor()}}\+: Handles the recolor case, fixing a double red violation.
+\item {\ttfamily \doxylink{group__rbt__helpers_ga2a290397821f7fa4f417fd0589c80aef}{left\+\_\+rotate()}}\+: Rotates around a node {\ttfamily x} once to the left.
+\item {\ttfamily \doxylink{group__rbt__helpers_gae3ee2dff315876e241cc8a93dddb951f}{right\+\_\+rotate()}}\+: Rotates around a node {\ttfamily x} once to the right.
+\item {\ttfamily \doxylink{group__rbt__helpers_ga6351b99f0cf1652647cd859c379b459a}{restructure()}}\+: Restructures the tree with respect to a node {\ttfamily z}, fixing a double red violation.
+\item {\ttfamily \doxylink{group__rbt__helpers_gac91e06a76fd1582e2dea6bfcf4576267}{fixup()}}\+: Recursively fixes up the Red-\/\+Black tree after insertion. 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\Hypertarget{group__rbt__helpers_gac91e06a76fd1582e2dea6bfcf4576267}\label{group__rbt__helpers_gac91e06a76fd1582e2dea6bfcf4576267} 
+\index{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!fixup@{fixup}}
+\index{fixup@{fixup}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}}
+\doxysubsubsection{\texorpdfstring{fixup()}{fixup()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} fixup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Fixes up the Red-\/\+Black tree after insertion to maintain its properties. 
+
+This function adjusts the colors and structure of a Red-\/\+Black tree starting from node {\ttfamily z} upwards to ensure that the tree maintains balance after an insertion. The fixup procedure includes recoloring nodes and performing rotations as necessary.
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & A pointer to the newly inserted node or a node that may cause a double red violation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the root of the (valid Red-\/\+Black) tree after the adjustments.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The function recursively addresses two main cases\+:
+\begin{DoxyEnumerate}
+\item If {\ttfamily z\textquotesingle{}s} parent is NULL, {\ttfamily z} is the root and is colored BLACK.
+\item If both {\ttfamily z} and its parent are RED, then it checks the color of {\ttfamily z\textquotesingle{}s} uncle.
+\begin{DoxyItemize}
+\item If the uncle is RED, we recolor.
+\item If the uncle is BLACK or NULL, we restructure with respect to {\ttfamily z}. After (recursively) addressing these cases, the function ascends the tree to its root to return it. 
+\end{DoxyItemize}
+\end{DoxyEnumerate}
+\end{DoxyNote}
+\Hypertarget{group__rbt__helpers_ga4204e86d4f09d468b86d4e333518b705}\label{group__rbt__helpers_ga4204e86d4f09d468b86d4e333518b705} 
+\index{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!grandparent@{grandparent}}
+\index{grandparent@{grandparent}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}}
+\doxysubsubsection{\texorpdfstring{grandparent()}{grandparent()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} grandparent (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the grandparent of a given node in a Red-\/\+Black tree. 
+
+This helper function makes the code easier to read.
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & A pointer to the grandchild of the node we want. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the grandparent node if it exists; NULL otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function assumes that the provided node {\ttfamily z} and its parent are non-\/\+NULL. It is the caller\textquotesingle{}s responsibility to ensure this condition is met before calling the function. Failing to do so may result in undefined behavior. 
+\end{DoxyNote}
+\Hypertarget{group__rbt__helpers_ga2a290397821f7fa4f417fd0589c80aef}\label{group__rbt__helpers_ga2a290397821f7fa4f417fd0589c80aef} 
+\index{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!left\_rotate@{left\_rotate}}
+\index{left\_rotate@{left\_rotate}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}}
+\doxysubsubsection{\texorpdfstring{left\_rotate()}{left\_rotate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} left\+\_\+rotate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Performs a left rotation on the given node within a Red-\/\+Black tree. 
+
+This function applies a left rotation to the node pointed to by {\ttfamily x}, adjusting the tree\textquotesingle{}s structure to maintain Red-\/\+Black properties. Below is an ASCII art diagram illustrating the left rotation\+:
+
+\begin{DoxyVerb}*    p              p
+*    |              |
+*    x              y
+*   / \            / \
+*  _   y    =>    x   z
+*     / \        / \
+*    T   z      _   T
+* \end{DoxyVerb}
+
+
+Here, we label the left child of {\ttfamily x} as {\ttfamily \+\_\+} because it is irrelevant to the rotation. Additionally, {\ttfamily x\textquotesingle{}s} parent {\ttfamily p} is directly above {\ttfamily x} since we need to check if {\ttfamily x} is a left or right child of {\ttfamily p}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Pointer to the node to rotate. This node becomes the left child of its right child after rotation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new root of the subtree after the rotation, which was the right child of {\ttfamily x} before the rotation.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function assumes {\ttfamily x\textquotesingle{}s} right child is non-\/\+NULL and it\textquotesingle{}s the caller\textquotesingle{}s responsibility to ensure this. These conditions are met by definition of how we call the function. We call the function with respect to {\ttfamily z}, so {\ttfamily y} is defined. 
+\end{DoxyNote}
+\Hypertarget{group__rbt__helpers_ga64ec1d340ee4a76920fbd6fd1d206640}\label{group__rbt__helpers_ga64ec1d340ee4a76920fbd6fd1d206640} 
+\index{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!recolor@{recolor}}
+\index{recolor@{recolor}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}}
+\doxysubsubsection{\texorpdfstring{recolor()}{recolor()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} recolor (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Recolors the parent, uncle, and grandparent of a given node in a Red-\/\+Black tree. 
+
+This function changes the color of the parent and uncle of the node {\ttfamily z} to BLACK, and the color of the grandparent to RED.
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & A pointer to the node we are recoloring with respect to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the grandparent of the node {\ttfamily z} after recoloring.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function assumes that the node {\ttfamily z}, its parent, and its grandparent are non-\/\+NULL, and that it has an uncle. These conditions are met by definition since by property 3, nil nodes are treated as BLACK. 
+\end{DoxyNote}
+\Hypertarget{group__rbt__helpers_ga6351b99f0cf1652647cd859c379b459a}\label{group__rbt__helpers_ga6351b99f0cf1652647cd859c379b459a} 
+\index{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!restructure@{restructure}}
+\index{restructure@{restructure}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}}
+\doxysubsubsection{\texorpdfstring{restructure()}{restructure()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} restructure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Restructures the tree to maintain Red-\/\+Black properties after insertion. 
+
+This function performs rotations on a given node {\ttfamily z} in a Red-\/\+Black tree to fix any violations caused by insertion. There are four cases considered for rotation\+: left-\/left, right-\/right, left-\/right, and right-\/left, each requiring specific rotations to maintain the tree\textquotesingle{}s balancing properties.
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & A pointer to the node that we rotate with respect to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the node that becomes the new root of the subtree after the rotations are completed.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The function modifies the tree structure through rotations and recolors the nodes to adhere to Red-\/\+Black tree properties. The specific rotations performed depend on the position of {\ttfamily z} relative to its parent and grandparent, addressing the different cases of tree imbalance\+:
+\begin{DoxyItemize}
+\item Left-\/\+Left Case\+: A single right rotation is needed.
+\item Right-\/\+Right Case\+: A single left rotation is needed.
+\item Left-\/\+Right Case\+: A right rotation followed by a left rotation is needed.
+\item Right-\/\+Left Case\+: A left rotation followed by a right rotation is needed. After the rotations, the function correctly recolors affected nodes.
+\end{DoxyItemize}
+
+The code is purposefully verbose as it serves an educational purpose. Given {\ttfamily z}, {\ttfamily p}, {\ttfamily x}, we can reduce redundancy by nesting cases as follows\+:
+\end{DoxyNote}
+\begin{DoxyVerb}*  if @p z is a left child:
+*    if @p p is a left child:
+*      left_rotate()
+*    else:
+*      right_rotate(left_rotate())
+*
+*    recolor appropriately
+*  else:
+*    if @p p is a right child:
+*      right_rotate()
+*    else:
+*      left_rotate(right_rotate)
+*
+*    recolor appropriately
+*
+*  return z
+* \end{DoxyVerb}
+ \Hypertarget{group__rbt__helpers_gae3ee2dff315876e241cc8a93dddb951f}\label{group__rbt__helpers_gae3ee2dff315876e241cc8a93dddb951f} 
+\index{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!right\_rotate@{right\_rotate}}
+\index{right\_rotate@{right\_rotate}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}}
+\doxysubsubsection{\texorpdfstring{right\_rotate()}{right\_rotate()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} right\+\_\+rotate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Performs a right rotation on the given node within a Red-\/\+Black tree. 
+
+This function applies a right rotation to the node pointed to by {\ttfamily x}, adjusting the tree\textquotesingle{}s structure to maintain Red-\/\+Black properties. Below is an ASCII art diagram illustrating the right rotation\+:
+
+\begin{DoxyVerb}*      g             g
+*      |             |
+*      x             y
+*     / \           / \
+*    y   _    =>   z   x
+*   / \               / \
+*  z   T             T   _
+* \end{DoxyVerb}
+
+
+Here, we label the right child of {\ttfamily x} as {\ttfamily \+\_\+} because it is irrelevant to the rotation. Additionally, {\ttfamily x\textquotesingle{}s} parent {\ttfamily p} is directly above {\ttfamily x} since we need to check if {\ttfamily x} is a left or right child of {\ttfamily p}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & Pointer to the node to rotate. This node becomes the right child of its left child after rotation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The new parent node after the rotation, which was the left child of {\ttfamily x} before the rotation.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Assumes {\ttfamily x\textquotesingle{}s} left child is non-\/\+NULL and it\textquotesingle{}s the caller\textquotesingle{}s responsibility to ensure this. 
+\end{DoxyNote}
+\Hypertarget{group__rbt__helpers_ga85f131d8278ba1dd1eff1622ca178574}\label{group__rbt__helpers_ga85f131d8278ba1dd1eff1622ca178574} 
+\index{Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}!uncle@{uncle}}
+\index{uncle@{uncle}!Red-\/Black Tree Helper Functions@{Red-\/Black Tree Helper Functions}}
+\doxysubsubsection{\texorpdfstring{uncle()}{uncle()}}
+{\footnotesize\ttfamily static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} uncle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Returns the uncle of a given node in a Red-\/\+Black tree. 
+
+The function returns the uncle of a node, which is defined as the sibling of the node\textquotesingle{}s parent.
+
+
+\begin{DoxyParams}{Parameters}
+{\em z} & A pointer to the node whose uncle is desired. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the uncle node if it exists; NULL otherwise. This is because if the grandparent does not exist, it implies that the uncle cannot exist. 
+\end{DoxyReturn}

@@ -1,5 +1,7 @@
-/** @file rbtree.h @brief Declaration of Red-Black Tree data structures and
- * functions.
+/**
+ * @file rbt.h
+ *
+ * @brief Declaration of Red-Black Tree data structures and functions.
  *
  * This header file contains the declarations for the Red-Black Tree data
  * structures and outlines the interface for operations on a Red-Black Tree. A
@@ -28,12 +30,12 @@
  *
  * Key Functions (Declared):
  * - rbt_init(): Creates and returns a new instance of a Red-Black Tree.
- * - rbt_destroy(Tree *tree): Destroys the Red-Black Tree, freeing all
+ * - rbt_destroy(): Destroys the Red-Black Tree, freeing all
  *   allocated memory.
- * - rbt_insert(Tree *tree, const int data): Inserts a new element with the
+ * - rbt_insert(): Inserts a new element with the
  *   specified data into the tree.
- * - rbt_inorder(Node *root): Conducts an inorder traversal of the tree.
- * - rbt_print_tree(Node *root): Prints the structure of the tree.
+ * - rbt_inorder(): Conducts an inorder traversal of the tree.
+ * - rbt_print_tree(): Prints the structure of the tree.
  *
  * This header file should be included in any source file that intends to
  * utilize the Red-Black Tree data structures or operations. The implementation
@@ -47,6 +49,7 @@
 #include <stddef.h>
 
 /**
+ * @typedef enum Color
  * @enum Color
  * @brief Represents the color of a node in a Red-Black tree.
  *
@@ -57,6 +60,7 @@ typedef enum { RED, BLACK } Color;
 
 
 /**
+ * @typedef struct Node
  * @struct Node
  * @brief Node structure for a Red-Black Tree.
  *
@@ -79,14 +83,15 @@ typedef enum { RED, BLACK } Color;
  * The data stored in the node. For simplicity, this implementation considers an integer.
  */
 typedef struct Node {
-    Color color; ///< The color of the node, important for maintaining tree properties.
-    struct Node  *left; ///< Pointer to the left child.
-    struct Node  *right; ///< Pointer to the right child.
-    struct Node  *parent; ///< Pointer to the parent node.
-    int data; ///< The data stored in the node.
+    Color color;
+    struct Node  *left;
+    struct Node  *right;
+    struct Node  *parent;
+    int data;
 } Node;
 
 /**
+ * @typedef struct Tree
  * @struct Tree
  * @brief Structure representing a Red-Black Tree.
  *
@@ -102,39 +107,53 @@ typedef struct Node {
  * of the tree's size, such as balancing, validation, and traversal optimizations.
  */
 typedef struct Tree {
-    Node *root; ///< Pointer to the root node of the tree.
-    size_t size; ///< Number of nodes in the tree.
+    Node *root;
+    size_t size;
 } Tree;
 
 /**
- * @brief Initializes a new Red-Black Tree.
+ * @brief Initializes a new Red-Black tree.
  *
- * Allocates memory for a new Red-Black Tree and initializes its root to NULL and size to 0.
- * The caller is responsible for calling rbt_destroy to free the memory allocated by this function.
+ * This function dynamically allocates memory for a new Red-Black tree structure,
+ * sets its root to NULL, and initializes its size to 0. It returns a pointer to
+ * the newly created tree.
  *
- * @return A pointer to the newly created Red-Black Tree.
+ * @return A pointer to the newly initialized Red-Black tree if successful,
+ *         error and exits otherwise.
+ *
+ * @note The function checks for successful memory allocation and exits the program
+ *       with an error message if allocation fails. This ensures that the function
+ *       returns a valid pointer to a Red-Black tree.
  */
 Tree *rbt_init();
 
 /**
- * @brief Destroys a Red-Black Tree.
+ * @brief Destroys a Red-Black tree and frees its memory.
  *
- * Frees all the memory associated with the Red-Black Tree's nodes and the tree itself.
- * After this operation, the pointer to the tree should not be used.
+ * This function recursively frees the memory allocated for the nodes of a Red-Black
+ * tree. It ensures that all associated memory is released to prevent memory leaks.
  *
- * @param tree A pointer to the Red-Black Tree.
+ * @param tree A pointer to the Red-Black tree to be destroyed.
+ *
+ * @note This function recursively destroys the entire tree. To destroy a single node,
+ *       use `node_destroy()` instead.
  */
 void rbt_destroy(Tree *tree);
 
 /**
- * @brief Inserts a new value into the Red-Black Tree.
+ * @brief Inserts a value into the Red-Black tree.
  *
- * Inserts a new node with the specified data value into the tree while maintaining
- * the Red-Black Tree properties. Adjustments and color changes are performed as necessary.
+ * function first inserts the new node using standard BST rules,
+ * empirically setting equality to the left subtree. After insertion, we perform
+ * a (potentially) recursive fixup starting at the newly inserted node.
  *
- * @param tree A pointer to the Red-Black Tree where the data will be inserted.
- * @param data The data value to insert into the tree.
- * @param root A pointer to the root node of the Red-Black Tree.
+ * @note The root node may change as a result of these adjustments. This is
+ *       because we may rotate around the root of the tree. It is important to use
+ *       this new root for future operations on the tree.
+ *
+ * @param tree A pointer to the the tree.
+ * @param data The integer value to be inserted.
+ * @return     A pointer to the root of the tree.
  */
 Node *rbt_insert(Tree *tree, const int data);
 
@@ -157,3 +176,15 @@ void rbt_inorder(Node *root);
  * @param root A pointer to the root node of the Red-Black Tree.
  */
 void rbt_print_tree(Node *root);
+
+/**
+ * @brief Searches for a node with a given value in a Red-Black Tree.
+ *
+ * This function acts as a wrapper for the `bst_search()` function, initiating a search
+ * for a node containing the specified @p data within a Red-Black Tree.
+ *
+ * @param tree A pointer to the Red-Black Tree we want to search.
+ * @param data The value to search for.
+ * @return A pointer to the node containing @p data if found, NULL otherwise.
+ */
+Node *rbt_search(Tree *tree, const int data);

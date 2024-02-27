@@ -1,5 +1,7 @@
 /**
- * @file rbt.c @brief Implementation of a Red-Black Tree in C (Insertion Only).
+ * @file rbt.c
+ *
+ * @brief Implementation of a Red-Black Tree in C (Insertion Only).
  *
  * This file contains the definition and implementation details of a Red-Black
  * Tree, a self-balancing binary search tree. In a Red-Black Tree, each node
@@ -28,11 +30,11 @@
  *
  * Key Functions:
  * - rbt_init(): Initializes and returns a new Red-Black Tree.
- * - rbt_destroy(Tree *tree): Frees memory allocated for the Red-Black Tree.
- * - rbt_insert(Tree *tree, const int data): Inserts a new node with the given
+ * - rbt_destroy(): Frees memory allocated for the Red-Black Tree.
+ * - rbt_insert(): Inserts a new node with the given
  *   data into the tree.
- * - rbt_inorder(Node *root): Performs an inorder traversal of the tree.
- * - rbt_print_tree(Node *root): Prints the tree structure.
+ * - rbt_inorder(): Performs an inorder traversal of the tree.
+ * - rbt_print_tree(): Prints the tree structure.
  *
  * This file provides a basic implementation and can be extended for more
  * complex operations and use cases.
@@ -48,7 +50,7 @@
 #include <math.h>
 
 /**
- * @section bst Binary Search Tree
+ * \defgroup bst Binary Search Tree
  *
  * This section covers a subset of the fundamental operations related to managing nodes
  * within a Red-Black Tree, including initialization and destruction of nodes,
@@ -63,6 +65,7 @@
  */
 
 /**
+ * \ingroup bst
  * @brief Initializes a new node for a Red-Black tree with given data.
  *
  * This function dynamically allocates memory for a new Red-Black tree node,
@@ -94,6 +97,7 @@ static Node *node_init(const int data) {
 
 
 /**
+ * \ingroup bst
  * @brief Frees the memory allocated for a Red-Black tree node.
  *
  * This function releases the memory allocated for a Red-Black tree node
@@ -124,6 +128,7 @@ static void node_destroy(Node *node) {
 
 
 /**
+ * \ingroup bst
  * @brief Inserts a new node using standard BST rules and updates the starting
  *        point for fixups.
  *
@@ -169,6 +174,7 @@ static Node *bst_insert(Node *root, const int data, Node **z) {
 
 
 /**
+ * \ingroup bst
  * @brief Searches for a node with a given value in a BST.
  *
  * This function recursively searches for a node containing the specified @p data
@@ -203,7 +209,7 @@ static Node *bst_search(Node *root, const int data) {
 
 
 /**
- * @section rbt_helpers Red-Black Tree Helper Functions
+ * \defgroup rbt_helpers Red-Black Tree Helper Functions
  *
  * This section describes the helper functions used for maintaining the
  * Red-Black tree properties. These functions are essential for internal
@@ -222,6 +228,7 @@ static Node *bst_search(Node *root, const int data) {
  */
 
 /**
+ * \ingroup rbt_helpers
  * @brief Returns the grandparent of a given node in a Red-Black tree.
  *
  * This helper function makes the code easier to read.
@@ -239,6 +246,7 @@ static Node *grandparent(Node *z) {
 
 
 /**
+ * \ingroup rbt_helpers
  * @brief Returns the uncle of a given node in a Red-Black tree.
  *
  * The function returns the uncle of a node, which is defined as the sibling of
@@ -266,6 +274,7 @@ static Node *uncle(Node *z)
 
 
 /**
+ * \ingroup rbt_helpers
  * @brief Recolors the parent, uncle, and grandparent of a given node in a Red-Black tree.
  *
  * This function changes the color of the parent and uncle of the node @p z to BLACK,
@@ -288,6 +297,7 @@ static Node *recolor(Node *z) {
 
 
 /**
+ * \ingroup rbt_helpers
  * @brief Performs a left rotation on the given node within a Red-Black tree.
  *
  * This function applies a left rotation to the node pointed to by @p x,
@@ -304,7 +314,7 @@ static Node *recolor(Node *z) {
  *    T   z      _   T
  * @endverbatim
  *
- * Here, we label the left child of @x as @p _ because it is irrelevant to the
+ * Here, we label the left child of @p x as @p _ because it is irrelevant to the
  * rotation. Additionally, @p x's parent @p p is directly above @p x since we
  * need to check if @p x is a left or right child of @p p.
  *
@@ -343,6 +353,7 @@ static Node *left_rotate(Node *x) {
 
 
 /**
+ * \ingroup rbt_helpers
  * @brief Performs a right rotation on the given node within a Red-Black tree.
  *
  * This function applies a right rotation to the node pointed to by @p x,
@@ -359,7 +370,7 @@ static Node *left_rotate(Node *x) {
  *  z   T             T   _
  * @endverbatim
  *
- * Here, we label the right child of @x as @p _ because it is irrelevant to the
+ * Here, we label the right child of @p x as @p _ because it is irrelevant to the
  * rotation. Additionally, @p x's parent @p p is directly above @p x since we
  * need to check if @p x is a left or right child of @p p.
  *
@@ -396,6 +407,7 @@ static Node *right_rotate(Node *x) {
 
 
 /**
+ * \ingroup rbt_helpers
  * @brief Restructures the tree to maintain Red-Black properties after insertion.
  *
  * This function performs rotations on a given node @p z in a Red-Black tree to
@@ -520,6 +532,7 @@ static Node *restructure(Node *z) {
 
 
 /**
+ * \ingroup rbt_helpers
  * @brief Fixes up the Red-Black tree after insertion to maintain its properties.
  *
  * This function adjusts the colors and structure of a Red-Black tree starting
@@ -569,7 +582,7 @@ static Node *fixup(Node *z) {
 
 
 /**
- * @section formatter Tree Formatter
+ * \defgroup formatter Tree Formatter
  *
  * This section covers all the helper functions for formatting so
  * we can pretty-print the tree.
@@ -580,6 +593,7 @@ static Node *fixup(Node *z) {
  */
 
 /**
+ * \ingroup formatter
  * @brief Calculates the height of the tree.
  *
  * This function computes the height of the tree recursively.
@@ -599,6 +613,7 @@ static int height(Node *root) {
 
 
 /**
+ * \ingroup formatter
  * @brief Calculates the column position for a given height.
  *
  * This function determines the column position based on the height of the tree,
@@ -618,6 +633,7 @@ int col(int h) {
 
 
 /**
+ * \ingroup formatter
  * @section printing_section Printing Section
  *
  * This section is dedicated to the functions required for printing the tree. These
@@ -657,12 +673,13 @@ static void print_tree(int **mat_tree, char **mat_color, Node *root, int c, int 
 
 
 /**
- * @brief Initiates the tree printing process.
+ * \ingroup formatter
+ * @brief Prints the entire Red-Black Tree.
  *
- * This function sets up the necessary data structures and calls the
- * `print_tree()` function to start printing the tree structure.
+ * Prints the tree in a structured manner to visualize its layout, including the color of each node.
+ * This is useful for debugging and verifying the structure of the tree.
  *
- * @param root A pointer to the root node of the tree.
+ * @param root A pointer to the root node of the Red-Black Tree.
  */
 void rbt_print_tree(Node *root) {
     int h = height(root);
@@ -691,11 +708,13 @@ void rbt_print_tree(Node *root) {
 
 
 /**
- * @brief Inorder traversal of the tree.
+ * \ingroup formatter
+ * @brief Performs an inorder traversal of the Red-Black Tree.
  *
- * This function traverses the tree in order.
+ * Prints the elements of the tree in an in-order fashion. This function can be used
+ * for debugging purposes to visualize the tree structure and contents.
  *
- * @param root A pointer to the root node of the tree.
+ * @param root A pointer to the root node of the Red-Black Tree.
  */
 void rbt_inorder(Node *root) {
     if (!root) {
@@ -712,7 +731,7 @@ void rbt_inorder(Node *root) {
 
 
 /**
- * @section rbt Red-Black Tree
+ * \defgroup rbt Red-Black Tree
  *
  * This section documents the public facing API for the red-black tree. It includes
  * functions for creating the tree, inserting nodes, searching for values, and
@@ -754,6 +773,7 @@ Tree *rbt_init() {
 
 
 /**
+ * \ingroup rbt
  * @brief Destroys a Red-Black tree and frees its memory.
  *
  * This function recursively frees the memory allocated for the nodes of a Red-Black
@@ -784,6 +804,7 @@ void rbt_destroy(Tree *tree) {
 
 
 /**
+ * \ingroup rbt
  * @brief Inserts a value into the Red-Black tree.
  *
  * function first inserts the new node using standard BST rules,
@@ -794,7 +815,7 @@ void rbt_destroy(Tree *tree) {
  *       because we may rotate around the root of the tree. It is important to use
  *       this new root for future operations on the tree.
  *
- * @param root A pointer to the root node of the tree.
+ * @param tree A pointer to the the tree.
  * @param data The integer value to be inserted.
  * @return     A pointer to the root of the tree.
  */
@@ -809,6 +830,7 @@ Node *rbt_insert(Tree *tree, const int data) {
 
 
 /**
+ * \ingroup rbt
  * @brief Searches for a node with a given value in a Red-Black Tree.
  *
  * This function acts as a wrapper for the `bst_search()` function, initiating a search

@@ -1,0 +1,120 @@
+\doxysection{rbt.\+c File Reference}
+\hypertarget{rbt_8c}{}\label{rbt_8c}\index{rbt.c@{rbt.c}}
+
+
+Implementation of a Red-\/\+Black \doxylink{structTree}{Tree} in C (Insertion Only).  
+
+
+{\ttfamily \#include "{}rbt.\+h"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__bst_ga5d44d613820519277ddd59de6f44c9df}{node\+\_\+init}} (const int data)
+\begin{DoxyCompactList}\small\item\em Initializes a new node for a Red-\/\+Black tree with given data. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group__bst_ga63f8fb66ac7aeec89d8a7af2240e140f}{node\+\_\+destroy}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}node)
+\begin{DoxyCompactList}\small\item\em Frees the memory allocated for a Red-\/\+Black tree node. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__bst_gab8230c71ed48fcaaddc8c0a747e18c7c}{bst\+\_\+insert}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}root, const int data, \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}z)
+\begin{DoxyCompactList}\small\item\em Inserts a new node using standard BST rules and updates the starting point for fixups. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__bst_gadd435e52242b8db9f422e4dba4a4e823}{bst\+\_\+search}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}root, const int data)
+\begin{DoxyCompactList}\small\item\em Searches for a node with a given value in a BST. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_ga4204e86d4f09d468b86d4e333518b705}{grandparent}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}z)
+\begin{DoxyCompactList}\small\item\em Returns the grandparent of a given node in a Red-\/\+Black tree. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_ga85f131d8278ba1dd1eff1622ca178574}{uncle}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}z)
+\begin{DoxyCompactList}\small\item\em Returns the uncle of a given node in a Red-\/\+Black tree. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_ga64ec1d340ee4a76920fbd6fd1d206640}{recolor}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}z)
+\begin{DoxyCompactList}\small\item\em Recolors the parent, uncle, and grandparent of a given node in a Red-\/\+Black tree. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_ga2a290397821f7fa4f417fd0589c80aef}{left\+\_\+rotate}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}x)
+\begin{DoxyCompactList}\small\item\em Performs a left rotation on the given node within a Red-\/\+Black tree. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_gae3ee2dff315876e241cc8a93dddb951f}{right\+\_\+rotate}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}x)
+\begin{DoxyCompactList}\small\item\em Performs a right rotation on the given node within a Red-\/\+Black tree. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_ga6351b99f0cf1652647cd859c379b459a}{restructure}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}z)
+\begin{DoxyCompactList}\small\item\em Restructures the tree to maintain Red-\/\+Black properties after insertion. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt__helpers_gac91e06a76fd1582e2dea6bfcf4576267}{fixup}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}z)
+\begin{DoxyCompactList}\small\item\em Fixes up the Red-\/\+Black tree after insertion to maintain its properties. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{group__formatter_ga655215da9fa00559591a876892753096}{height}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}root)
+\begin{DoxyCompactList}\small\item\em Calculates the height of the tree. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{group__formatter_gac3fcbd812a2034147a9ca346abbe1451}{col}} (int h)
+\begin{DoxyCompactList}\small\item\em Calculates the column position for a given height. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{group__formatter_gaf7f4866009c1c04ea8a9dc5156b0618d}{print\+\_\+tree}} (int \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}mat\+\_\+tree, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}mat\+\_\+color, \mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}root, int c, int r, int h)
+\begin{DoxyCompactList}\small\item\em Utility function to print the tree structure. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__formatter_gae048f4d2baeb7f14a90d9fc2011a00f4}{rbt\+\_\+print\+\_\+tree}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}root)
+\begin{DoxyCompactList}\small\item\em Prints the entire Red-\/\+Black \doxylink{structTree}{Tree}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__formatter_ga39e2794a4190f97ca7f7a4ffa3ba151d}{rbt\+\_\+inorder}} (\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*}root)
+\begin{DoxyCompactList}\small\item\em Performs an inorder traversal of the Red-\/\+Black \doxylink{structTree}{Tree}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structTree}{Tree}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{rbt_8c_a595068633f2766e30f5561f076bca240}{rbt\+\_\+init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes a new Red-\/\+Black tree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{group__rbt_gaab85c237c4d3ea9b8a37852198aea9a3}{rbt\+\_\+destroy}} (\mbox{\hyperlink{structTree}{Tree}} \texorpdfstring{$\ast$}{*}tree)
+\begin{DoxyCompactList}\small\item\em Destroys a Red-\/\+Black tree and frees its memory. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt_ga3522719bd085c0acb581c3b74d937948}{rbt\+\_\+insert}} (\mbox{\hyperlink{structTree}{Tree}} \texorpdfstring{$\ast$}{*}tree, const int data)
+\begin{DoxyCompactList}\small\item\em Inserts a value into the Red-\/\+Black tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structNode}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{group__rbt_ga7deb56f8c8b3992932874b0dde494cf9}{rbt\+\_\+search}} (\mbox{\hyperlink{structTree}{Tree}} \texorpdfstring{$\ast$}{*}tree, const int data)
+\begin{DoxyCompactList}\small\item\em Searches for a node with a given value in a Red-\/\+Black \doxylink{structTree}{Tree}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of a Red-\/\+Black \doxylink{structTree}{Tree} in C (Insertion Only). 
+
+This file contains the definition and implementation details of a Red-\/\+Black \doxylink{structTree}{Tree}, a self-\/balancing binary search tree. In a Red-\/\+Black \doxylink{structTree}{Tree}, each node contains an extra bit for denoting the color of the node, either RED or BLACK. A Red-\/\+Black tree satisfies the following properties\+:
+
+
+\begin{DoxyEnumerate}
+\item Every node is either RED or BLACK.
+\item Red nodes cannot have RED children; i.\+e. RED nodes can only have BLACK children.
+\item NULL nodes are BLACK.
+\item The root is always BLACK.
+\item Every path from a node to its descendant NULL nodes has the same number of BLACK nodes.
+\end{DoxyEnumerate}
+
+The tree structure supports operations such as insertion, deletion, and search with guaranteed log(n) maximum time complexity for each operation, making it efficient for data retrieval and manipulation. Space complexity is linear; i.\+e. O(n).
+
+Key Components\+:
+\begin{DoxyItemize}
+\item Color\+: An enumeration defining the color (RED, BLACK) of nodes in the tree.
+\item \doxylink{structNode}{Node}\+: A structure representing a node in the Red-\/\+Black \doxylink{structTree}{Tree}, containing data, color, and pointers to its children and parent.
+\item \doxylink{structTree}{Tree}\+: A structure representing the entire Red-\/\+Black \doxylink{structTree}{Tree}, encapsulating its root and size.
+\end{DoxyItemize}
+
+Key Functions\+:
+\begin{DoxyItemize}
+\item \doxylink{rbt_8c_a595068633f2766e30f5561f076bca240}{rbt\+\_\+init()}\+: Initializes and returns a new Red-\/\+Black \doxylink{structTree}{Tree}.
+\item \doxylink{group__rbt_gaab85c237c4d3ea9b8a37852198aea9a3}{rbt\+\_\+destroy()}\+: Frees memory allocated for the Red-\/\+Black \doxylink{structTree}{Tree}.
+\item \doxylink{group__rbt_ga3522719bd085c0acb581c3b74d937948}{rbt\+\_\+insert()}\+: Inserts a new node with the given data into the tree.
+\item \doxylink{group__formatter_ga39e2794a4190f97ca7f7a4ffa3ba151d}{rbt\+\_\+inorder()}\+: Performs an inorder traversal of the tree.
+\item \doxylink{group__formatter_gae048f4d2baeb7f14a90d9fc2011a00f4}{rbt\+\_\+print\+\_\+tree()}\+: Prints the tree structure.
+\end{DoxyItemize}
+
+This file provides a basic implementation and can be extended for more complex operations and use cases.
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2024-\/02-\/27 
+\end{DoxyDate}
+\begin{DoxyAuthor}{Author}
+Warren Kim 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{rbt_8c_a595068633f2766e30f5561f076bca240}\label{rbt_8c_a595068633f2766e30f5561f076bca240} 
+\index{rbt.c@{rbt.c}!rbt\_init@{rbt\_init}}
+\index{rbt\_init@{rbt\_init}!rbt.c@{rbt.c}}
+\doxysubsubsection{\texorpdfstring{rbt\_init()}{rbt\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTree}{Tree}} \texorpdfstring{$\ast$}{*} rbt\+\_\+init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes a new Red-\/\+Black tree. 
+
+This function dynamically allocates memory for a new Red-\/\+Black tree structure, sets its root to NULL, and initializes its size to 0. It returns a pointer to the newly created tree.
+
+\begin{DoxyReturn}{Returns}
+A pointer to the newly initialized Red-\/\+Black tree if successful, error and exits otherwise.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The function checks for successful memory allocation and exits the program with an error message if allocation fails. This ensures that the function returns a valid pointer to a Red-\/\+Black tree. 
+\end{DoxyNote}

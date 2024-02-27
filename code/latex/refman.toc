@@ -1,0 +1,74 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Topic Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Topics}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Data Structure Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Data Structures}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Topic Documentation}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Binary Search Tree}{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{7}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Function Documentation}{7}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}bst\_insert()}{7}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}bst\_search()}{8}{subsubsection.4.1.2.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.3}node\_destroy()}{8}{subsubsection.4.1.2.3}%
+\contentsline {subsubsection}{\numberline {4.1.2.4}node\_init()}{9}{subsubsection.4.1.2.4}%
+\contentsline {section}{\numberline {4.2}Red-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Black Tree Helper Functions}{9}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Detailed Description}{10}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Function Documentation}{10}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}fixup()}{10}{subsubsection.4.2.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2.2}grandparent()}{11}{subsubsection.4.2.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.3}left\_rotate()}{11}{subsubsection.4.2.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.2.4}recolor()}{12}{subsubsection.4.2.2.4}%
+\contentsline {subsubsection}{\numberline {4.2.2.5}restructure()}{12}{subsubsection.4.2.2.5}%
+\contentsline {subsubsection}{\numberline {4.2.2.6}right\_rotate()}{13}{subsubsection.4.2.2.6}%
+\contentsline {subsubsection}{\numberline {4.2.2.7}uncle()}{14}{subsubsection.4.2.2.7}%
+\contentsline {section}{\numberline {4.3}Tree Formatter}{14}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{14}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Function Documentation}{15}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}col()}{15}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}height()}{15}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}print\_tree()}{15}{subsubsection.4.3.2.3}%
+\contentsline {subsection}{\numberline {4.3.3}Printing Section}{16}{subsection.4.3.3}%
+\contentsline {subsubsection}{\numberline {4.3.3.1}rbt\_inorder()}{16}{subsubsection.4.3.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.3.2}rbt\_print\_tree()}{16}{subsubsection.4.3.3.2}%
+\contentsline {section}{\numberline {4.4}Red-\/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Black Tree}{17}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Detailed Description}{17}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Function Documentation}{17}{subsection.4.4.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.1}rbt\_destroy()}{17}{subsubsection.4.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.4.2.2}rbt\_insert()}{18}{subsubsection.4.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.4.2.3}rbt\_search()}{18}{subsubsection.4.4.2.3}%
+\contentsline {chapter}{\numberline {5}Data Structure Documentation}{19}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Node Struct Reference}{19}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Detailed Description}{19}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Field Documentation}{19}{subsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.1}color}{19}{subsubsection.5.1.2.1}%
+\contentsline {subsubsection}{\numberline {5.1.2.2}data}{19}{subsubsection.5.1.2.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.3}left}{20}{subsubsection.5.1.2.3}%
+\contentsline {subsubsection}{\numberline {5.1.2.4}parent}{20}{subsubsection.5.1.2.4}%
+\contentsline {subsubsection}{\numberline {5.1.2.5}right}{20}{subsubsection.5.1.2.5}%
+\contentsline {section}{\numberline {5.2}Tree Struct Reference}{20}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Detailed Description}{20}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Field Documentation}{20}{subsection.5.2.2}%
+\contentsline {subsubsection}{\numberline {5.2.2.1}root}{20}{subsubsection.5.2.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.2.2}size}{20}{subsubsection.5.2.2.2}%
+\contentsline {chapter}{\numberline {6}File Documentation}{21}{chapter.6}%
+\contentsline {section}{\numberline {6.1}main.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c File Reference}{21}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}Function Documentation}{21}{subsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.1.1}main()}{21}{subsubsection.6.1.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.1.2}valid\_int()}{21}{subsubsection.6.1.1.2}%
+\contentsline {section}{\numberline {6.2}rbt.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c File Reference}{21}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}Detailed Description}{22}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}Function Documentation}{24}{subsection.6.2.2}%
+\contentsline {subsubsection}{\numberline {6.2.2.1}rbt\_init()}{24}{subsubsection.6.2.2.1}%
+\contentsline {section}{\numberline {6.3}rbt.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h File Reference}{24}{section.6.3}%
+\contentsline {subsection}{\numberline {6.3.1}Detailed Description}{25}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Typedef Documentation}{26}{subsection.6.3.2}%
+\contentsline {subsubsection}{\numberline {6.3.2.1}Node}{26}{subsubsection.6.3.2.1}%
+\contentsline {subsubsection}{\numberline {6.3.2.2}Tree}{26}{subsubsection.6.3.2.2}%
+\contentsline {subsection}{\numberline {6.3.3}Enumeration Type Documentation}{26}{subsection.6.3.3}%
+\contentsline {subsubsection}{\numberline {6.3.3.1}Color}{26}{subsubsection.6.3.3.1}%
+\contentsline {subsection}{\numberline {6.3.4}Function Documentation}{26}{subsection.6.3.4}%
+\contentsline {subsubsection}{\numberline {6.3.4.1}rbt\_init()}{26}{subsubsection.6.3.4.1}%
+\contentsline {section}{\numberline {6.4}rbt.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}h}{27}{section.6.4}%
+\contentsline {chapter}{Index}{29}{section*.13}%
