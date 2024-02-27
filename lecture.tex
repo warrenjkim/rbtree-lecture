@@ -3,6 +3,8 @@
 \setbeamercolor{frametitle}{fg=black}
 
 \setbeamertemplate{navigation symbols}{}
+\setbeamerfont{frametitle}{series=\bfseries}
+
 \setbeamercovered{invisible, again covered={\opaqueness<1->{20}}}
 
 \usepackage{amsmath}
@@ -66,6 +68,7 @@
     blue_node/.style = {treenode, circle, white, draw=blue, fill=blue, text width=1.5em, very thin},
     nil/.style = {treenode, rectangle, white, draw=black, fill=black, minimum width=1.5em, minimum height=1.5em, scale=0.6},
     etc/.style = {treenode, circle, black, draw=white, fill=white, text width=1.5em, very thin},
+    empty/.style = {treenode, circle, white, draw=white, fill=white, text width=1.5em, very thin},
     sub/.style = {treenode, regular polygon, regular polygon sides=3, black, draw=black, fill=white, text width=1.5em, very thin, scale=0.4}
 }
 
@@ -146,9 +149,6 @@
                         \newcommand{\nsa}{nd}
                         \newcommand{\nsb}{nd}
                         \newcommand{\nsc}{nd}
-                        \newcommand{\nsd}{nd}
-                        \newcommand{\nse}{nd}
-                        \newcommand{\nsf}{nd}
                         \newcommand{\setn}[2]{\ifthenelse{\insertslidenumber=#1}{\renewcommand{#2}{ndl}}{}}
                         \newcommand{\setnumm}[2]{\ifthenelse{\equal{#2}{ndl}}{}{#1}}
                         \setn{1}{\nsa}
@@ -277,9 +277,9 @@
                 \begin{enumerate}[label=\textit{(\roman*)}]
                     \item<1> \textit{Color:} Every node is either \red \ or \textib{black}
                     \item<2> \textit{Internal:} A \red \ node does not have a \red \ child
-                    \item<3> \textit{External:} All nil nodes are \textib{black}
+                    \item<3> \textit{External:} All nil nodes (null pointers) are \textib{black}
                     \item<4> \textit{Root:} The root node is always \textib{black}
-                    \item<5> \textit{Depth:} Every path from the root to \textit{any} nil node
+                    \item<5> \textit{Depth:} Every path from the root to \textit{any} null pointer
                         passes through the same number of \textib{black} nodes
                 \end{enumerate}
             \end{adjustbox}
@@ -301,7 +301,7 @@
     \vspace{-3em}
 
     \begin{minipage}[t][0.2\textheight][c]{\linewidth}
-        \textit{(v) Depth:} Every path from the root to \textit{any} nil node passes through the same number
+        \textit{(v) Depth:} Every path from the root to \textit{any} null pointer passes through the same number
         of \textib{black} nodes
     \end{minipage}
     \vspace{-3em}
@@ -340,9 +340,9 @@
     \begin{enumerate}[label=\textit{(\roman*)}]
         \item \textit{Color:} Every node is either \red \ or \textib{black}
         \item \textit{Internal:} A \red \ node does not have a \red \ child
-        \item \textit{External:} All nil nodes are \textib{black}
+        \item \textit{External:} All nil nodes (null pointers) are \textib{black}
         \item \textit{Root}: The root node is always \textib{black}
-        \item \textit{Depth:} Every path from the root to \textit{any} nil node passes through
+        \item \textit{Depth:} Every path from the root to \textit{any} null pointer passes through
             the same number of \textib{black} nodes
     \end{enumerate}
 \end{frame}
@@ -394,9 +394,18 @@
                     edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},
                     grow' = down,every node/.style = {node}, scale = 0.8]
 
+                    \tikzstyle{ured} = [red_node]
+                    \tikzstyle{ublack} = [black_node]
+
+                    \newcommand{\nx}{}
+                    \newcommand{\setcolor}[3]{\ifthenelse{\insertslidenumber=#1}{\renewcommand{#2}{#3}}{}}
+                    \newcommand{\setnumm}[2]{\ifthenelse{\equal{#2}{}}{}{#1}}
+                    \setcolor{3}{\nx}{ured}
+                    \setcolor{4}{\nx}{ublack}
+
                     \node {$g$}
                     child {
-                        node {$u$}
+                        node [\nx] {$u$}
                         child {
                             node {}
                             child { node [nnil, scale = 0.8] {} }
@@ -432,7 +441,7 @@
     \begin{enumerate}[label=\textit{(\roman*)}]
         \item<3-> \textib{Recolor:} If both the \textit{parent} and \textit{uncle} are
             \textib{\color{red}{red}}, perform a \textit{recolor}.
-        \item<4-> \textib{Restructure:} If the \textit{parent} is \red \ but the
+        \item<4> \textib{Restructure:} If the \textit{parent} is \red \ but the
             \textit{uncle} is \textib{black}, perform a \textit{tri-node restructure}.
     \end{enumerate}
 \end{frame}
@@ -475,6 +484,73 @@
     \only<5>{\recolorrecursiveafter{red_node}{black_node}{black_node}{black_node}}
 \end{frame}
 
+
+% ===== FIXING DOUBLE RED VIOLATION =====
+\begin{frame}[fragile]{Fixing Double Red Violations}
+    \begin{columns}
+        \begin{column}{.5\textwidth}
+            \textbf{Terminology} \vspace{1em}
+
+            With respect to inserted node $z$,
+            \begin{itemize}[label=$\to$]
+                \item \textit{Parent} ($p$): $z$'s direct parent
+                \item \textit{Uncle} ($u$): $p$'s sibling
+                \item \textit{Grandparent} ($g$): $p$'s parent
+            \end{itemize}
+        \end{column}
+        \begin{column}{.5\textwidth}
+            \begin{center}
+                \begin{tikzpicture}
+                    [-,>=stealth',
+                    level 1/.style={sibling distance = 4cm, level distance = 1.1cm},
+                    level 2/.style={sibling distance = 2cm, level distance = 1.1cm},
+                    level 3/.style={sibling distance = 1cm, level distance = 1cm},
+                    level 4/.style={sibling distance = 0.5cm, level distance = 1.1cm},
+                    edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)},
+                    grow' = down,every node/.style = {node}, scale = 0.8]
+
+                    \node {$g$}
+                    child {
+                        node [black_node] {$u$}
+                        child {
+                            node {}
+                            child { node [nnil, scale = 0.8] {} }
+                            child { node [nnil, scale = 0.8] {} }
+                        }
+                        child {
+                            node {}
+                            child { node [nnil, scale = 0.8] {} }
+                            child { node [nnil, scale = 0.8] {} }
+                        }
+                    }
+                    child {
+                        node [red_node]  {$p$}
+                        child {
+                            node {}
+                            child { node [nnil, scale = 0.8] {} }
+                            child { node [nnil, scale = 0.8] {} }
+                        }
+                        child {
+                            node [red_node] {$z$}
+                            child { node [nnil, scale = 0.8] {} }
+                            child { node [nnil, scale = 0.8] {} }
+                        }
+                    }
+                    ;
+                \end{tikzpicture}
+            \end{center}
+        \end{column}
+    \end{columns}
+    \vspace{2em}
+
+    There are two cases:
+    \begin{enumerate}[label=\textit{(\roman*)}]
+        \item<0> \textib{Recolor:} If both the \textit{parent} and \textit{uncle} are
+            \textib{\color{red}{red}}, perform a \textit{recolor}.
+        \item \textib{Restructure:} If the \textit{parent} is \red \ but the
+            \textit{uncle} is \textib{black}, perform a \textit{tri-node restructure}.
+    \end{enumerate}
+\end{frame}
 % ===== RESTRUCTURE =====
 \begin{frame}{Tri-Node Restructure}
     There are four cases:
@@ -487,35 +563,35 @@
 \end{frame}
 
 
-% ===== LEFT LEFT =====
-\begin{frame}[fragile]{Case: Left-Left (Simple)}
-    \begin{columns}
-        \begin{column}{0.45\textwidth}
-            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                \setns{1}
-                \llsimplebefore
-            \end{adjustbox}
-        \end{column}
-        \onslide<3> {
-            \begin{column}{0.1\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \begin{center}
-                        \tikz \draw[-latex] (0,0) -- (1,0);
-                    \end{center}
-                \end{adjustbox}
-            \end{column}
-            \begin{column}{0.45\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \llsimpleafter
-                \end{adjustbox}
-            \end{column}
-        }
-    \end{columns}
-\end{frame}
+% % ===== LEFT LEFT =====
+% \begin{frame}[fragile]{Case: Left-Left (Simple)}
+%     \begin{columns}
+%         \begin{column}{0.45\textwidth}
+%             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                 \setns{1}
+%                 \llsimplebefore
+%             \end{adjustbox}
+%         \end{column}
+%         \onslide<3> {
+%             \begin{column}{0.1\textwidth}
+%                 \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                     \begin{center}
+%                         \tikz \draw[-latex] (0,0) -- (1,0);
+%                     \end{center}
+%                 \end{adjustbox}
+%             \end{column}
+%             \begin{column}{0.45\textwidth}
+%                 \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                     \llsimpleafter
+%                 \end{adjustbox}
+%             \end{column}
+%         }
+%     \end{columns}
+% \end{frame}
 
 
 % ===== LEFT LEFT =====
-\begin{frame}[fragile]{Case: Left-Left (General)}
+\begin{frame}[fragile]{Case: Left-Left}
     \begin{columns}
         \begin{column}{0.45\textwidth}
             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
@@ -544,32 +620,32 @@
 \end{frame}
 
 
-% ===== RIGHT RIGHT =====
-\begin{frame}[fragile]{Case: Right-Right (Simple)}
-    \begin{columns}
-        \begin{column}{0.45\textwidth}
-            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                \rrsimplebefore
-            \end{adjustbox}
-        \end{column}
-            \begin{column}{0.1\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \begin{center}
-                        \tikz \draw[-latex] (0,0) -- (1,0);
-                    \end{center}
-                \end{adjustbox}
-            \end{column}
-            \begin{column}{0.45\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \rrsimpleafter
-                \end{adjustbox}
-            \end{column}
-    \end{columns}
-\end{frame}
+% % ===== RIGHT RIGHT =====
+% \begin{frame}[fragile]{Case: Right-Right (Simple)}
+%     \begin{columns}
+%         \begin{column}{0.45\textwidth}
+%             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                 \rrsimplebefore
+%             \end{adjustbox}
+%         \end{column}
+%             \begin{column}{0.1\textwidth}
+%                 \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                     \begin{center}
+%                         \tikz \draw[-latex] (0,0) -- (1,0);
+%                     \end{center}
+%                 \end{adjustbox}
+%             \end{column}
+%             \begin{column}{0.45\textwidth}
+%                 \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                     \rrsimpleafter
+%                 \end{adjustbox}
+%             \end{column}
+%     \end{columns}
+% \end{frame}
 
 
 % ===== RIGHT RIGHT =====
-\begin{frame}[fragile]{Case: Right-Right (General)}
+\begin{frame}[fragile]{Case: Right-Right}
     \begin{columns}
         \begin{column}{0.45\textwidth}
             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
@@ -596,59 +672,61 @@
 \end{frame}
 
 
-% ===== LEFT RIGHT =====
-\begin{frame}[fragile]{Case: Left-Right (Simple)}
-    \begin{columns}
-        \begin{column}{0.3\textwidth}
-            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                \setns{1}
-                \lrsimplebefore
-            \end{adjustbox}
-        \end{column}
-        \onslide<3-> {
-            \begin{column}{0.05\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \begin{center}
-                        \tikz \draw[-latex] (0,0) -- (0.7,0);
-                    \end{center}
-                \end{adjustbox}
-            \end{column}
-            \begin{column}{0.3\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \lrsimpleintermediate
-                \end{adjustbox}
-            \end{column}
-        }
-        \onslide<4> {
-            \begin{column}{0.05\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \begin{center}
-                        \tikz \draw[-latex] (0,0) -- (0.7,0);
-                    \end{center}
-                \end{adjustbox}
-            \end{column}
-            \begin{column}{0.3\textwidth}
-                \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                    \lrsimpleafter
-                \end{adjustbox}
-            \end{column}
-        }
-    \end{columns}
-\end{frame}
+% % ===== LEFT RIGHT =====
+% \begin{frame}[fragile]{Case: Left-Right (Simple)}
+%     \begin{columns}
+%         \begin{column}{0.3\textwidth}
+%             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                 \setns{1}
+%                 \lrsimplebefore
+%             \end{adjustbox}
+%         \end{column}
+%         \onslide<3-> {
+%             \begin{column}{0.05\textwidth}
+%                 \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                     \begin{center}
+%                         \tikz \draw[-latex] (0,0) -- (0.7,0);
+%                     \end{center}
+%                 \end{adjustbox}
+%             \end{column}
+%             \begin{column}{0.3\textwidth}
+%                 \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                     \lrsimpleintermediate
+%                 \end{adjustbox}
+%             \end{column}
+%         }
+%         \onslide<4> {
+%             \begin{column}{0.05\textwidth}
+%                 \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                     \begin{center}
+%                         \tikz \draw[-latex] (0,0) -- (0.7,0);
+%                     \end{center}
+%                 \end{adjustbox}
+%             \end{column}
+%             \begin{column}{0.3\textwidth}
+%                 \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                     \lrsimpleafter
+%                 \end{adjustbox}
+%             \end{column}
+%         }
+%     \end{columns}
+% \end{frame}
 
 
 % ===== LEFT RIGHT =====
-\begin{frame}[fragile]{Case: Left-Right (General)}
+\begin{frame}[fragile]{Case: Left-Right}
     \vspace{-2em}
     \begin{minipage}[t][0.1\textheight][c]{\linewidth}
         \only<1> {\textbf{Step 1}}
         \only<2> {\textbf{Step 2}}
         \only<3> {\textbf{Step 3}}
+        \only<4> {\textbf{Step 4}}
     \end{minipage}
     \begin{minipage}[t][0.6\textheight][c]{\linewidth}
     \only<1> {\lrbefore}
-    \only<2> {\lrintermediate}
-    \only<3> {\lrafter}
+    \only<2> {\lrintermediateone}
+    \only<3> {\lrintermediate}
+    \only<4> {\lrafter}
     \end{minipage}
     \vspace{1em}
 
@@ -657,44 +735,44 @@
 \end{frame}
 
 
-% ===== RIGHT LEFT =====
-\begin{frame}[fragile]{Case: Right-Left (Simple)}
-    \begin{columns}
-        \begin{column}{0.3\textwidth}
-            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                \rlsimplebefore
-            \end{adjustbox}
-        \end{column}
-        \begin{column}{0.05\textwidth}
-            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                \begin{center}
-                    \tikz \draw[-latex] (0,0) -- (0.7,0);
-                \end{center}
-            \end{adjustbox}
-        \end{column}
-        \begin{column}{0.3\textwidth}
-            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                \rlsimpleintermediate
-            \end{adjustbox}
-        \end{column}
-        \begin{column}{0.05\textwidth}
-            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                \begin{center}
-                    \tikz \draw[-latex] (0,0) -- (0.7,0);
-                \end{center}
-            \end{adjustbox}
-        \end{column}
-        \begin{column}{0.3\textwidth}
-            \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
-                \rlsimpleafter
-            \end{adjustbox}
-        \end{column}
-    \end{columns}
-\end{frame}
+% % ===== RIGHT LEFT =====
+% \begin{frame}[fragile]{Case: Right-Left (Simple)}
+%     \begin{columns}
+%         \begin{column}{0.3\textwidth}
+%             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                 \rlsimplebefore
+%             \end{adjustbox}
+%         \end{column}
+%         \begin{column}{0.05\textwidth}
+%             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                 \begin{center}
+%                     \tikz \draw[-latex] (0,0) -- (0.7,0);
+%                 \end{center}
+%             \end{adjustbox}
+%         \end{column}
+%         \begin{column}{0.3\textwidth}
+%             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                 \rlsimpleintermediate
+%             \end{adjustbox}
+%         \end{column}
+%         \begin{column}{0.05\textwidth}
+%             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                 \begin{center}
+%                     \tikz \draw[-latex] (0,0) -- (0.7,0);
+%                 \end{center}
+%             \end{adjustbox}
+%         \end{column}
+%         \begin{column}{0.3\textwidth}
+%             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
+%                 \rlsimpleafter
+%             \end{adjustbox}
+%         \end{column}
+%     \end{columns}
+% \end{frame}
 
 
 % ===== RIGHT LEFT =====
-\begin{frame}[fragile]{Case: Right-Left (General)}
+\begin{frame}[fragile]{Case: Right-Left}
     \begin{columns}
         \begin{column}{0.5\textwidth}
             \begin{adjustbox}{valign=T, minipage=[t]{\textwidth}}
@@ -746,6 +824,23 @@
 \end{frame}
 
 
+% ===== HEIGHT =====
+\begin{frame}{Height of a Red-Black Tree}
+    \thm{
+        A \red\textib{-black} tree with $n$ nodes has a height $h$ that is $\mathcal{O} (\log n)$.
+    }
+    \textit{Proof.}
+    Suppose we have a \red\textib{-black} tree with $n$ nodes and height $h$. Let $b$ be the number
+    of \textib{black} nodes on the shortest path from root to any leaf. In the worst case, the
+    longest path alternates between \red \ and \textib{black} nodes and thus has a height of $2b$.
+    Then, $h$ is bounded above by $2b$; that is, $h \leq 2b$. There are $2^b - 1 \leq n$ nodes in
+    this tree. Solving for $b$, we get $b \leq \log(n + 1)$. Substituting $b$, we get
+    $b \leq \log(n + 1) \leq h \leq 2b \leq 2\log(n + 1)$ so $h$ is bounded below by $\log(n + 1)$
+    and above by $2\log(n + 1)$; that is, $\log(n + 1) \leq h \leq 2\log(n + 1)$. So, $h$ is
+    $\mathcal{O} (\log n)$. \hfill $\square$
+\end{frame}
+
+
 % ===== COROLLARIES =====
 \begin{frame}{Corollaries}
     \proposition{
@@ -766,22 +861,6 @@
             $z$ cannot pass through any \textib{black} nodes on the left side by the \textit{the depth
             property}. Then, since $c$ is \red \ by \textbf{(a)}, $c$ has only nil nodes \hfill $\square$
     \end{enumerate}
-\end{frame}
-
-
-\begin{frame}{Height of a Red-Black Tree}
-    \thm{
-        A \red\textib{-black} tree with $n$ nodes has a height $h$ that is $\mathcal{O} (\log n)$.
-    }
-    \textit{Proof.}
-    Suppose we have a \red\textib{-black} tree with $n$ nodes and height $h$. Let $b$ be the number
-    of \textib{black} nodes on the shortest path from root to any leaf. In the worst case, the
-    longest path alternates between \red \ and \textib{black} nodes and thus has a height of $2b$.
-    Then, $h$ is bounded above by $2b$; that is, $h \leq 2b$. There are $2^b - 1 \leq n$ nodes in
-    this tree. Solving for $b$, we get $b \leq \log(n + 1)$. Substituting $b$, we get
-    $b \leq \log(n + 1) \leq h \leq 2b \leq 2\log(n + 1)$ so $h$ is bounded below by $\log(n + 1)$
-    and above by $2\log(n + 1)$; that is, $\log(n + 1) \leq h \leq 2\log(n + 1)$. So, $h$ is
-    $\mathcal{O} (\log n)$. \hfill $\square$
 \end{frame}
 
 

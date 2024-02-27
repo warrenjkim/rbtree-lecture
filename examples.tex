@@ -9,35 +9,35 @@
             level 4/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [black_node] {}
-            child { 
+            child {
                 node [black_node] {}
-                child { 
+                child {
                     node [red_node] {}
                     child{ node [nil] {} }
                     child{ node [nil] {} }
                 }
-                child { 
+                child {
                     node [red_node] {}
                     child{ node [nil] {} }
                     child{ node [nil] {} }
                 }
             }
-            child { 
-                node [red_node] {} 
-                child { 
-                    node [black_node] {} 
-                    child{ node [nil] {} }
-                    child{ node [nil] {} }
-                }
-                child { 
+            child {
+                node [red_node] {}
+                child {
                     node [black_node] {}
                     child{ node [nil] {} }
                     child{ node [nil] {} }
-                }                            
+                }
+                child {
+                    node [black_node] {}
+                    child{ node [nil] {} }
+                    child{ node [nil] {} }
+                }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -61,19 +61,19 @@
             level 2/.style={sibling distance = 1cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.7]
 
-            \node 
+            \node
             [red_node, scale=0.7] {}
-            child { 
+            child {
                 node [black_node, scale=0.7] {}
                 child{ node [nil, scale=0.7] {} }
                 child{ node [nil, scale=0.7] {} }
             }
-            child { 
+            child {
                 node [black_node, scale=0.7] {}
                 child{ node [nil, scale=0.7] {} }
                 child{ node [nil, scale=0.7] {} }
             }
-            ; 
+            ;
         \end{tikzpicture}
         \hspace{2em}
         \begin{tikzpicture}
@@ -82,11 +82,11 @@
             level 2/.style={sibling distance = 1cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.7]
 
-            \node 
+            \node
             [red_node, scale=0.7] {}
             child{ node [nil, scale=0.7] {} }
             child{ node [nil, scale=0.7] {} }
-            ; 
+            ;
         \end{tikzpicture}
         \vspace{-1em}
 
@@ -104,19 +104,19 @@
             level 2/.style={sibling distance = 1cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.6]
 
-            \node 
+            \node
             [red_node, scale=0.6] {}
-            child { 
+            child {
                 node [black_node, scale=0.6] {}
                 child{ node [nil, scale=0.6] {}}
                 child{ node [nil, scale=0.6] {}}
             }
-            child { 
+            child {
                 node [red_node, scale=0.6] {}
                 child{ node [nil, scale=0.6] {}}
                 child{ node [nil, scale=0.6] {}}
             }
-            ; 
+            ;
         \end{tikzpicture}
         \hspace{2em}
         \begin{tikzpicture}
@@ -125,19 +125,19 @@
             level 2/.style={sibling distance = 1cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=0.6]
 
-            \node 
+            \node
             [red_node, scale=0.6] {}
-            child { 
+            child {
                 node [red_node, scale=0.6] {}
                 child{ node [nil, scale=0.6] {} }
                 child{ node [nil, scale=0.6] {} }
             }
-            child { 
-                node [black_node, scale=0.6] {} 
+            child {
+                node [black_node, scale=0.6] {}
                 child{ node [nil, scale=0.6] {} }
                 child{ node [nil, scale=0.6] {} }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -151,11 +151,11 @@
             level 2/.style={sibling distance = 1cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [black_node] {}
             child{ node [nil] {} }
             child{ node [nil] {} }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
     \begin{center}
@@ -165,11 +165,11 @@
             level 2/.style={sibling distance = 1cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [red_node] {}
             child{ node [nil] {} }
             child{ node [nil] {} }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -183,11 +183,11 @@
             level 2/.style={sibling distance = 1cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [black_node] {}
             child { node [sub] {$\cdots$} }
             child { node [sub] {$\cdots$} }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -202,35 +202,35 @@
             level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=1.2]
 
-            \node 
+            \node
             [black_node, scale=1.2] {}
-            child { 
+            child {
                 node [black_node, scale=1.2] {}
-                child { 
+                child {
                     node [red_node, scale=1.2] {}
                     child{ node [nil, scale=1.2] {} }
                     child{ node [nil, scale=1.2] {} }
                 }
-                child { 
+                child {
                     node [red_node, scale=1.2] {}
                     child{ node [nil, scale=1.2] {} }
                     child{ node [nil, scale=1.2] {} }
                 }
             }
-            child { 
-                node [red_node, scale=1.2] {} 
-                child { 
-                    node [black_node, scale=1.2] {} 
-                    child{ node [nil, scale=1.2] {} }
-                    child{ node [nil, scale=1.2] {} }
-                }
-                child { 
+            child {
+                node [red_node, scale=1.2] {}
+                child {
                     node [black_node, scale=1.2] {}
                     child{ node [nil, scale=1.2] {} }
                     child{ node [nil, scale=1.2] {} }
-                }                            
+                }
+                child {
+                    node [black_node, scale=1.2] {}
+                    child{ node [nil, scale=1.2] {} }
+                    child{ node [nil, scale=1.2] {} }
+                }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -246,22 +246,22 @@
             level 4/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale = 1.2]
 
-            \node 
+            \node
             [black_node, scale = 1.2] {7}
-            child { 
-                node [red_node, scale = 1.2] {3} 
-                child { 
-                    node [black_node, scale = 1.2] {1} 
+            child {
+                node [red_node, scale = 1.2] {3}
+                child {
+                    node [black_node, scale = 1.2] {1}
                     child{ node [nil, scale = 1.2] {} }
                     child{ node [nil, scale = 1.2] {} }
                 }
-                child { 
+                child {
                     node [black_node, scale = 1.2] {5}
                     child{ node [nil, scale = 1.2] {} }
                     child{ node [nil, scale = 1.2] {} }
-                }                            
+                }
             }
-            child { 
+            child {
                 node [black_node, scale = 1.2] {10}
                 child{ node [nil, scale = 1.2] {} }
                 child{ node [red_node, scale = 1.2] {15}
@@ -269,7 +269,7 @@
                     child{ node [nil, scale = 1.2] {} }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -285,25 +285,25 @@
             level 4/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale = 1.2]
 
-            \node 
+            \node
             [black_node, scale = 1.2] {10}
-            child { 
-                node [red_node, scale = 1.2] {5} 
-                child { 
-                    node [black_node, scale = 1.2] {3} 
+            child {
+                node [red_node, scale = 1.2] {5}
+                child {
+                    node [black_node, scale = 1.2] {3}
                     child{ node [nil, scale = 1.2] {} }
                     child{ node [nil, scale = 1.2] {} }
                 }
                 child{ node [nil, scale = 1.2] {} }
             }
-            child { 
+            child {
                 node [black_node, scale = 1.2] {15}
-                child { 
-                    node [red_node, scale = 1.2] {13} 
+                child {
+                    node [red_node, scale = 1.2] {13}
                     child{ node [nil, scale = 1.2] {} }
                     child{ node [nil, scale = 1.2] {} }
                 }
-                child { 
+                child {
                     node [black_node, scale = 1.2] {20}
                     child{ node [nil, scale = 1.2] {} }
                     child{ node [nil, scale = 1.2] {} }
@@ -325,42 +325,42 @@
             level 4/.style={sibling distance = 0.75cm, level distance = 0.9cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}, scale=1.1]
 
-            \node 
+            \node
             [black_node, scale=1.1] {8}
-            child { 
-                node [black_node, scale=1.1] {4} 
-                child{ node [black_node, scale=1.1] {1} 
+            child {
+                node [black_node, scale=1.1] {4}
+                child{ node [black_node, scale=1.1] {1}
                     child{ node [nil, scale=1.1] {} }
                     child{ node [nil, scale=1.1] {} }
                 }
                 child{ node [black_node, scale=1.1] {7}
                     child{ node [nil, scale=1.1] {} }
                     child{ node [nil, scale=1.1] {} }
-                }                            
+                }
             }
-            child { 
+            child {
                 node [black_node, scale=1.1] {17}
-                child { 
-                    node [red_node, scale=1.1] {14} 
-                    child { 
+                child {
+                    node [red_node, scale=1.1] {14}
+                    child {
                         node [black_node, scale=1.1] {12}
                         child{ node [nil, scale=1.1] {} }
                         child{ node [nil, scale=1.1] {} }
-                    }                            
-                    child { 
+                    }
+                    child {
                         node [black_node, scale=1.1] {16}
                         child{ node [nil, scale=1.1] {} }
                         child{ node [nil, scale=1.1] {} }
-                    }                            
+                    }
                 }
-                child { 
+                child {
                     node [red_node, scale=1.1] {21}
-                    child{ 
+                    child{
                         node [black_node, scale=1.1] {19}
                         child{ node [nil, scale=1.1] {} }
                         child{ node [nil, scale=1.1] {} }
                     }
-                    child { 
+                    child {
                         node [black_node, scale=1.1] {30}
                         child{ node [nil, scale=1.1] {} }
                         child {
@@ -368,11 +368,11 @@
                             child{ node [nil, scale=1.1] {} }
                             child{ node [nil, scale=1.1] {} }
                         }
-                    }                            
+                    }
                 }
             }
             ;
-        \end{tikzpicture} 
+        \end{tikzpicture}
     \end{center}
 }
 
@@ -385,18 +385,18 @@
             level 4/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [red_node] {}
-                child { 
+                child {
                     node [red_node] {$z$}
                     child { node [nil] {}}
                     child { node [nil] {}}
                 }
                 child { node [nil] {}}
             }
-            ; 
+            ;
         \end{tikzpicture}
         \hfil
         \begin{tikzpicture}
@@ -406,18 +406,18 @@
             level 4/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [red_node] {}
                 child { node [nil] {}}
-                child { 
+                child {
                     node [red_node] {$z$}
                     child { node [nil] {}}
                     child { node [nil] {}}
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -435,26 +435,26 @@
             \tikzstyle{ndl} = [nil]
             \tikzstyle{nd} = [red_node]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [black_node] {$10$}
-                child { 
-                    node [red_node] {$5$} 
+                child {
+                    node [red_node] {$5$}
                     child { node [nil] {} }
                     child { node [nil] {} }
                 }
-                child { 
+                child {
                     node [red_node] {$15$}
                     child { node [nil] {} }
-                    child { 
+                    child {
                         node [\ns] {\setnum{$20$}}
                         child [visible on=<2->] { node [nil] {}}
                         child [visible on=<2->] { node [nil] {}}
                     }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -469,26 +469,26 @@
             level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [red_node] {$10$}
-                child { 
-                    node [black_node] {$5$} 
+                child {
+                    node [black_node] {$5$}
                     child { node [nil] {} }
                     child { node [nil] {} }
                 }
-                child { 
+                child {
                     node [black_node] {$15$}
                     child { node [nil] {} }
-                    child { 
+                    child {
                         node [red_node] {$20$}
                         child{ node [nil] {}}
                         child{ node [nil] {}}
                     }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -508,20 +508,20 @@
             \tikzstyle{ndl} = [nil]
             \tikzstyle{nd} = [red_node]
 
-            \node 
+            \node
             [black_node] {$30$}
             child {
                 node [red_node] {$20$}
                 child {
                     node [black_node] {$10$}
-                    child { 
-                        node [red_node] {$5$} 
+                    child {
+                        node [red_node] {$5$}
                         child { node [nil] {} }
                         child { node [nil] {} }
                     }
-                    child { 
+                    child {
                         node [red_node] {$15$}
-                        child { 
+                        child {
                             node [\ns] {\setnum{$12$}}
                             child [visible on=<2->] { node [nil] {}}
                             child [visible on=<2->] { node [nil] {}}
@@ -529,26 +529,26 @@
                         child { node [nil] {} }
                     }
                 }
-                child { 
-                    node [black_node] {$25$} 
+                child {
+                    node [black_node] {$25$}
                     child { node [nil] {} }
                     child { node [nil] {} }
                 }
             }
-            child { 
-                node [red_node] {$50$} 
-                child { 
-                    node [black_node] {$40$} 
+            child {
+                node [red_node] {$50$}
+                child {
+                    node [black_node] {$40$}
                     child { node [nil] {} }
                     child { node [nil] {} }
                 }
-                child { 
-                    node [black_node] {$60$} 
+                child {
+                    node [black_node] {$60$}
                     child { node [nil] {} }
                     child { node [nil] {} }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -565,20 +565,20 @@
             level 5/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [#4] {$30$}
             child {
                 node [#3] {$20$}
                 child {
                     node [#1] {$10$}
-                    child { 
-                        node [#2] {$5$} 
+                    child {
+                        node [#2] {$5$}
                         child { node [nil] {} }
                         child { node [nil] {} }
                     }
-                    child { 
+                    child {
                         node [#2] {$15$}
-                        child { 
+                        child {
                             node [red_node] {$12$}
                             child{ node [nil] {}}
                             child{ node [nil] {}}
@@ -586,26 +586,26 @@
                         child { node [nil] {} }
                     }
                 }
-                child { 
-                    node [black_node] {$25$} 
+                child {
+                    node [black_node] {$25$}
                     child { node [nil] {} }
                     child { node [nil] {} }
                 }
             }
-            child { 
-                node [#3] {$50$} 
-                child { 
-                    node [black_node] {$40$} 
+            child {
+                node [#3] {$50$}
+                child {
+                    node [black_node] {$40$}
                     child { node [nil] {} }
                     child { node [nil] {} }
                 }
-                child { 
-                    node [black_node] {$60$} 
+                child {
+                    node [black_node] {$60$}
                     child { node [nil] {} }
                     child { node [nil] {} }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -624,11 +624,11 @@
             \tikzstyle{nd} = [red_node]
 
 
-            \node 
+            \node
             [black_node] {$3$}
-            child { 
+            child {
                 node [red_node] {$2$}
-                child{ 
+                child{
                     node [\ns] {\setnum{$1$}}
                     child [visible on=<2->] { node [nil] {}}
                     child [visible on=<2->] { node [nil] {}}
@@ -636,7 +636,7 @@
                 child { node [nil] {} }
             }
             child { node [nil] {} }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -651,19 +651,19 @@
             level 3/.style={sibling distance = 0.75cm, level distance = 1.2cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [black_node] {$2$}
-            child{ 
+            child{
                 node [red_node] {$1$}
                 child{ node [nil] {}}
                 child{ node [nil] {}}
             }
-            child{ 
-                node [red_node] {$3$} 
+            child{
+                node [red_node] {$3$}
                 child { node [nil] {} }
                 child { node [nil] {} }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -673,35 +673,36 @@
     \begin{center}
         \begin{tikzpicture}
             [-,>=stealth',
-            level 1/.style={sibling distance = 3cm, level distance = 1cm},
+            level 1/.style={sibling distance = 3cm, level distance = 2.5cm},
+            level 2/.style={sibling distance = 3cm, level distance = 1cm},
             level 3/.style={sibling distance = 1.5cm, level distance = 1cm},
             level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [black_node] {$15$}
-                child { 
+                child {
                     node [red_node] {$10$}
-                    child{ 
+                    child{
                         node [red_node] {$5$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                     child {
-                        node [black_node] {$12$} 
+                        node [black_node] {$12$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                 }
-                child { 
-                    node [black_node] {$20$} 
+                child {
+                    node [black_node] {$20$}
                     child { node [sub] {$\cdots$} }
                     child { node [sub] {$\cdots$} }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -711,35 +712,36 @@
     \begin{center}
         \begin{tikzpicture}
             [-,>=stealth',
-            level 1/.style={sibling distance = 3cm, level distance = 1cm},
+            level 1/.style={sibling distance = 3cm, level distance = 1.5cm},
+            level 2/.style={sibling distance = 3cm, level distance = 1cm},
             level 3/.style={sibling distance = 1.5cm, level distance = 1cm},
             level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [black_node] {$10$}
-                child{ 
+                child{
                     node [red_node] {$5$}
                     child { node [sub] {$\cdots$} }
                     child { node [sub] {$\cdots$} }
                 }
-                child{ 
-                    node [red_node] {$15$} 
-                    child { 
-                        node [black_node] {$12$} 
+                child{
+                    node [red_node] {$15$}
+                    child {
+                        node [black_node] {$12$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
-                    child{ 
+                    child{
                         node [black_node] {$20$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -757,19 +759,19 @@
             \tikzstyle{ndl} = [nil]
             \tikzstyle{nd} = [red_node]
 
-            \node 
+            \node
             [black_node] {$1$}
             child { node [nil] {} }
-            child { 
+            child {
                 node [red_node] {$2$}
                 child { node [nil] {} }
-                child{ 
+                child{
                     node [red_node] {$3$}
                     child { node [nil] {} }
                     child { node [nil] {} }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -784,19 +786,19 @@
             level 3/.style={sibling distance = 0.75cm, level distance = 1.2cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [black_node] {$2$}
-            child{ 
+            child{
                 node [red_node] {$1$}
                 child{ node [nil] {}}
                 child{ node [nil] {}}
             }
-            child{ 
-                node [red_node] {$3$} 
+            child{
+                node [red_node] {$3$}
                 child { node [nil] {} }
                 child { node [nil] {} }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -811,30 +813,30 @@
             level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [black_node] {$5$}
-                child { 
-                    node [black_node] {$3$} 
+                child {
+                    node [black_node] {$3$}
                     child { node [sub] {$\cdots$} }
                     child { node [sub] {$\cdots$} }
                 }
-                child { 
+                child {
                     node [red_node] {$10$}
                     child {
-                        node [black_node] {$7$} 
+                        node [black_node] {$7$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
-                    child{ 
+                    child{
                         node [red_node] {$15$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -849,30 +851,30 @@
             level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [black_node] {$10$}
-                child { 
+                child {
                     node [red_node] {$5$}
-                    child { 
+                    child {
                         node [black_node] {$3$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
-                    child { 
-                        node [black_node] {$7$} 
+                    child {
+                        node [black_node] {$7$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                 }
-                child { 
-                    node [red_node] {$15$} 
+                child {
+                    node [red_node] {$15$}
                     child { node [sub] {$\cdots$} }
                     child { node [sub] {$\cdots$} }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -891,19 +893,19 @@
             \tikzstyle{ndl} = [nil]
             \tikzstyle{nd} = [red_node]
 
-            \node 
+            \node
             [black_node] {$3$}
-            child{ 
+            child{
                 node [red_node] {$1$}
                 child { node [nil] {} }
-                child{ 
+                child{
                     node [\ns] {\setnum{$2$}}
                     child [visible on=<2->] { node [nil] {}}
                     child [visible on=<2->] { node [nil] {}}
                 }
             }
             child{ node [nil] {} }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -919,19 +921,19 @@
             level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [black_node] {$3$}
-            child { 
+            child {
                 node [red_node] {$2$}
-                child { 
-                    node [red_node] {$1$} 
+                child {
+                    node [red_node] {$1$}
                     child { node [nil] {} }
                     child { node [nil] {} }
                 }
                 child { node [nil] {} }
             }
             child { node [nil] {} }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -947,19 +949,19 @@
             level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [black_node] {$2$}
-            child{ 
+            child{
                 node [red_node] {$1$}
                 child { node [nil] {} }
                 child{ node [nil] {}}
             }
-            child{ 
-                node [red_node] {$3$} 
+            child{
+                node [red_node] {$3$}
                 child{ node [nil] {} }
                 child{ node [nil] {} }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -976,43 +978,92 @@
             level 5/.style={sibling distance = 0.75cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [black_node] {$15$}
-                child { 
+                child {
                     node [red_node] {$5$}
-                    child { 
-                        node [black_node] {$3$} 
+                    child {
+                        node [black_node] {$3$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
-                    child { 
+                    child {
                         node [red_node] {$10$}
-                        child { 
-                            node [black_node] {$7$} 
+                        child {
+                            node [black_node] {$7$}
                             child { node [sub] {$\cdots$} }
                             child { node [sub] {$\cdots$} }
                         }
-                        child { 
-                            node [black_node] {$12$} 
+                        child {
+                            node [black_node] {$12$}
                             child { node [sub] {$\cdots$} }
                             child { node [sub] {$\cdots$} }
                         }
                     }
                 }
-                child { 
-                    node [black_node] {$20$} 
+                child {
+                    node [black_node] {$20$}
                     child { node [sub] {$\cdots$} }
                     child { node [sub] {$\cdots$} }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
 
+% ===== LEFT RIGHT INTERMEDIATE 1 =====
+\newcommand{\lrintermediateone} {
+    \begin{center}
+        \begin{tikzpicture}
+            [-,>=stealth',
+            level 1/.style={sibling distance = 4cm, level distance = 1cm},
+            level 3/.style={sibling distance = 2.5cm, level distance = 1cm},
+            level 4/.style={sibling distance = 1.5cm, level distance = 1cm},
+            level 5/.style={sibling distance = 0.75cm, level distance = 1cm},
+            edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
+            \node
+            [etc] {$\cdots$}
+            child {
+                node [black_node] {$15$}
+                child {
+                    node [empty] {}
+                    child {
+                        node [red_node] {$5$} edge from parent [draw=none]
+                        child {
+                            node [black_node] {$3$}
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        }
+                        child { node [empty] {} edge from parent [draw=none] }
+                    }
+                    child {
+                        node [red_node] {$10$} edge from parent [draw=none]
+                        child {
+                            node [black_node] {$7$}
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        }
+                        child {
+                            node [black_node] {$12$}
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        }
+                    }
+                }
+                child {
+                    node [black_node] {$20$}
+                    child { node [sub] {$\cdots$} }
+                    child { node [sub] {$\cdots$} }
+                }
+            }
+            ;
+        \end{tikzpicture}
+    \end{center}
+}
 % ===== LEFT RIGHT INTERMEDIATE =====
 \newcommand{\lrintermediate} {
     \begin{center}
@@ -1024,38 +1075,38 @@
             level 5/.style={sibling distance = 0.75cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [black_node] {$15$}
-                child { 
+                child {
                     node [red_node] {$10$}
-                    child { 
+                    child {
                         node [red_node] {$5$}
-                        child { 
-                            node [black_node] {$3$} 
-                            child { node [sub] {$\cdots$} }
-                            child { node [sub] {$\cdots$} }
-                        } 
                         child {
-                            node [black_node] {$7$} 
+                            node [black_node] {$3$}
+                            child { node [sub] {$\cdots$} }
+                            child { node [sub] {$\cdots$} }
+                        }
+                        child {
+                            node [black_node] {$7$}
                             child { node [sub] {$\cdots$} }
                             child { node [sub] {$\cdots$} }
                         }
                     }
-                    child { 
-                        node [black_node] {$12$} 
+                    child {
+                        node [black_node] {$12$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                 }
-                child { 
-                    node [black_node] {$20$} 
+                child {
+                    node [black_node] {$20$}
                     child { node [sub] {$\cdots$} }
                     child { node [sub] {$\cdots$} }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -1070,38 +1121,38 @@
             level 4/.style={sibling distance = 1cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [black_node] {$10$}
-                child { 
+                child {
                     node [red_node] {$5$}
-                    child { 
-                        node [black_node] {$3$} 
+                    child {
+                        node [black_node] {$3$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                     child {
-                        node [black_node] {$7$} 
+                        node [black_node] {$7$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                 }
-                child { 
-                    node [red_node] {$15$} 
-                    child { 
-                        node [black_node] {$12$} 
+                child {
+                    node [red_node] {$15$}
+                    child {
+                        node [black_node] {$12$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
-                    child { 
-                        node [black_node] {$20$} 
+                    child {
+                        node [black_node] {$20$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -1116,19 +1167,19 @@
             level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [black_node] {$1$}
             child{ node [nil] {} }
-            child{ 
+            child{
                 node [red_node] {$3$}
-                child{ 
+                child{
                     node [red_node] {$2$}
                     child { node [nil] {}}
                     child { node [nil] {}}
                 }
                 child { node [nil] {} }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -1144,19 +1195,19 @@
             level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [black_node] {$1$}
             child { node [nil] {} }
-            child { 
+            child {
                 node [red_node] {$2$}
                 child { node [nil] {} }
-                child { 
-                    node [red_node] {$3$} 
+                child {
+                    node [red_node] {$3$}
                     child { node [nil] {} }
                     child { node [nil] {} }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -1172,19 +1223,19 @@
             level 3/.style={sibling distance = 0.5cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [black_node] {$2$}
-            child{ 
+            child{
                 node [red_node] {$1$}
                 child { node [nil] {} }
                 child{ node [nil] {}}
             }
-            child{ 
-                node [red_node] {$3$} 
+            child{
+                node [red_node] {$3$}
                 child{ node [nil] {}}
                 child{ node [nil] {}}
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -1200,38 +1251,38 @@
             level 5/.style={sibling distance = 0.75cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [black_node] {$10$}
-                child { 
-                    node [black_node] {$5$} 
+                child {
+                    node [black_node] {$5$}
                     child { node [sub] {$\cdots$} }
                     child { node [sub] {$\cdots$} }
                 }
-                child { 
+                child {
                     node [red_node] {$20$}
-                    child { 
+                    child {
                         node [red_node] {$15$}
-                        child { 
-                            node [black_node] {$12$} 
+                        child {
+                            node [black_node] {$12$}
                             child { node [sub] {$\cdots$} }
                             child { node [sub] {$\cdots$} }
                         }
-                        child { 
-                            node [black_node] {$17$} 
+                        child {
+                            node [black_node] {$17$}
                             child { node [sub] {$\cdots$} }
                             child { node [sub] {$\cdots$} }
                         }
                     }
-                    child { 
-                        node [black_node] {$25$} 
+                    child {
+                        node [black_node] {$25$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -1247,38 +1298,38 @@
             level 5/.style={sibling distance = 0.75cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [black_node] {$10$}
-                child { 
-                    node [black_node] {$5$} 
+                child {
+                    node [black_node] {$5$}
                     child { node [sub] {$\cdots$} }
                     child { node [sub] {$\cdots$} }
                 }
-                child { 
+                child {
                     node [red_node] {$15$}
-                    child { 
-                        node [black_node] {$12$} 
+                    child {
+                        node [black_node] {$12$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
-                    child { 
+                    child {
                         node [red_node] {$20$}
-                        child { 
-                            node [black_node] {$17$} 
+                        child {
+                            node [black_node] {$17$}
                             child { node [sub] {$\cdots$} }
                             child { node [sub] {$\cdots$} }
                         }
                         child {
-                            node [black_node] {$25$} 
+                            node [black_node] {$25$}
                             child { node [sub] {$\cdots$} }
                             child { node [sub] {$\cdots$} }
                         }
                     }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
@@ -1293,38 +1344,38 @@
             level 4/.style={sibling distance = 0.75cm, level distance = 1cm},
             edge from parent path={(\tikzparentnode) -- (\tikzchildnode.north)}]
 
-            \node 
+            \node
             [etc] {$\cdots$}
             child {
                 node [black_node] {$15$}
-                child { 
+                child {
                     node [red_node] {$10$}
-                    child { 
-                        node [black_node] {$5$} 
+                    child {
+                        node [black_node] {$5$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                     child {
-                        node [black_node] {$12$} 
+                        node [black_node] {$12$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                 }
-                child { 
-                    node [red_node] {$20$} 
-                    child { 
-                        node [black_node] {$17$} 
+                child {
+                    node [red_node] {$20$}
+                    child {
+                        node [black_node] {$17$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
-                    child { 
-                        node [black_node] {$25$} 
+                    child {
+                        node [black_node] {$25$}
                         child { node [sub] {$\cdots$} }
                         child { node [sub] {$\cdots$} }
                     }
                 }
             }
-            ; 
+            ;
         \end{tikzpicture}
     \end{center}
 }
