@@ -23,6 +23,7 @@
 \usepackage{mdframed}
 \usepackage{adjustbox}
 \usepackage{cmtt}
+\usepackage{hyperref}
 
 \definecolor{codered}{HTML}{FB4933}
 \definecolor{codegreen}{HTML}{A8C8A3}
@@ -810,6 +811,18 @@
 \end{frame}
 
 
+% ===== CODE =====
+\begin{frame}{Resources}
+    \begin{center}
+        A code demo and these lecture slides (insertion only) can be found here:
+        \vspace{1em}
+
+        \href{https://github.com/warrenjkim/rbtree-lecture}
+        {\textmtt{\textcolor{blue}{\underline{https://github.com/warrenjkim/rbtree-lecture}}}}
+    \end{center}
+\end{frame}
+
+
 % ===== END =====
 \begin{frame}{End}
     \begin{center}
@@ -831,7 +844,7 @@
     }
     \textit{Proof.}
     Suppose we have a \red\textib{-black} tree with $n$ nodes and height $h$. Let $b$ be the number
-    of \textib{black} nodes on the shortest path from root to any leaf. In the worst case, the
+    of \textib{black} nodes on the shortest path from root to any nil node. In the worst case, the
     longest path alternates between \red \ and \textib{black} nodes and thus has a height of $2b$.
     Then, $h$ is bounded above by $2b$; that is, $h \leq 2b$. There are $2^b - 1 \leq n$ nodes in
     this tree. Solving for $b$, we get $b \leq \log(n + 1)$. Substituting $b$, we get
